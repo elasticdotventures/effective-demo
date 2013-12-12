@@ -54,12 +54,16 @@ p.indented {
 /*********************************
 HOMEPAGE
 *********************************/
-#homepage .imageContainer {right: 242px;}
+#homepage .imageContainer {
+	position:absolute;
+	z-index:0;
+	right: 242px;
+}
 
-#homepage .textContainer{top: 100px;left: 200px;width: 250px;}
+#homepage .textContainer{position: absolute; z-index:1; top: 100px;left: 200px;width: 250px;}
 #homepage .textContainer h1{font-size:2.5em;}
 
-#homepage .videoContainer {top: 530px; left:80px; right:292px; padding-bottom:40px;}
+#homepage .videoContainer {position: absolute; z-index: 1; top: 530px; left:80px; right:292px; padding-bottom:40px;}
 #homepage .videoContainer > div {width: 100%; display: table;}
 #homepage .videoContainer > div > div{display:table-cell; width: 33%;}
 #homepage .videoContainer iframe{border: 6px solid black; width:247px; height: 139px;}

@@ -55,6 +55,13 @@ p.indented {
 /*********************************
 HOMEPAGE
 *********************************/
+#homepage .imageContainer {
+	position:absolute;
+	z-index:0;
+}
+
+#homepage .textContainer{position: absolute; z-index:1;}
+#homepage .videoContainer{position: absolute; z-index: 1;}
 #homepage .imageContainer {display:none;}
 
 #homepage .textContainer{top: 100px;left: 20px;width: 250px;}

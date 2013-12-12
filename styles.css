@@ -134,10 +134,3 @@ html, body, #content{
 /*********************************
 HOMEPAGE
 *********************************/
-#homepage .imageContainer {
-	position:absolute;
-	z-index:0;
-}
-
-#homepage .textContainer{position: absolute; z-index:1;}
-#homepage .videoContainer{position: absolute; z-index: 1;}

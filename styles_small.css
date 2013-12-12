@@ -60,6 +60,22 @@ HOMEPAGE
 #homepage .videoContainer iframe{ border: 6px solid black; width: 300px; height: 169px; margin: 3px;}
 
 /*********************************
+FEATURES
+*********************************/
+#largeFeatures .section .icon{ width:64px; height:48px; background:url(img/features_ills_02_sprite_64.png), no-repeat;}
+#largeFeatures .section .icon.globe {background-position: 0px 0px;}
+#largeFeatures .section .icon.cloud {background-position: -64px 0px;}
+#largeFeatures .section .icon.credit {background-position: 0px -48px;}
+#largeFeatures .section .icon.screen {background-position: -64px -48px;}
+#largeFeatures .section .icon.mobile {background-position: 0px -96px;}
+#largeFeatures .section .icon.social {background-position: -64px -96px;}
+#largeFeatures .section .icon.phone {background-position: 0px -144px;}
+#largeFeatures .section .icon.binocular {background-position: -64px -144px;}
+#largeFeatures .section .icon.amz {background-position: 0px -192px;}
+#largeFeatures .section .icon.ebay {background-position: -64px -192px;}
+#largeFeatures .section .icon.github {background-position:  0px -240px;}
+#largeFeatures .section .icon.party {background-position: -64px -240px;}
+/*********************************
 DEMO (See it in Action)
 *********************************/
 #highlightDemo .quotes > div{ 

@@ -158,10 +158,10 @@ FEATURES
 #highlightFeatures ul {padding-left: 20px; font-size: 1.4em;}
 
 #largeFeatures .section {clear: both; margin-bottom: 40px;}
-#largeFeatures .section .icon{ width:200px; height:150px; background:url(img/features_ills_02_sprite.png), no-repeat;}
 #largeFeatures .section.left .icon {float: left;} 
 #largeFeatures .section.right .icon {float: right;} 
 
+#largeFeatures .section .icon{ width:200px; height:150px; background:url(img/features_ills_02_sprite.png), no-repeat;}
 #largeFeatures .section .icon.globe {background-position: 0px 0px;}
 #largeFeatures .section .icon.cloud {background-position: -200px 0px;}
 #largeFeatures .section .icon.credit {background-position: 0px -150px;}

@@ -30,6 +30,12 @@ html, body, #content{
 	top:0px;
 	z-index:10;
 	text-align:center;
+	border: 0px;
+	text-decoration:none;
+}
+
+#logo img{
+	border:0px;
 }
 
 #menu {

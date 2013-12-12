@@ -157,7 +157,7 @@ FEATURES
 *********************************/
 #highlightFeatures ul {padding-left: 20px; font-size: 1.4em;}
 
-#largeFeatures .section {clear: both; margin-top: 20px;}
+#largeFeatures .section {clear: both; margin-bottom: 40px;}
 #largeFeatures .section .icon{ width:200px; height:150px; background:url(img/features_ills_02_sprite.png), no-repeat;}
 #largeFeatures .section.left .icon {float: left;} 
 #largeFeatures .section.right .icon {float: right;} 

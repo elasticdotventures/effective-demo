@@ -181,11 +181,20 @@ INSTALL
 #largeInstall .imageContainer{
 	position:absolute;
 	top: -180px;
-	left:-30px;
+	left:-60px;
 	width:1297px;
 	height:903px;
 	text-align:center;
 }
+
+#largeInstall .brandingContainer{
+	position:absolute;
+	top: 300px;
+	width:200px;
+	padding: 20px;
+	background:rgba(255,255,255,.4);
+}
+#largeInstall .brandingContainer img{display:block;}
 
 #installModal {
 	position: fixed;

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="google-site-verification" content="q3td5eZJUHs-0NNH__I8VW5282TVOQ24QbZwoBIwXGc" />
+	
+	<link href="styles.css" rel="stylesheet" type="text/css"/>
+	<link href="styles_large.css" rel="stylesheet" type="text/css" media="(min-width:1100px)"/>
+	<link href="styles_medium.css" rel="stylesheet" type="text/css" media="(min-width:780px) and (max-width:1099px)"/>
+	<link href="styles_medium-small.css" rel="stylesheet" type="text/css" media="(min-width:640px) and (max-width:779px)"/>
+	<link href="styles_small.css" rel="stylesheet" type="text/css" media="(max-width:639px)"/>
+	
+	<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		var defaultInitFunction = function($page){
+			//Default Init does nothing, but here for structural symmetry
+		}
+		
+		var $largeContent;
+		var $highlightContent;
+		var app = {
+			pages: {
+				"#!/" : function(){
+					console.log("homepage");
+					hideHighlightContent();
+					hideLargeContent(getShowLargeContentCallback(app.templates.homepage));
+					selectMenu(0);
+				},
+				"#!/howitworks.html" : function(){ 
+					console.log("how it works");
+					insertHighlightContent(app.templates.highlightHowItWorks);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(1);
+				},
+				"#!/features.html" : function(){ 
+					console.log("features and capabilities");
+					insertHighlightContent(app.templates.highlightFeatures);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(2);
+				},
+				"#!/install.html" : function(){ 
+					console.log("install");
+					insertHighlightContent(app.templates.highlightInstall);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(3);
+				},
+				"#!/demo.html" : function(){ 
+					console.log("demo");
+					insertHighlightContent(app.templates.highlightDemo);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(4);
+				},
+				"#!/whoweare.html" : function(){ 
+					console.log("who we are");
+					insertHighlightContent(app.templates.highlightWhoWeAre);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(5);
+				},
+				"#!/documentation.html" : function(){ 
+					console.log("docs");
+					insertHighlightContent(app.templates.highlightDocumentation);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(6);
+				},
+				"#!/pagenotfound.html" : function(){ 
+					console.log("404");
+					insertHighlightContent(app.templates.highlightHowItWorks);
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					selectMenu(0);
+				}
+			},
+			templates : {},
+			currentIntervals : []
+		};
+		
+		function hideLargeContent(callback){
+			callback = callback || function(){};
+			var $content = $largeContent.children();
+			$content.fadeOut(300);
+			setTimeout(function(){
+				$content.remove();
+				callback();
+			},300);
+		}
+		function hideHighlightContent(){
+			var $content = $highlightContent.children();
+			$content.animate({'left':-350}, 300);
+			setTimeout(function(){
+				$highlightContent.hide();
+				$content.remove();
+			},300);
+		}
+		function getShowLargeContentCallback($template, callback){
+			callback = callback || function(){};
+			return function(){
+				var $content = $($template.clone()).hide();
+				$largeContent.append($content);
+				$content.show();
+				$content.animate({'left':0},300);
+				setTimeout(function(){ callback(); }, 300)
+			}
+		}
+		function insertHighlightContent($template){
+			$highlightContent.show();
+			$oldcontent = $highlightContent.children();
+			$newContent = $template.clone();
+			$highlightContent.append($newContent);
+			//$newContent.animate({'left':0}, 300);
+			setTimeout(function(){ 
+				$newContent.animate({'left':0}, 300);
+				setTimeout(function(){ $oldcontent.remove(); },300);
+			}, 300);
+		}
+		function selectMenu(index){
+			console.log(index);
+			$('#menu .selected').removeClass('selected');
+			if(index){
+				console.dir($('#menu .menu'+index));
+				console.log($('#menu .menu'+index).length);
+				console.log($('#menu .menu'+index).hasClass('selected'));
+				$('#menu .menu'+index).addClass('selected');
+				console.log($('#menu .menu'+index).hasClass('selected'));
+			}
+		}
+		var path = document.URL;
+		
+		function show(path){
+			console.log(path);
+			
+			try{
+				window.history.pushState(path, path, path);
+			} catch(err)	{
+				console.dir(err);
+				console.warn("Pushstate attempt failed!");
+			}
+			
+			if(app.pages[path]){
+				app.pages[path]();
+			} else {
+				app.pages["#!/pagenotfound.html"]();
+			}
+		}
+		
+		function handlePopState(state){
+			//console.log("popping");
+			show(state);
+		}
+		
+		$(function(){
+			$largeContent = $('#largeContentArea');
+			$highlightContent = $('#highlightContentArea');
+			$('body').on('click','a',function(event){
+				show($(this).attr('href'));
+				event.preventDefault();
+			})
+			var $templates = $("#templates").children();
+			$templates.each(function(){
+				if($(this).attr('id')){
+					app.templates[$(this).attr('id')] = $(this);
+					}
+			});
+			$('#templates').remove();
+			
+			//set current template (page handler)
+			if(document.URL.indexOf("#!") !== -1){
+				show("#!" + document.URL.split("#!")[1]);
+			} else {
+				show("#!/");
+			}
+			
+			if(typeof window.onpopstate == 'object')	{
+				window.onpopstate = function(event) { 
+					handlePopState(event.state);
+				}
+			}
+			
+			var ourURI = document.URL;
+			if (ourURI.indexOf('#') >= 0) { ourURI = ourURI.substring(0,ourURI.indexOf('#')); }	// strip after #
+			
+		});
+
+
+
+	</script>
+</head>
+<body>
+	<div id="content">
+		<a id="logo" href="#!/">
+			<img src="img/logo.png" />
+		</a>
+		<div id="menu">
+			<div id="menuHeader" onClick="$(this).parent().toggleClass('reveal');">
+				MENU
+			</div>
+			<div id="menuContent" onClick="$(this).parent().removeClass('reveal');">
+				<div>
+					<a class="menu1" href="#!/howitworks.html">
+						<div class="menuHighlight"></div>
+						<div class="menuItem">HOW IT WORKS</div>
+					</a>
+					<a class="menu2" href="#!/features.html">
+						<div class="menuHighlight"></div>
+						<div class="menuItem">FEATURES &amp; CAPABILITIES</div>
+					</a>
+					<a class="menu3" href="#!/install.html">
+						<div class="menuHighlight"></div>
+						<div class="menuItem">INSTALL NOW</div>
+					</a>
+					<a class="menu4" href="#!/demo.html">
+						<div class="menuHighlight"></div>
+						<div class="menuItem">SEE IT IN ACTION</div>
+					</a>
+					<a class="menu5" href="#!/whoweare.html">
+						<div class="menuHighlight"></div>
+						<div class="menuItem">WHO WE ARE</div>
+					</a>
+					<a class="menu6" href="#!/documentation.html">
+						<div class="menuHighlight"></div>
+						<div class="menuItem">DOCUMENTATION</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="highlightContentArea"></div>
+		<div id="largeContentArea"></div>
+	</div>
+	
+	<div id="templates">
+		<div id="homepage">
+			<div><p>Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+			</p><p>Fatback brisket prosciutto, bresaola short ribs tenderloin swine biltong meatloaf hamburger.  Ham fatback ball tip spare ribs.  Ham brisket frankfurter doner short ribs boudin.  Kevin pastrami cow swine, tri-tip sausage doner bacon chuck.  Tail cow corned beef pancetta.  Turducken turkey fatback andouille ground round ham hock, tenderloin kielbasa chicken sirloin pork belly venison jowl.  Sirloin pancetta hamburger, rump short ribs boudin pork loin corned beef.</p><p>Turkey hamburger beef ribs pork loin, frankfurter bacon pork belly drumstick corned beef spare ribs shank ground round tri-tip kielbasa kevin.  Frankfurter turducken pig, shankle turkey andouille swine chuck bacon.  Sausage prosciutto doner, boudin ball tip meatball kevin ribeye.  Shankle chuck brisket, t-bone beef corned beef flank leberkas pork belly pig ham.</p><p>Pig beef ribs doner biltong cow ribeye prosciutto capicola ham tail corned beef boudin tongue sausage.  Drumstick tri-tip pork loin cow, fatback kevin ribeye.  Tenderloin swine tail, hamburger ground round tri-tip shankle pastrami flank chuck corned beef doner chicken pork chop.  Pancetta tenderloin ground round, brisket ribeye sirloin beef ribs.  Pork loin tail t-bone, prosciutto rump jerky ribeye doner.  Beef ribs chicken turducken t-bone turkey bacon andouille filet mignon.  Boudin ball tip shank filet mignon short loin chuck.</p><p>Sausage pastrami drumstick andouille spare ribs pork chop jowl kevin.  Pancetta andouille filet mignon capicola swine.  Shankle strip steak meatloaf pork chop pancetta venison.  Pork sirloin frankfurter leberkas kielbasa brisket jerky ball tip.  Pork belly turducken salami bacon.  Jowl tongue fatback, shankle rump jerky kielbasa andouille ham strip steak.</p><p>Pork belly strip steak meatball cow ham hock filet mignon pancetta flank rump tenderloin spare ribs pig ball tip.  Drumstick ribeye t-bone doner capicola short loin sirloin.  Capicola shank bacon prosciutto salami, tongue beef turducken filet mignon chicken meatball spare ribs shoulder kielbasa.  Swine pork chop turducken strip steak rump chicken meatball pork turkey tail spare ribs shoulder meatloaf ball tip pastrami.  Swine chicken sirloin, t-bone beef ball tip bacon salami tri-tip shank flank.  Beef sirloin shankle pork belly drumstick tri-tip, jowl turducken ball tip cow prosciutto.</p><p>Biltong shankle beef ribs ribeye.  Boudin bresaola spare ribs biltong cow, flank jerky leberkas doner ham salami.  Meatloaf sausage pancetta, frankfurter doner bresaola boudin.  Sausage short ribs brisket chuck sirloin prosciutto, jowl capicola.</p><p>Ham hock ball tip spare ribs, shank chuck corned beef chicken sausage beef drumstick.  Filet mignon jowl corned beef, pork chop salami sausage ham hock shoulder.  Bacon prosciutto pancetta, flank spare ribs brisket shoulder ham frankfurter leberkas beef turducken sirloin.  Doner hamburger fatback shank chuck ham hock filet mignon.  Flank beef ribs sirloin, filet mignon ribeye pastrami pork loin pancetta tri-tip.</p><p>Brisket strip steak pork belly, ball tip ham bacon pig chuck swine beef ribs meatball.  Pork belly beef ribs cow, drumstick fatback capicola jowl pastrami.  Rump sausage hamburger chicken chuck fatback strip steak short loin turkey pancetta jowl ham.  Short loin rump pancetta frankfurter drumstick shankle ground round, kielbasa bacon.  Beef ribs shoulder meatball andouille sausage.  Tongue doner sirloin turkey beef ribs meatloaf hamburger jerky shank.</p><p>Short ribs shank prosciutto, venison pastrami hamburger bresaola pork belly flank pancetta frankfurter.  Venison t-bone pork belly biltong andouille.  Pork meatball turducken, fatback andouille doner beef ribs tongue cow prosciutto kielbasa filet mignon.  Kevin pork chuck ground round, prosciutto short loin strip steak corned beef.  Sausage jerky pastrami, chicken venison corned beef filet mignon tongue.  Ribeye short ribs short loin tri-tip pork chop bresaola pork belly pig jowl drumstick beef boudin frankfurter leberkas.</p><p>Ribeye shank ham, salami short ribs pancetta t-bone bacon.  Bacon rump chuck meatball pork belly hamburger doner, tail cow turducken beef.  Kielbasa ham hock meatball flank pastrami salami venison, kevin andouille.  Ground round spare ribs prosciutto hamburger tail corned beef.  Kevin t-bone pancetta, ham hock andouille pork loin pig.  Rump chuck pork loin short loin.</p><p>Pastrami spare ribs pork chop swine, beef ribs pig pork venison.  Meatball tongue kielbasa leberkas bresaola spare ribs.  Ground round andouille tenderloin bacon sausage corned beef.  Ham hock pork spare ribs ball tip, sausage shoulder pork chop jerky tenderloin biltong chicken frankfurter.  Spare ribs brisket kielbasa pancetta, short ribs t-bone venison shoulder kevin tail beef ribs ground round boudin shank.  Filet mignon andouille pork meatloaf, biltong boudin ribeye chuck salami ham hock pig swine capicola strip steak jerky.  Andouille bresaola fatback doner.</p><p>Pork loin kevin doner jerky.  Pastrami ham hock chicken, shankle drumstick turkey biltong ground round pork rump bresaola pork chop kevin beef ribs.  Drumstick short loin beef ham shoulder ham hock t-bone pastrami shankle pork loin frankfurter fatback salami sirloin bacon.  Leberkas meatball pig turkey, corned beef short loin ground round.  Doner andouille ground round tri-tip corned beef venison boudin ribeye cow swine pork loin shank turkey.</p><p>Drumstick frankfurter swine sausage, tongue ground round kielbasa pastrami turkey bacon pork belly venison pork chop sirloin short loin.  Rump leberkas bresaola salami tenderloin, short ribs prosciutto pork chop jerky.  Pancetta salami pastrami sirloin.  Pork chop boudin meatloaf bresaola chuck, pork loin frankfurter swine chicken drumstick strip steak ham t-bone.  Salami short ribs drumstick hamburger, bresaola pork shank brisket tail.  Tenderloin jowl capicola bacon.  Kielbasa t-bone strip steak pancetta frankfurter pork loin.</p><p>Spare ribs cow andouille, pork belly salami doner chicken.  Turkey corned beef beef ribs strip steak, rump pork beef tongue pork chop pig.  Short loin bacon turkey pastrami.  Chuck ham hock bacon tri-tip, doner swine cow andouille pork chop spare ribs rump tail turkey.  Chuck pork loin jowl, drumstick shoulder chicken meatloaf salami t-bone biltong ham kevin pig flank.  Doner t-bone tongue short loin beef ribs tri-tip short ribs tail cow ball tip brisket drumstick.  Andouille drumstick jowl turkey tail.</p><p>Tail cow fatback short ribs hamburger bresaola meatball.  Turkey rump andouille pork belly, salami bacon flank.  Pastrami hamburger chicken jerky swine.  Corned beef pig tail, kevin flank bacon ribeye pork doner pork belly ground round.  Meatball ham kevin pork.  Short ribs corned beef spare ribs, drumstick prosciutto fatback frankfurter.</p><p>Ribeye bresaola meatloaf, flank kevin shankle spare ribs kielbasa turducken.  Biltong turkey shankle salami corned beef jowl t-bone strip steak ball tip pork.  Shoulder pancetta doner, ham kielbasa cow t-bone drumstick fatback bacon.  Spare ribs prosciutto doner frankfurter tongue chicken leberkas strip steak pancetta tail pork chop rump.  Turducken rump beef ribs shank, bresaola tail short ribs.</p><p>Bacon pork loin corned beef rump.  Boudin salami turducken, drumstick biltong tenderloin fatback short ribs rump tail kevin.  Pastrami pork belly fatback, tenderloin short loin ribeye pancetta rump andouille frankfurter tongue shankle spare ribs t-bone.  Kevin ribeye short loin beef ribs, andouille ham hock swine tongue leberkas pork loin.</p><p>Swine shankle short ribs sirloin hamburger chuck shank drumstick pork loin pork chop shoulder leberkas rump.  Leberkas beef ribs cow chicken, brisket fatback kevin tri-tip shankle hamburger pancetta swine corned beef salami.  Jerky doner cow strip steak.  Capicola brisket shank boudin beef ribs, chicken doner strip steak turducken chuck flank drumstick spare ribs short loin.</p><p>Meatloaf tail shank chicken, sirloin turducken venison drumstick leberkas tongue beef rump tenderloin.  Pig kielbasa t-bone jerky doner meatball ground round beef ribs ball tip fatback prosciutto pork belly.  Tongue kevin jowl beef pastrami.  Ribeye chuck boudin biltong.</p></div>
+		</div>
+		
+		<div id="largeHowItWorks" class="indentedContent scrollable">
+			<div>
+				<h2>Getting Started</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+				<div class="alignCenter">
+					<img src="img/howitworks.jpg" />
+				</div>
+				<h2>Getting Help</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
+		
+		<div id="highlightHowItWorks" class="heavyBG1">
+			<div class="lightBG1">
+				<h1>How it works</h1>
+				<p>
+					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+				</p>
+				
+				<a>The App Framework</a>
+				<a>The Commerce Platform</a>
+				<a>Why This is Awesome</a>
+			</div>
+		</div>
+		
+		<div id="highlightFeatures" class="heavyBG2">
+			<div class="lightBG2">
+				<h1>How it works</h1>
+				<p>
+					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+				</p>
+				
+				<a>The App Framework</a>
+				<a>The Commerce Platform</a>
+				<a>Why This is Awesome</a>
+			</div>
+		</div>
+		
+		<div id="highlightInstall" class="heavyBG3">
+			<div class="lightBG3">
+				<h1>How it works</h1>
+				<p>
+					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+				</p>
+				
+				<a>The App Framework</a>
+				<a>The Commerce Platform</a>
+				<a>Why This is Awesome</a>
+			</div>
+		</div>
+		
+		<div id="highlightDemo" class="heavyBG4">
+			<div class="lightBG4">
+				<h1>How it works</h1>
+				<p>
+					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+				</p>
+				
+				<a>The App Framework</a>
+				<a>The Commerce Platform</a>
+				<a>Why This is Awesome</a>
+			</div>
+		</div>
+		
+		<div id="highlightWhoWeAre" class="heavyBG5">
+			<div class="lightBG5">
+				<h1>How it works</h1>
+				<p>
+					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+				</p>
+				
+				<a>The App Framework</a>
+				<a>The Commerce Platform</a>
+				<a>Why This is Awesome</a>
+			</div>
+		</div>
+		
+		<div id="highlightDocumentation" class="heavyBG6">
+			<div class="lightBG6">
+				<h1>How it works</h1>
+				<p>
+					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+				</p>
+				
+				<a>The App Framework</a>
+				<a>The Commerce Platform</a>
+				<a>Why This is Awesome</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

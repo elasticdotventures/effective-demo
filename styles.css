@@ -1,0 +1,126 @@
+html, body, #content{
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	font-family: Abel, sans-serif;
+}
+.alignCenter{text-align: center;}
+
+.lightBG1{ background: #edb8a0; }
+.lightBG2{ background: #acc67d; }
+.lightBG3{ background: #b1b9cb; }
+.lightBG4{ background: #b2a7b2; }
+.lightBG5{ background: #cacba0; }
+.lightBG6{ background: #b6d1d7; }
+
+.heavyBG1{ background:#e24b2c; }
+.heavyBG2{ background:#4f7446; }
+.heavyBG3{ background:#3f74c2; }
+.heavyBG4{ background:#753f75; }
+.heavyBG5{ background:#9faa26; }
+.heavyBG6{ background:#55c3dc; }
+
+#content { position:relative; }
+
+#logo {
+	position: absolute;
+	display:block;
+	left:0px;
+	top:0px;
+	z-index:10;
+	text-align:center;
+}
+
+#menu {
+	position: absolute;
+	right:0px;
+	height: 100%;
+	z-index:9;
+	text-align: center;
+}
+
+#menuHeader {
+	background:#b3b3b3;
+	color:white;
+}
+#menuContent {
+	width: 100%;
+	position:absolute;
+	bottom:0px;
+}
+
+#menuContent > div{ display:table; height: 100%; width: 100%;}
+
+#menuContent > div > a{
+	color: #b3b3b3;
+	display:table-row;
+	height: 17%;
+	padding-left:6px;
+	text-decoration:none;
+}
+#menuContent > div > a > div {
+	display:table-cell;
+	border-bottom:1px solid white;
+	vertical-align:middle;
+	border-top:1px solid #b3b3b3;
+}
+#menuContent > div > a > div.menuHighlight {width: 6px;}
+
+#menuContent > div > a.menu1 > div.menuHighlight,
+#menuContent > div > a.menu1.selected > div.menuItem {background:#e24b2c;}
+#menuContent > div > a.menu2 > div.menuHighlight,
+#menuContent > div > a.menu2.selected > div.menuItem {background:#4f7446;}
+#menuContent > div > a.menu3 > div.menuHighlight,
+#menuContent > div > a.menu3.selected > div.menuItem {background:#3f74c2;}
+#menuContent > div > a.menu4 > div.menuHighlight,
+#menuContent > div > a.menu4.selected > div.menuItem {background:#753f75;}
+#menuContent > div > a.menu5 > div.menuHighlight,
+#menuContent > div > a.menu5.selected > div.menuItem {background:#9faa26;}
+#menuContent > div > a.menu6 > div.menuHighlight,
+#menuContent > div > a.menu6.selected > div.menuItem {background:#55c3dc;}
+
+#menuContent > div > a > div.menuItem{
+	background: #e1e1e1;
+}
+#menuContent > div > a.selected > div.menuItem{color: white;}
+
+#highlightContentArea {
+	position: absolute;
+	left: 0px;
+	overflow:hidden;
+	z-index:8;
+}
+#highlightContentArea > div { 
+	height: 100%; 
+	position: absolute; 
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#highlightContentArea > div > div {
+	position:absolute;
+	margin-right: 6px;
+	height: 100%;
+}
+
+#largeContentArea {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	z-index:7;
+}
+
+#largeContentArea img {
+	max-width: 100%;
+}
+
+#templates {
+	display:none;
+}
+
+
+

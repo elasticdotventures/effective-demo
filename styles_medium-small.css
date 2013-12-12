@@ -1,0 +1,53 @@
+#logo {
+	width: 250px;
+	height:42px;
+	line-height:42px;
+}
+
+#menu, #highlightContentArea{ font-size: .9em;}
+
+#menu {
+	width: 140px;
+}
+
+#menuHeader {
+	height: 42px;
+	line-height: 42px;
+}
+
+#menuContent{
+	top:42px;
+}
+
+#highlightContentArea {
+	top:42px;
+	bottom:0px;
+	width: 220px;
+}
+
+#highlightContentArea > div { 
+	left:-220px;
+}
+
+
+#largeContentArea > div > div{
+	padding-right:160px;
+}
+#largeContentArea > div.indentedContent > div{
+	padding-left: 240px;
+}
+
+.scrollable {overflow-y:scroll;}
+
+p.indented {
+	padding-left:12px;
+}
+
+#largeContentArea > div{
+	position:absolute;
+	width: 100%;
+	display: block;
+	left:100%;
+	top:42px;
+	bottom:0px;
+}

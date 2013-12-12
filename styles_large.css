@@ -1,0 +1,52 @@
+#logo {
+	width: 350px;
+	height:42px;
+	line-height:42px;
+}
+
+
+#menu {
+	width: 242px;
+}
+
+#menuHeader {
+	height: 42px;
+	line-height: 42px;
+}
+
+#menuContent{
+	top:42px;
+}
+
+#highlightContentArea {
+	top:42px;
+	bottom:0px;
+	width: 350px;
+}
+
+#highlightContentArea > div { 
+	left:-350px;
+}
+
+
+#largeContentArea > div > div{
+	padding-right:262px;
+}
+#largeContentArea > div.indentedContent > div{
+	padding-left: 370px;
+}
+
+.scrollable {overflow-y:scroll;}
+
+p.indented {
+	padding-left:15px;
+}
+
+#largeContentArea > div{
+	position:absolute;
+	width: 100%;
+	display: block;
+	left:100%;
+	top:42px;
+	bottom:0px;
+}

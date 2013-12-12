@@ -29,7 +29,7 @@
 }
 
 
-#largeContentArea > div > div{
+#largeContentArea > div > div.contentContainer{
 	padding-right:262px;
 }
 #largeContentArea > div.indentedContent > div{
@@ -50,3 +50,16 @@ p.indented {
 	top:42px;
 	bottom:0px;
 }
+
+/*********************************
+HOMEPAGE
+*********************************/
+#homepage .imageContainer {right: 242px;}
+
+#homepage .textContainer{top: 100px;left: 200px;width: 250px;}
+#homepage .textContainer h1{font-size:2.5em;}
+
+#homepage .videoContainer {top: 530px; left:80px; right:292px; padding-bottom:40px;}
+#homepage .videoContainer > div {width: 100%; display: table;}
+#homepage .videoContainer > div > div{display:table-cell; width: 33%;}
+#homepage .videoContainer iframe{border: 6px solid black; width:247px; height: 139px;}

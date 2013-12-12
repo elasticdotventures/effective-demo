@@ -59,7 +59,7 @@ html, body, #content{
 #menuContent > div{ display:table; height: 100%; width: 100%;}
 
 #menuContent > div > a{
-	color: #b3b3b3;
+	color: #7b7b7b;
 	display:table-row;
 	height: 17%;
 	padding-left:6px;

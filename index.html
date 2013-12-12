@@ -65,8 +65,8 @@
 				},
 				"#!/pagenotfound.html" : function(){ 
 					console.log("404");
-					insertHighlightContent(app.templates.highlightHowItWorks);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					hideHighlightContent();
+					hideLargeContent(getShowLargeContentCallback(app.templates.homepage));
 					selectMenu(0);
 				}
 			},
@@ -144,7 +144,9 @@
 		
 		function handlePopState(state){
 			console.log("popping");
-			show(state);
+			if(typeof state !== "null"){
+				show(state);
+			}
 		}
 		
 		$(function(){

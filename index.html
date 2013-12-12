@@ -152,10 +152,20 @@
 		$(function(){
 			$largeContent = $('#largeContentArea');
 			$highlightContent = $('#highlightContentArea');
-			$('body').on('click','a',function(event){
+			$('body').on('click','a[href^="#!"]',function(event){
+				console.log("here");
 				show($(this).attr('href'));
 				event.preventDefault();
 			})
+			
+			$('body').on('click','a[data-onclick="scrollto"]',function(event){
+				
+				$('body, html, #largeContentArea .scrollable').animate({
+					scrollTop : $($(this).attr('href')).offset().top
+				},600);
+				event.preventDefault();
+			});
+			
 			var $templates = $("#templates").children();
 			$templates.each(function(){
 				if($(this).attr('id')){
@@ -276,13 +286,13 @@
 				
 				<div class="highlightLinks">
 					<div>
-						<a>The App Framework</a>
+						<a href="#gettingHelp" data-onclick="scrollto">The App Framework</a>
 					</div>
 					<div>
-						<a>The Commerce Platform</a>
+						<a href="" data-onclick="scrollto">The Commerce Platform</a>
 					</div>
 					<div>
-						<a>Why This is Awesome</a>
+						<a href="" data-onclick="scrollto">Why This is Awesome</a>
 					</div>
 				</div>
 			</div>
@@ -297,7 +307,7 @@
 				<div class="alignCenter">
 					<img src="img/howitworks.jpg" />
 				</div>
-				<h2>Getting Help</h2>
+				<h2 id="gettingHelp">Getting Help</h2>
 				<p class="indented">
 					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
 				</p>

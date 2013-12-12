@@ -5,6 +5,7 @@ html, body, #content{
 	margin: 0px;
 	font-family: Abel, sans-serif;
 }
+.clear {clear:both;}
 .alignCenter{text-align: center;}
 .alignRight{text-align: right;}
 
@@ -156,6 +157,23 @@ FEATURES
 *********************************/
 #highlightFeatures ul {padding-left: 20px; font-size: 1.4em;}
 
+#largeFeatures .section {clear: both; margin-top: 20px;}
+#largeFeatures .section .icon{ width:200px; height:150px; background:url(img/features_ills_02_sprite.png), no-repeat;}
+#largeFeatures .section.left .icon {float: left;} 
+#largeFeatures .section.right .icon {float: right;} 
+
+#largeFeatures .section .icon.globe {background-position: 0px 0px;}
+#largeFeatures .section .icon.cloud {background-position: -200px 0px;}
+#largeFeatures .section .icon.credit {background-position: 0px -150px;}
+#largeFeatures .section .icon.screen {background-position: -200px -150px;}
+#largeFeatures .section .icon.mobile {background-position: 0px -300px;}
+#largeFeatures .section .icon.social {background-position: -200px -300px;}
+#largeFeatures .section .icon.phone {background-position: 0px -450px;}
+#largeFeatures .section .icon.binocular {background-position: -200px -450px;}
+#largeFeatures .section .icon.amz {background-position: 0px -600px;}
+#largeFeatures .section .icon.ebay {background-position: -200px -600px;}
+#largeFeatures .section .icon.github {background-position:  0px -750px;}
+#largeFeatures .section .icon.party {background-position: -200px -750px;}
 /*********************************
 DEMO (See it in Action)
 *********************************/

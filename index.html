@@ -11,7 +11,7 @@
 	<link href="styles_small.css" rel="stylesheet" type="text/css" media="(max-width:639px)"/>
 	
 	<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script type="text/javascript">
 		var defaultInitFunction = function($page){
 			//Default Init does nothing, but here for structural symmetry
@@ -43,6 +43,9 @@
 					console.log("install");
 					insertHighlightContent(app.templates.highlightInstall);
 					hideLargeContent(getShowLargeContentCallback(app.templates.largeInstall));
+					
+					$('body').append(app.templates.installModal.clone());
+					
 					selectMenu(3);
 				},
 				"#!/demo.html" : function(){ 
@@ -383,23 +386,14 @@
 		<!-- INSTALL -->
 		<div id="highlightInstall" class="heavyBG3">
 			<div class="lightBG3 contentContainer">
-				<h1>How it works</h1>
-				<p>
-					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
-				</p>
+				<h1>Install Now!</h1>
 				
-				<a>The App Framework</a>
-				<a>The Commerce Platform</a>
-				<a>Why This is Awesome</a>
 			</div>
 		</div>
 
 		<div id="largeInstall" class="indentedContent scrollable">
 			<div class="contentContainer">
-				<h2>Install</h2>
-				<p class="indented">
-					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
-				</p>
+				
 			</div>
 		</div>
 		
@@ -530,7 +524,14 @@
 			</div>
 		</div>
 		
-
+		<div id="installModal" onClick="$(this).remove(); show('#!/');">
+			<div class="contentContainer">
+				<h1>We're Sorry</h1>
+				<p>
+					We are currently in limited enrollment :(
+				</p>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

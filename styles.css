@@ -182,3 +182,28 @@ DEMO (See it in Action)
 #largeDemo .slideContainer .currSlide .bar{ height: 6px;margin-bottom: 2px;}
 
 #largeDemo .contentContainer {min-height: 100%;}
+
+/*********************************
+INSTALL MODAL
+*********************************/
+
+#installModal {
+	position: absolute;
+	top: 0px;
+	bottom:0px;
+	left: 0px;
+	right: 0px;
+	
+	background: rgba(177,185,203,.8);
+	z-index:100;
+}
+
+#installModal .contentContainer{
+	width: 50%;
+	margin: 50px auto;
+	background: white;
+}
+
+#installModal .contentContainer h1{
+	background: rgb(177,185,203);
+}

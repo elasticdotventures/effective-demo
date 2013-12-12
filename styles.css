@@ -178,6 +178,17 @@ FEATURES
 /*********************************
 INSTALL
 *********************************/
+#highlightInstall .step .icon {
+	float: left;
+	background:url(img/install_numbers.png) no-repeat; width: 65px; height:71px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+
+#highlightInstall .step1 .icon{background-position: 0px 0px;}
+#highlightInstall .step2 .icon{background-position: 0px -71px;}
+#highlightInstall .step3 .icon{background-position: 0px -142px;}
+
 #largeInstall .imageContainer{
 	position:absolute;
 	top: -180px;
@@ -259,3 +270,8 @@ WHO WE ARE
 #highlightWhoWeAre a {text-decoration:none;color: #4D4D4D;}
 #highlightWhoWeAre h2 {margin-bottom:5px;}
 #highlightWhoWeAre div > a { padding-left: 25px;}
+
+/*********************************
+WHO WE ARE
+*********************************/
+#highlightDocumentation a {text-decoration:none;color: #4D4D4D;}

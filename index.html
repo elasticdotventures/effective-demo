@@ -55,7 +55,7 @@
 				"#!/whoweare.html" : function(){ 
 					console.log("who we are");
 					insertHighlightContent(app.templates.highlightWhoWeAre);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeWhoWeAre));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeAboutUs));
 					selectMenu(5);
 				},
 				"#!/documentation.html" : function(){ 
@@ -155,6 +155,13 @@
 			}
 		}
 		
+		function scrollTo(href){
+			console.log(href);
+			$('body, html, #largeContentArea .scrollable').animate({
+				scrollTop : $(href).offset().top
+			},600);
+		}
+		
 		var path = document.URL;
 		
 		function show(path){
@@ -190,10 +197,18 @@
 			})
 			
 			$('body').on('click','a[data-onclick="scrollto"]',function(event){
-				
-				$('body, html, #largeContentArea .scrollable').animate({
-					scrollTop : $($(this).attr('href')).offset().top
-				},600);
+				scrollTo($(this).attr('href'));
+				event.preventDefault();
+			});
+			
+			$('body').on('click','a[data-onclick="loadAndScroll"]',function(event){
+				var href = $(this).attr('href')
+				hideLargeContent(getShowLargeContentCallback(app.templates[$(this).attr('data-load')], function(){scrollTo(href);}));
+				event.preventDefault();
+			});
+			
+			$('body').on('click','a[data-onclick="load"]',function(event){
+				hideLargeContent(getShowLargeContentCallback(app.templates[$(this).attr('data-load')]));
 				event.preventDefault();
 			});
 			
@@ -585,21 +600,44 @@
 		<!-- WHO WE ARE -->
 		<div id="highlightWhoWeAre" class="heavyBG5">
 			<div class="lightBG5 contentContainer">
-				<h1>How it works</h1>
-				<p>
-					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
-				</p>
-				
-				<a>The App Framework</a>
-				<a>The Commerce Platform</a>
-				<a>Why This is Awesome</a>
+				<h1>Who We are</h1>
+				<h2><a href="#" data-onclick="load" data-load="largeAboutUs">About Us</a></h2>
+				<div>
+					<a href="#companyHistory" data-onclick="loadAndScroll" data-load="largeAboutUs">Company History</a>
+				</div>
+				<h2><a href="#" data-onclick="load" data-load="largeOurFriends">Our Friends</a></h2>
+				<div>
+					<a href="#integrations" data-onclick="loadAndScroll" data-load="largeOurFriends">Integrations</a>
+				</div>
+				<h2><a href="#" data-onclick="load" data-load="largeLegalStuff">Legal Stuff</a></h2>
+				<div>
+					<a href="#pciCompliance" data-onclick="loadAndScroll" data-load="largeLegalStuff">PCI Compliance</a>
+				</div>
 			</div>
 		</div>
 
-		<div id="largeWhoWeAre" class="indentedContent scrollable">
+		<div id="largeAboutUs" class="indentedContent scrollable">
 			<div class="contentContainer">
-				<h2>WhoWeAre</h2>
-				<p class="indented">
+				<h2>About Us</h2>
+				<p id="companyHistory" class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
+		
+		<div id="largeOurFriends" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>Our Friends</h2>
+				<p id="integrations" class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
+		
+		<div id="largeLegalStuff" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>LegalStuff</h2>
+				<p id="pciCompliance" class="indented">
 					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
 				</p>
 			</div>

@@ -252,3 +252,10 @@ DEMO (See it in Action)
 #largeDemo .slideContainer .currSlide .bar{ height: 8px;margin-bottom: 10px;}
 
 #largeDemo .contentContainer {min-height: 100%;}
+
+/*********************************
+WHO WE ARE
+*********************************/
+#highlightWhoWeAre a {text-decoration:none;color: #4D4D4D;}
+#highlightWhoWeAre h2 {margin-bottom:5px;}
+#highlightWhoWeAre div > a { padding-left: 25px;}

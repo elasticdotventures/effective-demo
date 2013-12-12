@@ -9,7 +9,11 @@
 #menu {
 	min-width: 100px;
 	width: 30%;
+	height:42px; 
+	overflow:hidden;
 }
+
+#menu.reveal{height:480px;}
 
 #menuHeader {
 	height: 42px;
@@ -19,10 +23,7 @@
 
 #menuContent{
 	top:42px;
-	display:none;
 }
-
-#menu.reveal #menuContent { display:block; }
 #menuContent > div{ height: 438px;}
 
 #highlightContentArea {

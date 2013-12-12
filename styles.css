@@ -98,6 +98,7 @@ html, body, #content{
 	left: 0px;
 	overflow:hidden;
 	z-index:8;
+	color: #4d4d4d;
 }
 #highlightContentArea > div { 
 	height: 100%; 
@@ -138,6 +139,7 @@ HOMEPAGE
 /*********************************
 HOW IT WORKS
 *********************************/
+#highlightHowItWorks .highlightLinks a {text-decoration:none; color: #4d4d4d;}
 #highlightHowItWorks .highlightLinks > div {
 	display: block;
 	padding-left: 10px;

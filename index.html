@@ -61,7 +61,7 @@
 				"#!/documentation.html" : function(){ 
 					console.log("docs");
 					insertHighlightContent(app.templates.highlightDocumentation);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeDocumentation));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeGettingStarted));
 					selectMenu(6);
 				},
 				"#!/pagenotfound.html" : function(){ 
@@ -664,20 +664,24 @@
 		<!-- DOCUMENTATION -->
 		<div id="highlightDocumentation" class="heavyBG6">
 			<div class="lightBG6 contentContainer">
-				<h1>How it works</h1>
-				<p>
-					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
-				</p>
-				
-				<a>The App Framework</a>
-				<a>The Commerce Platform</a>
-				<a>Why This is Awesome</a>
+				<h1>Documentation</h1>
+				<a href="#" data-onclick="load" data-load="largeGettingStarted">Getting Started</a>
+				<a href="#" data-onclick="load" data-load="largeGettingHelp">Getting Help</a>
 			</div>
 		</div>
 		
-		<div id="largeDocumentation" class="indentedContent scrollable">
+		<div id="largeGettingStarted" class="indentedContent scrollable">
 			<div class="contentContainer">
-				<h2>Documentation</h2>
+				<h2>Getting Started</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
+		
+		<div id="largeGettingHelp" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>Getting Help</h2>
 				<p class="indented">
 					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
 				</p>

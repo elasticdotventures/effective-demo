@@ -75,3 +75,12 @@ HOMEPAGE
 #homepage .videoContainer > div {width: 100%; display: table;}
 #homepage .videoContainer > div > div{display:table-cell; width: 33%;}
 #homepage .videoContainer iframe{border: 6px solid black; width:120px; height: 68px;}
+
+/*********************************
+DEMO (See it in Action)
+*********************************/
+#highlightDemo .quotes > div{ 
+	width: 168px; 
+	padding-left: 24px;
+	padding-right: 16px;
+}

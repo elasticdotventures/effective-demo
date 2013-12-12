@@ -57,3 +57,12 @@ HOMEPAGE
 *********************************/
 #homepage .imageContainer{ display:none;}
 #homepage .videoContainer iframe{ border: 6px solid black; width: 300px; height: 169px; margin: 3px;}
+
+/*********************************
+DEMO (See it in Action)
+*********************************/
+#highlightDemo .quotes > div{ 
+	width: 222px; 
+	padding-left: 48px;
+	padding-right: 38px;
+}

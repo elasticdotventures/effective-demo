@@ -49,6 +49,7 @@
 					console.log("demo");
 					insertHighlightContent(app.templates.highlightDemo);
 					hideLargeContent(getShowLargeContentCallback(app.templates.largeDemo));
+					setTimeout(function(){showDemo(0);},600);
 					selectMenu(4);
 				},
 				"#!/whoweare.html" : function(){ 
@@ -113,20 +114,51 @@
 			}, 300);
 		}
 		function selectMenu(index){
-			console.log(index);
 			$('#menu .selected').removeClass('selected');
 			if(index){
-				console.dir($('#menu .menu'+index));
-				console.log($('#menu .menu'+index).length);
-				console.log($('#menu .menu'+index).hasClass('selected'));
 				$('#menu .menu'+index).addClass('selected');
-				console.log($('#menu .menu'+index).hasClass('selected'));
 			}
 		}
+		
+		function showNextDemo(){
+			showDemo(Number($('#highlightDemo .currQuote').attr('data-index'))+1, true);
+		}
+		
+		function showPrevDemo(){
+			showDemo(Number($('#highlightDemo .currQuote').attr('data-index'))-1, false);
+		}
+		
+		//if goFwd is true, the content will slide to the left (being replaced by content that is "Forward" of it, or to the right.  
+		//This is somewhat confusing but I am open to suggestions on how to rectify that.
+		function showDemo(index, goFwd){
+			index = index || 0;
+			var $currQuote = $('#highlightDemo .currQuote')
+			if(index < 0){
+				index += $('#highlightDemo .quotes [data-index]').length;
+			}
+			index = index % $('#highlightDemo .quotes [data-index]').length;
+			
+			if(!$currQuote.length || $currQuote.attr('data-index') != index){
+				$currQuote.removeClass('currQuote');
+				
+				$('#largeDemo .slideContainer .currSlide').removeClass('currSlide');
+				$('#largeDemo .slideContainer [data-index="'+index+'"]').addClass('currSlide');
+				
+				var $nextQuote = $('#highlightDemo .quotes [data-index="'+index+'"]');
+				$currQuote.animate({'left':goFwd ? -1000 : 1000},300);
+				$nextQuote.css({'left':goFwd ? 1000 : -1000});
+				setTimeout(function(){
+					$currQuote.hide();
+					$nextQuote.show().addClass('currQuote');
+					$nextQuote.animate({'left':0},300);
+				},300);
+			}
+		}
+		
 		var path = document.URL;
 		
 		function show(path){
-			console.log(path);
+			//console.log(path);
 			
 			try{
 				window.history.pushState(path, path, path);
@@ -143,7 +175,7 @@
 		}
 		
 		function handlePopState(state){
-			console.log("popping");
+			//console.log("popping");
 			if(typeof state !== "null"){
 				show(state);
 			}
@@ -153,7 +185,6 @@
 			$largeContent = $('#largeContentArea');
 			$highlightContent = $('#highlightContentArea');
 			$('body').on('click','a[href^="#!"]',function(event){
-				console.log("here");
 				show($(this).attr('href'));
 				event.preventDefault();
 			})
@@ -164,6 +195,10 @@
 					scrollTop : $($(this).attr('href')).offset().top
 				},600);
 				event.preventDefault();
+			});
+			
+			$('body').on('click','.slide[data-index]',function(event){
+				showDemo(Number($(this).attr('data-index')));
 			});
 			
 			var $templates = $("#templates").children();
@@ -371,23 +406,72 @@
 		<!-- DEMO -->
 		<div id="highlightDemo" class="heavyBG4">
 			<div class="lightBG4 contentContainer">
-				<h1>How it works</h1>
-				<p>
-					Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
-				</p>
+				<h1 class="alignCenter">See It In Action</h1>
 				
-				<a>The App Framework</a>
-				<a>The Commerce Platform</a>
-				<a>Why This is Awesome</a>
+				<div class="quotes">
+					<div class="" data-index="0">
+						<img />
+						<blockquote>
+							"Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage."
+						</blockquote>
+						<div class="alignRight quotesrc">
+							<div class="name">-Brad Rosen</div>
+							<div class="role">Owner</div>
+						</div>
+					</div>
+					
+					<div class="" data-index="1">
+						<img />
+						<blockquote>
+							"Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage."
+						</blockquote>
+						<div class="alignRight quotesrc">
+							<div class="name">-Schad VanLeeuwen</div>
+							<div class="role">Owner</div>
+						</div>
+					</div>
+					
+					<div class="" data-index="2">
+						<img />
+						<blockquote>
+							"Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage."
+						</blockquote>
+						<div class="alignRight quotesrc">
+							<div class="name">-Brad Rosen</div>
+							<div class="role">Owner</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="quoteNav">
+					<div class="prev" onClick="showPrevDemo();"></div>
+					<div class="next" onClick="showNextDemo();"></div>
+				</div>
 			</div>
 		</div>
 
 		<div id="largeDemo" class="indentedContent scrollable">
 			<div class="contentContainer">
-				<h2>Demo</h2>
-				<p class="indented">
-					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
-				</p>
+				<div class="slideContainer">
+					<div class="slide" data-index="0" >
+						<div class="bar" style="background:#ff0000;"></div>
+						<div class="siteCap">
+							<img>
+						</div>
+					</div>
+					<div class="slide" data-index="1">
+						<div class="bar"  style="background:#00ff00;"></div>
+						<div class="siteCap">
+							<img>
+						</div>
+					</div>
+					<div class="slide" data-index="2">
+						<div class="bar"  style="background:#0000ff;"></div>
+						<div class="siteCap">
+							<img>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		

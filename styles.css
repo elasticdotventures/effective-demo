@@ -6,6 +6,7 @@ html, body, #content{
 	font-family: Abel, sans-serif;
 }
 .alignCenter{text-align: center;}
+.alignRight{text-align: right;}
 
 .lightBG1{ background: #edb8a0; }
 .lightBG2{ background: #acc67d; }
@@ -109,7 +110,8 @@ html, body, #content{
 
 #highlightContentArea > div > div {
 	position:absolute;
-	margin-right: 6px;
+	left:0px;
+	right: 6px;
 	height: 100%;
 }
 
@@ -153,3 +155,24 @@ HOW IT WORKS
 FEATURES
 *********************************/
 #highlightFeatures ul {padding-left: 20px; font-size: 1.4em;}
+
+/*********************************
+DEMO (See it in Action)
+*********************************/
+#highlightDemo .quotes > div{ display:none; position:absolute; }
+#highlightDemo blockquote{
+	margin-left:0px;
+	margin-right:0px;
+	font-style:italic;
+}
+#highlightDemo .quotesrc{font-style:italic;}
+
+#highlightDemo .quoteNav{ position: absolute; left:20px; right:20px; bottom: 20px;}
+#highlightDemo .quoteNav .prev{ float: left; width:50px; height:50px; background: red; cursor: pointer; }
+#highlightDemo .quoteNav .next{ float: right; width:50px; height:50px; background: red; cursor: pointer;}
+
+#largeDemo .slideContainer { display: table;}
+#largeDemo .slideContainer .slide{ width: 50px; display: table-cell;}
+#largeDemo .slideContainer .bar{ height: 0px;margin-bottom: 6px;}
+#largeDemo .slideContainer .currSlide .bar{ height: 6px;margin-bottom: 0px;}
+#largeDemo .slideContainer .siteCap{ height: 50px; outline: 1px solid green;}

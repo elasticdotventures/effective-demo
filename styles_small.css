@@ -78,7 +78,7 @@ FEATURES
 /*********************************
 INSTALL
 *********************************/
-#largeInstall .contentContainer{position:relative; height: 703px;}
+#largeInstall > .contentContainer{position:relative; height: 703px;}
 #largeInstall .imageContainer{
 	top: -200px;
 	left:-430px;

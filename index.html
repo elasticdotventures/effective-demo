@@ -486,7 +486,7 @@
 			<div class="contentContainer">
 				<div class="imageContainer">
 					<map name="installMap">
-						<area shape="rect" coords="415,208,735,417" href="#" onClick="$('body').append(app.templates.installModal.clone()); return false;" />
+						<area shape="rect" coords="415,208,735,417" href="#" onClick="$('#largeInstall .contentContainer').append(app.templates.installModal.clone()); $('#largeInstall #installModal .contentContainer').animate({top:200},400); return false;" />
 					</map>
 					<img usemap="#installMap" src="img/install_page_image.jpg" />
 				</div>

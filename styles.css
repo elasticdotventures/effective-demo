@@ -186,7 +186,6 @@ INSTALL
 	height:903px;
 	text-align:center;
 }
-
 #largeInstall .brandingContainer{
 	position:absolute;
 	top: 300px;
@@ -197,21 +196,24 @@ INSTALL
 #largeInstall .brandingContainer img{display:block;}
 
 #installModal {
-	position: fixed;
-	top: 0px;
+	position: absolute;
+	top:0px;
 	bottom:0px;
-	left: 0px;
-	right: 0px;
+	left:0px;
+	right:0px;
 	
-	background: rgba(177,185,203,.8);
+	background: rgba(177,185,203,.6);
 	z-index:100;
 }
 
 #installModal .contentContainer{
+	position:absolute;
+	top: -1000px;
 	border: 1px solid #3F74C2;
-	width: 50%;
-	margin: 50px auto;
-	background: white;
+	width: 260px;
+	left: 50%;
+	margin-left: -130px;
+	background:white;
 }
 
 #installModal .contentContainer h1{

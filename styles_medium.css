@@ -35,7 +35,7 @@
 #largeContentArea > div > div.contentContainer{
 	padding-right:180px;
 }
-#largeContentArea > div.indentedContent > div{
+#largeContentArea > div.indentedContent > div.contentContainer{
 	padding-left: 270px;
 }
 
@@ -78,6 +78,10 @@ INSTALL
 *********************************/
 #largeInstall .imageContainer{left:-200px;}
 #largeInstall .brandingContainer{right:160px;}
+#installModal {
+	left: 250px;
+	right: 160px;
+}
 /*********************************
 DEMO (See it in Action)
 *********************************/

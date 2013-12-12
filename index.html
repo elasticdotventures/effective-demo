@@ -43,9 +43,6 @@
 					console.log("install");
 					insertHighlightContent(app.templates.highlightInstall);
 					hideLargeContent(getShowLargeContentCallback(app.templates.largeInstall));
-					
-					$('body').append(app.templates.installModal.clone());
-					
 					selectMenu(3);
 				},
 				"#!/demo.html" : function(){ 
@@ -487,7 +484,12 @@
 
 		<div id="largeInstall" class="indentedContent scrollable">
 			<div class="contentContainer">
-				
+				<div class="imageContainer">
+					<map name="installMap">
+						<area shape="rect" coords="415,208,735,417" href="#" onClick="$('body').append(app.templates.installModal.clone()); return false;" />
+					</map>
+					<img usemap="#installMap" src="img/install_page_image.jpg" />
+				</div>
 			</div>
 		</div>
 		
@@ -618,7 +620,7 @@
 			</div>
 		</div>
 		
-		<div id="installModal" onClick="$(this).remove(); show('#!/');">
+		<div id="installModal" onClick="$(this).remove();">
 			<div class="contentContainer">
 				<h1>We're Sorry</h1>
 				<p>

@@ -77,6 +77,10 @@ HOMEPAGE
 #homepage .videoContainer iframe{border: 6px solid black; width:120px; height: 68px;}
 
 /*********************************
+INSTALL
+*********************************/
+#largeInstall .imageContainer{left:-236px;}
+/*********************************
 DEMO (See it in Action)
 *********************************/
 #highlightDemo .quotes > div{ 

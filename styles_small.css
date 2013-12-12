@@ -76,6 +76,17 @@ FEATURES
 #largeFeatures .section .icon.github {background-position:  0px -240px;}
 #largeFeatures .section .icon.party {background-position: -64px -240px;}
 /*********************************
+INSTALL
+*********************************/
+#largeInstall .contentContainer{position:relative; height: 703px;}
+#largeInstall .imageContainer{
+	top: -200px;
+	left:-430px;
+	width:1297px;
+	height:903px;
+	text-align:center;
+}
+/*********************************
 DEMO (See it in Action)
 *********************************/
 #highlightDemo .quotes > div{ 

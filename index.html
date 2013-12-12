@@ -36,37 +36,37 @@
 				"#!/features.html" : function(){ 
 					console.log("features and capabilities");
 					insertHighlightContent(app.templates.highlightFeatures);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeFeatures));
 					selectMenu(2);
 				},
 				"#!/install.html" : function(){ 
 					console.log("install");
 					insertHighlightContent(app.templates.highlightInstall);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeInstall));
 					selectMenu(3);
 				},
 				"#!/demo.html" : function(){ 
 					console.log("demo");
 					insertHighlightContent(app.templates.highlightDemo);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeDemo));
 					selectMenu(4);
 				},
 				"#!/whoweare.html" : function(){ 
 					console.log("who we are");
 					insertHighlightContent(app.templates.highlightWhoWeAre);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeWhoWeAre));
 					selectMenu(5);
 				},
 				"#!/documentation.html" : function(){ 
 					console.log("docs");
 					insertHighlightContent(app.templates.highlightDocumentation);
-					hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
+					hideLargeContent(getShowLargeContentCallback(app.templates.largeDocumentation));
 					selectMenu(6);
 				},
 				"#!/pagenotfound.html" : function(){ 
 					console.log("404");
 					hideHighlightContent();
-					hideLargeContent(getShowLargeContentCallback(app.templates.homepage));
+					hideLargeContent(getShowLargeContentCallback(app.templates.missing));
 					selectMenu(0);
 				}
 			},
@@ -228,6 +228,13 @@
 	</div>
 	
 	<div id="templates">
+
+		<div id="missing" class="scrollable">
+			<div class="imageContainer">
+				<img src="img/homepage-graphic.jpg" width="942" height="601"/>
+			</div>
+		</div>
+
 		<div id="homepage" class="scrollable">
 			<div class="imageContainer">
 				<img src="img/homepage-graphic.jpg" width="942" height="601"/>
@@ -259,6 +266,7 @@
 			</div>
 		</div>
 		
+		<!-- HOW IT WORKS -->
 		<div id="highlightHowItWorks" class="heavyBG1">
 			<div class="lightBG1">
 				<h1>How it works</h1>
@@ -288,6 +296,7 @@
 			</div>
 		</div>
 		
+		<!-- FEATURES -->
 		<div id="highlightFeatures" class="heavyBG2">
 			<div class="lightBG2">
 				<h1>How it works</h1>
@@ -300,7 +309,17 @@
 				<a>Why This is Awesome</a>
 			</div>
 		</div>
+
+		<div id="largeFeatures" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>Features</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
 		
+		<!-- INSTALL -->
 		<div id="highlightInstall" class="heavyBG3">
 			<div class="lightBG3">
 				<h1>How it works</h1>
@@ -313,7 +332,17 @@
 				<a>Why This is Awesome</a>
 			</div>
 		</div>
+
+		<div id="largeInstall" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>Install</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
 		
+		<!-- DEMO -->
 		<div id="highlightDemo" class="heavyBG4">
 			<div class="lightBG4">
 				<h1>How it works</h1>
@@ -326,7 +355,17 @@
 				<a>Why This is Awesome</a>
 			</div>
 		</div>
+
+		<div id="largeDemo" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>Demo</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
 		
+		<!-- WHO WE ARE -->
 		<div id="highlightWhoWeAre" class="heavyBG5">
 			<div class="lightBG5">
 				<h1>How it works</h1>
@@ -339,7 +378,18 @@
 				<a>Why This is Awesome</a>
 			</div>
 		</div>
+
+		<div id="largeWhoWeAre" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>WhoWeAre</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
 		
+		
+		<!-- DOCUMENTATION -->
 		<div id="highlightDocumentation" class="heavyBG6">
 			<div class="lightBG6">
 				<h1>How it works</h1>
@@ -352,6 +402,17 @@
 				<a>Why This is Awesome</a>
 			</div>
 		</div>
+		
+		<div id="largeDocumentation" class="indentedContent scrollable">
+			<div class="contentContainer">
+				<h2>Documentation</h2>
+				<p class="indented">
+					Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+				</p>
+			</div>
+		</div>
+		
+
 	</div>
 </body>
 </html>

@@ -187,8 +187,9 @@
 		}
 		
 		function handlePopState(state){
-			//console.log("popping");
-			if(typeof state !== "undefined"){
+			console.log("popping");
+			console.log(state);
+			if(state){
 				show(state);
 			}
 		}

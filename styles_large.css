@@ -24,10 +24,13 @@
 	width: 350px;
 }
 
-#highlightContentArea > div { 
+#highlightContentArea > div {
 	left:-350px;
 }
-
+#highlightContentArea .contentContainer {
+	padding-left: 48px;
+	padding-right: 44px;
+}
 
 #largeContentArea > div > div.contentContainer{
 	padding-right:262px;

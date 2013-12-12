@@ -134,3 +134,15 @@ html, body, #content{
 /*********************************
 HOMEPAGE
 *********************************/
+
+/*********************************
+HOW IT WORKS
+*********************************/
+#highlightHowItWorks .highlightLinks > div {
+	display: block;
+	padding-left: 10px;
+	margin-bottom: 12px;
+	font-size: 1.1em;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+}

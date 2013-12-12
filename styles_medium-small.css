@@ -28,6 +28,10 @@
 #highlightContentArea > div { 
 	left:-220px;
 }
+#highlightContentArea .contentContainer {
+	padding-left: 24px;
+	padding-right: 22px;
+}
 
 
 #largeContentArea > div > div.contentContainer{

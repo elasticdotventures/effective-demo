@@ -205,6 +205,7 @@
 				event.preventDefault();
 			})
 			
+			
 			$('body').on('click','a[data-onclick="scrollto"]',function(event){
 				scrollTo($(this).attr('href'));
 				event.preventDefault();
@@ -313,31 +314,40 @@
 		</div>
 
 		<div id="homepage" class="scrollable">
-			<div class="imageContainer">
-				<img src="img/homepage-graphic.jpg" width="942" height="601"/>
-			</div>
-			
-			<div class="textContainer">
-				<h1 class="alignCenter">
-					Your path for <br />
-					commerce <br />
-					in the cloud
-				</h1>
-				<p class="alignCenter">
-					Watch the videos below to learn more.
-				</p>
-			</div>
+			<span id="homepage_content">
+				<div class="imageContainer">
+					<img src="img/homepage-graphic.jpg" width="942" height="601"/>
+				</div>
+				
+				<div class="textContainer">
+					<h1 class="alignCenter">
+						Your path for <br />
+						commerce <br />
+						in the cloud
+					</h1>
+					<p class="alignCenter">
+						Watch the videos below to learn more.
+					</p>
+				</div>
+			</span>
 			
 			<div class="videoContainer">
 				<div>
 					<div class="alignCenter">
 						<iframe width="247" height="139" src="http://www.youtube.com/embed/xfhHxt6UQEo?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+						<br>
+						<a href="http://youtu.be/zsIuD--fNx8?autoplay=1">Watch Now</a>
 					</div>
 					<div class="alignCenter">
-						<iframe width="247" height="139" src="http://www.youtube.com/embed/Rl8N_0SgxCo?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+						<iframe width="247" height="139" src="http://www.youtube.com/embed/An0iPcAKsa8?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+						<br>
+						<a href="http://youtu.be/An0iPcAKsa8?autoplay=1">Watch Now</a>
+						
 					</div>
 					<div class="alignCenter">
 						<iframe width="247" height="139" src="http://www.youtube.com/embed/qyoDWtbCpN8?wmode=transparent" frameborder="0" allowfullscreen></iframe>
+						<br>
+						<a href="http://youtu.be/0ZkoaMbwCv8?autoplay=1">Watch Now</a>
 					</div>
 				</div>
 			</div>
@@ -353,7 +363,7 @@
 				
 				<div class="highlightLinks">
 					<div>
-						<a href="#thePlatform" data-onclick="scrollto">The Commerce Platform</a>
+						<a href="#executiveSummary" data-onclick="scrollto">Executive Summary</a>
 					</div>
 					<div>
 						<a href="#gettingHelp" data-onclick="scrollto">The App Framework</a>
@@ -367,20 +377,39 @@
 		
 		<div id="largeHowItWorks" class="indentedContent scrollable">
 			<div class="contentContainer">
-				<h2 id="thePlatform">The Commerce Platform</h2>
+				<h2 id="executiveSummary">CommerceRack: Executive Summary</h2>
+				
 				<p class="indented">
-CommerceRack enables retailers to move their business into the cloud:
-and deliver amazing mobile and browser experiences both customers in store and at home,
-offer products or services in eBay, and Amazon, 
+CommerceRack enables retailers to move their business into the Cloud.
+Cloud computing offers businesses on-demand, and elastic scalability, while leveraging economies of scale to reduce costs.
+CommerceRack offers it is a cloud service that can facilitate both mobile and browser experiences both customers in store and at home,
+while also sending inventory to marketplaces like eBay, and Amazon.
+</p>
 
+<p class="indented">
+High level functionality:
 <ul>
-<li> new technology is changing the way customers interact with your business.</li>
-<li>thanks to mobile phones, customers are connected even if you're not.  </li>
-<li> customers are buying more online every day, but at the same time even more are using marketplaces like amazon or ebay where fees are high and margins for retailers are razor thin. </li>
-<li> and at the same time there's this new thing called 'the cloud' can not only increase agility but significantly lower costs. </li>
+<li> deliver /app based/ websites, with a shopping cart, and accept orders</li>
+<li> automatically connect with marketplaces like with amazon, ebay, rakutan, newegg, sears and others.</li>
+<li> host product catalog, inventory, and supply chain in the cloud </li>
+<li> access order management, shipping, tracking, crm/wholesale, and warehouse data from any device, anywhere in the world, anytime.</li>
 </ul>
+</p>
 
-That's where we come in -- CommerceRack brings retailers into the cloud. We are the retail backend for the cloud.  CommerceRack connects retail to the cloud. 
+<p class="intended">
+Business is changing:
+<ul>
+<li> with mobile and social customers are connected all the time.  </li>
+<li> customers are buying more online every day, but are using marketplaces like amazon or ebay where fees are high and margins for retailers are razor thin. </li>
+<li> the Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. </li> 
+</ul>
+</p>
+
+				<div class="alignCenter">
+					<img src="img/howitworks.jpg" />
+				</div>
+				CommerceRack software is necessary for transactional commerce on a cloud.
+
 
 <!--
 First, we reduce costs by making data like product catalogs, inventory, crm, order and fulfillment, inventory, tracking and returns information available via the cloud.  We can synchronize with marketplaces like Amazon, eBay, directly with web browsers, and mobile devices, and also keep any legacy IT systems or websites in sync with all the sales you’re business is now generating.
@@ -441,10 +470,7 @@ Speaking of security - because CommerceRack apps run locally on a persons comput
 -->
 
 
-				</p>
-				<div class="alignCenter">
-					<img src="img/howitworks.jpg" />
-				</div>
+
 				<h2 id="gettingHelp">The App Framework</h2>
 				<p class="indented">
 

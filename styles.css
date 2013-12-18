@@ -9,6 +9,9 @@ html, body, #content{
 .alignCenter{text-align: center;}
 .alignRight{text-align: right;}
 
+.floatLeft{float:left;}
+.floatRight{float:right;}
+
 .lightBG1{ background: #edb8a0; }
 .lightBG2{ background: #acc67d; }
 .lightBG3{ background: #b1b9cb; }
@@ -144,6 +147,7 @@ html, body, #content{
 [data-trivia="demo"]{ background: #b2a7b2;}
 [data-trivia="dev"]{ background: #b6d1d7;}
 
+.slideImg{width:0px; overflow: hidden;}
 /*********************************
 HOMEPAGE
 *********************************/

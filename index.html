@@ -79,12 +79,29 @@
 			templates : {},
 			currentIntervals : [],
 			triviaAnimations : {
-				typing : function($tag){
+				typing : function($tag, duration){
 					var text = $tag.text().trim();
 					console.log(text);
 					$tag.empty().show();
-					addType($tag, text, 600);
-					return 600;
+					addType($tag, text, duration);
+					return duration;
+				},
+				addClass : function($tag, duration){
+					$tag.show();
+					$tag.addClass($tag.data('data-class'));
+					return duration;
+				},
+				removeClass : function($tag, duration){
+					$tag.show();
+					$tag.removeClass($tag.data('data-class'));
+					return duration;
+				},
+				animateAttr : function($tag, duration){
+					$tag.show();
+					var animateObj={};
+					animateObj[$tag.attr('data-attr')] = $tag.attr('data-value');
+					$tag.animate(animateObj, $tag.attr('data-duration'));
+					return duration;
 				}
 			}
 		};
@@ -224,7 +241,9 @@
 		function processTQ(){
 			console.dir(tq);
 			var $tag = tq.splice(0,1)[0];
-			var delay = app.triviaAnimations[$tag.attr('data-animation')]($tag);
+			var duration = $tag.attr('data-duration');
+			duration = duration || 600;
+			var delay = app.triviaAnimations[$tag.attr('data-animation')]($tag, duration);
 			
 			if(tq.length){
 				setTimeout(processTQ, delay);
@@ -672,6 +691,10 @@ AnyCommerce is built on GIT the largest open source distributed authoring system
 					<div class="icon globe"></div>
 					<h2 id="overview">Bacon</h2>
 					<p>
+						<!-- The animation for this image is handled by CSS3 transitions after adding the class -->
+						<div class="floatRight slideImg" data-trivia="how" data-duration="600" data-animation="animateAttr" data-attr="width" data-value="50">
+							<img class="" src="img/amazon_web_services.png" width="50" height="50"/>
+						</div>
 						Bacon ipsum dolor sit amet ham turducken short ribs fatback. 
 						Short ribs capicola ball tip pork. 
 						<span data-trivia="how" data-animation="typing">

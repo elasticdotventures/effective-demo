@@ -225,7 +225,7 @@
 		var tq = [];
 		function showTrivia(tFlag, $container){
 			var tqSize = tq.length;
-			console.log(tqSize);
+			//console.log(tqSize);
 			
 			$('[data-trivia="'+tFlag+'"]', $container).each(function(){
 				tq.push($(this));
@@ -239,16 +239,23 @@
 		}
 		
 		function processTQ(){
-			console.dir(tq);
+			//console.dir(tq);
 			var $tag = tq.splice(0,1)[0];
-			var duration = $tag.attr('data-duration');
-			duration = duration || 600;
-			var delay = app.triviaAnimations[$tag.attr('data-animation')]($tag, duration);
+			var delay;
+			if($tag.data('trivia-shown')){
+				//Trivia already shown.
+				delay = 0;
+			} else {
+				var duration = $tag.attr('data-duration');
+				duration = duration || 600;
+				delay = app.triviaAnimations[$tag.attr('data-animation')]($tag, duration);
+				$tag.data('trivia-shown',true);
+			}
 			
 			if(tq.length){
 				setTimeout(processTQ, delay);
 			}
-			console.dir(tq);
+			//console.dir(tq);
 		}
 		
 		var path = document.URL;

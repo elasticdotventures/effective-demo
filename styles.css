@@ -12,6 +12,8 @@ html, body, #content{
 .floatLeft{float:left;}
 .floatRight{float:right;}
 
+.inlineBlock{display:inline-block;}
+
 .lightBG1{ background: #edb8a0; }
 .lightBG2{ background: #acc67d; }
 .lightBG3{ background: #b1b9cb; }
@@ -136,6 +138,17 @@ html, body, #content{
 #templates {
 	display:none;
 }
+
+.showTrivia{background:url(img/trivia_buttons.png); cursor:pointer;}
+.showTriviaBtnWideHow{width:41px; height:16px; background-position:0px 0px;}
+.showTriviaBtnWideMore{width:41px; height:16px; background-position:-51px 0px;}
+.showTriviaBtnWideDemo{width:41px; height:16px; background-position:-102px 0px;}
+.showTriviaBtnWideDev{width:41px; height:16px; background-position:-153px 0px;}
+
+.showTriviaBtnHow{width:20px; height:20px; background-position:0px -26px;}
+.showTriviaBtnMore{width:20px; height:20px; background-position:-30px -26px;}
+.showTriviaBtnDemo{width:20px; height:20px; background-position:-60px -26px;}
+.showTriviaBtnDev{width:20px; height:20px; background-position:-90px -26px;}
 
 .hideHow [data-trivia="how"]{display:none;}
 .hideMore [data-trivia="more"]{display:none;}

@@ -155,10 +155,23 @@ html, body, #content{
 .hideDemo [data-trivia="demo"]{display:none;}
 .hideDev [data-trivia="dev"]{display:none;}
 
-[data-trivia="how"]{ background: #edb8a0;}
-[data-trivia="more"]{ background: #acc67d;}
-[data-trivia="demo"]{ background: #b2a7b2;}
-[data-trivia="dev"]{ background: #b6d1d7;}
+[data-trivia="how"]{ background: #edb8a0; transition:background-color 5s;}
+[data-trivia="more"]{ background: #acc67d;transition:background-color 5s;}
+[data-trivia="demo"]{ background: #b2a7b2;transition:background-color 5s;}
+[data-trivia="dev"]{ background: #b6d1d7;transition:background-color 5s;}
+
+/*
+makes them transparent instead upon show
+[data-trivia="how"].shown{ background: transparent;}
+[data-trivia="more"].shown{ background: transparent;}
+[data-trivia="demo"].shown{ background: transparent;}
+[data-trivia="dev"].shown{ background: transparent;}
+*/
+
+[data-trivia="how"].shown{ background: #FFEBD3;}
+[data-trivia="more"].shown{ background: #DFF9B0;}
+[data-trivia="demo"].shown{ background: #D5CFD5;}
+[data-trivia="dev"].shown{ background: #E9FFFF;}
 
 .slideImg{width:0px; overflow: hidden;}
 /*********************************

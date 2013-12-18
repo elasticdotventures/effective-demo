@@ -251,6 +251,7 @@
 				var duration = $tag.attr('data-duration');
 				duration = duration || 600;
 				delay = app.triviaAnimations[$tag.attr('data-animation')]($tag, duration);
+				setTimeout(function(){$tag.addClass('shown');},duration);
 				$tag.data('trivia-shown',true);
 			}
 			

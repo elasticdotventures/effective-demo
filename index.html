@@ -77,8 +77,30 @@
 				}
 			},
 			templates : {},
-			currentIntervals : []
+			currentIntervals : [],
+			triviaAnimations : {
+				typing : function($tag){
+					var text = $tag.text().trim();
+					console.log(text);
+					$tag.empty().show();
+					addType($tag, text, 600);
+					return 600;
+				}
+			}
 		};
+		
+		function addType($tag, text, duration, start){
+			start = start || new Date().getTime();
+			var elapsed = new Date().getTime() - start;
+			var totalSize = text.length;
+			if(elapsed < duration){
+				var currSize = parseInt(totalSize * (elapsed / duration));
+				$tag.text(text.substr(0,currSize));
+				setTimeout(function(){addType($tag, text, duration, start);}, 20);
+			} else {
+				$tag.text(text);
+			}
+		}
 		
 		function hideLargeContent(callback){
 			callback = callback || function(){};
@@ -185,9 +207,29 @@
 		
 		var tq = [];
 		function showTrivia(tFlag, $container){
+			var tqSize = tq.length;
+			console.log(tqSize);
+			
 			$('[data-trivia="'+tFlag+'"]', $container).each(function(){
-				tq.push();
+				tq.push($(this));
 			});
+			
+			if(tqSize){
+				//Do nothing, queue is already processing.
+			} else {
+				processTQ();
+			}
+		}
+		
+		function processTQ(){
+			console.dir(tq);
+			var $tag = tq.splice(0,1)[0];
+			var delay = app.triviaAnimations[$tag.attr('data-animation')]($tag);
+			
+			if(tq.length){
+				setTimeout(processTQ, delay);
+			}
+			console.dir(tq);
 		}
 		
 		var path = document.URL;
@@ -220,6 +262,13 @@
 		$(function(){
 			$largeContent = $('#largeContentArea');
 			$highlightContent = $('#highlightContentArea');
+			
+			$('body').addClass('hideHow');
+			$('body').addClass('hideMore');
+			$('body').addClass('hideDemo');
+			$('body').addClass('hideDev');
+			
+			
 			$('body').on('click','a[href^="#!"]',function(event){
 				show($(this).attr('href'));
 				event.preventDefault();
@@ -619,6 +668,40 @@ AnyCommerce is built on GIT the largest open source distributed authoring system
 
 		<div id="largeFeatures" class="indentedContent scrollable">
 			<div class="contentContainer">
+				<div class="section left">
+					<div class="icon globe"></div>
+					<h2 id="overview">Bacon</h2>
+					<p>
+						Bacon ipsum dolor sit amet ham turducken short ribs fatback. 
+						Short ribs capicola ball tip pork. 
+						<span data-trivia="how" data-animation="typing">
+							Pancetta short ribs brisket ribeye spare ribs fatback tail salami pork loin, turkey flank bacon pork chop. 
+						</span>
+						<span data-trivia="demo" data-animation="typing">
+							Pancetta short ribs brisket ribeye spare ribs fatback tail salami pork loin, turkey flank bacon pork chop. 
+						</span>
+						Shoulder sausage ribeye, pancetta short loin cow beef ribs strip steak biltong hamburger capicola frankfurter pork loin turkey salami.
+					</p>
+					<p>
+						Sirloin venison spare ribs, pork shank ball tip andouille doner swine jowl fatback kielbasa pork chop meatball rump. 
+						<span data-trivia="dev" data-animation="typing">
+							Biltong short loin ham tail shank kevin sausage beef swine filet mignon ball tip venison pork chop beef ribs. 
+						</span>
+						Andouille pork loin bresaola tail short loin short ribs biltong flank ham hock shank tenderloin pork leberkas. 
+						<span data-trivia="how" data-animation="typing">
+							Beef ribs turducken pork loin spare ribs. 
+						</span>
+						Strip steak chuck t-bone corned beef, short loin brisket hamburger boudin pork flank tongue fatback sirloin tail.
+					</p>
+					<div>
+						<span onClick="showTrivia('how', $(this).parent().parent());">show how</span>
+						<span onClick="showTrivia('more', $(this).parent().parent());">show more</span>
+						<span onClick="showTrivia('demo', $(this).parent().parent());">show demo</span>
+						<span onClick="showTrivia('dev', $(this).parent().parent());">show dev</span>
+					</div>
+					<div class="clear"></div>
+				</div>
+			
 				<div class="section left">
 					<div class="icon globe"></div>
 					<h2 id="overview">Overview</h2>

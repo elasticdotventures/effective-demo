@@ -134,6 +134,15 @@ html, body, #content{
 	display:none;
 }
 
+.hideHow [data-trivia="how"]{display:none;}
+.hideMore [data-trivia="more"]{display:none;}
+.hideDemo [data-trivia="demo"]{display:none;}
+.hideDev [data-trivia="dev"]{display:none;}
+
+[data-trivia="how"]{ background: #edb8a0;}
+[data-trivia="more"]{ background: #acc67d;}
+[data-trivia="demo"]{ background: #b2a7b2;}
+[data-trivia="dev"]{ background: #b6d1d7;}
 
 /*********************************
 HOMEPAGE

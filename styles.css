@@ -139,6 +139,8 @@ html, body, #content{
 HOMEPAGE
 *********************************/
 #homepage .textContainer {background:rgba(255,255,255,.4);}
+
+#homepage .videoPlayer .hideVideo {position:absolute; height:20px; width: 20px; border:2px solid black; border-radius:10px; background: white; top:5px; right: 5px;}
 /*********************************
 HOW IT WORKS
 *********************************/

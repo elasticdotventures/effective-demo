@@ -62,9 +62,32 @@ HOMEPAGE
 #homepage .imageContainer {
 	position:absolute;
 	z-index:0;
+	-moz-transition: right 1s;
+	-webkit-transition: right 1s;
+	-o-transition: right 1s;
+	transition: right 1s;
 }
+#homepage .videoPlayer{
+	position:absolute;
+	z-index:1;
+	right: 140px;
+	top:40px;
+	left:0px;
+	text-align: center;
+}
+#homepage .videoPlayer video{height:281px;}
 
-#homepage .textContainer{position: absolute; z-index:1;}
+#homepage .textContainer{
+	position: absolute; 
+	z-index:2;
+	-moz-transition: left 1s;
+	-webkit-transition: left 1s;
+	-o-transition: left 1s;
+	transition: left 1s;
+}
+#homepage.videoSelected .textContainer{left: -250px;}
+#homepage.videoSelected .imageContainer{right: -942px;}
+
 #homepage .videoContainer{position: absolute; z-index: 1;}
 #homepage .imageContainer {display:none;}
 
@@ -74,7 +97,7 @@ HOMEPAGE
 #homepage .videoContainer {top: 530px; left:10px; right:150px;}
 #homepage .videoContainer > div {width: 100%; display: table;}
 #homepage .videoContainer > div > div{display:table-cell; width: 33%;}
-#homepage .videoContainer iframe{border: 6px solid black; width:120px; height: 68px;}
+#homepage .videoContainer a img{width:120px; height: 68px;}
 
 /*********************************
 INSTALL

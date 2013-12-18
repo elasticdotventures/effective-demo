@@ -60,15 +60,42 @@ HOMEPAGE
 	position:absolute;
 	z-index:0;
 	right: 242px;
+	-moz-transition: right 1s;
+	-webkit-transition: right 1s;
+	-o-transition: right 1s;
+	transition: right 1s;
+}
+#homepage .videoPlayer{
+	position:absolute;
+	z-index:1;
+	right: 242px;
+	top:10px;
+	left:0px;
+	text-align: center;
 }
 
-#homepage .textContainer{position: absolute; z-index:1; top: 100px;left: 200px;width: 250px;}
+#homepage .videoPlayer video{height:482px;}
+
+#homepage .textContainer{
+	position: absolute; 
+	z-index:2; 
+	top: 100px;
+	left: 200px;
+	width: 250px;
+	-moz-transition: left 1s;
+	-webkit-transition: left 1s;
+	-o-transition: left 1s;
+	transition: left 1s;
+}
+#homepage.videoSelected .textContainer{left: -250px;}
+#homepage.videoSelected .imageContainer{right: -942px;}
+
 #homepage .textContainer h1{font-size:2.5em;}
 
 #homepage .videoContainer {position: absolute; z-index: 1; top: 530px; left:80px; right:292px; padding-bottom:40px;}
 #homepage .videoContainer > div {width: 100%; display: table;}
 #homepage .videoContainer > div > div{display:table-cell; width: 33%;}
-#homepage .videoContainer iframe{border: 6px solid black; width:247px; height: 139px;}
+#homepage .videoContainer a img{width:247px; height: 139px;}
 
 /*********************************
 INSTALL

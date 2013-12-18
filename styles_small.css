@@ -57,7 +57,8 @@ p.indented {
 HOMEPAGE
 *********************************/
 #homepage .imageContainer{ display:none;}
-#homepage .videoContainer iframe{ border: 6px solid black; width: 300px; height: 169px; margin: 3px;}
+#homepage .videoContainer a img {width: 300px; height: 169px; margin: 3px;}
+#homepage .videoPlayer video{width:100%;}
 
 /*********************************
 FEATURES

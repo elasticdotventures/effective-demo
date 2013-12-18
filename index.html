@@ -172,6 +172,24 @@
 			},600);
 		}
 		
+		function loadHomepageVideo(src){
+			$('#homepage').addClass('videoSelected');
+			$('#homepage .videoPlayer').empty().append('<video controls="controls"><source src="'+src+'" /></video>').append('<div class="hideVideo alignCenter" onClick="closeHomepageVideo();">X</div>');
+			$('#homepage .videoPlayer video').get(0).play();
+		}
+		
+		function closeHomepageVideo(){
+			$('#homepage').removeClass('videoSelected');
+			$('#homepage .videoPlayer').empty();
+		}
+		
+		var tq = [];
+		function showTrivia(tFlag, $container){
+			$('[data-trivia="'+tFlag+'"]', $container).each(function(){
+				tq.push();
+			});
+		}
+		
 		var path = document.URL;
 		
 		function show(path){
@@ -340,6 +358,10 @@
 					<img src="img/homepage-graphic.jpg" width="942" height="601"/>
 				</div>
 				
+				<div class="videoPlayer">
+				
+				</div>
+				
 				<div class="textContainer">
 					<h1 class="alignCenter">
 						Your path for <br />
@@ -355,20 +377,29 @@
 			<div class="videoContainer">
 				<div>
 					<div class="alignCenter">
-						<a href="#" onClick="">
-						<img width="259" height="151" src="images/vid_thumb_cloud_basics.png"/>
+						
+						<a href="#" onClick="loadHomepageVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/cloud-commerce-basic2_v02.mp4');">
+							<img width="259" height="151" src="images/vid_thumb_cloud_basics.png"/>
 						</a>
-
 <!--
+
+						<video controls="controls">
+							<source src="https://s3.amazonaws.com/www.commercerack.com/explainers/why_awesome_02.mp4" type="video/mp4"/>
+						
+						</video>
 						https://s3.amazonaws.com/www.commercerack.com/explainers/what_it_costs_02.mp4
 						https://s3.amazonaws.com/www.commercerack.com/explainers/why_awesome_02.mp4
 -->
 					</div>
 					<div class="alignCenter">
-						<img width="259" height="151"	src="images/vid_thumb_why_awesome.png"/>						
+						<a href="#" onClick="loadHomepageVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/what_it_costs_02.mp4');">
+							<img width="259" height="151"	src="images/vid_thumb_why_awesome.png"/>						
+						</a>
 					</div>
 					<div class="alignCenter">
-						<img width="259" height="151" src="images/vid_thumb_cost.png"/>						
+						<a href="#" onClick="loadHomepageVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/why_awesome_02.mp4');">
+							<img width="259" height="151" src="images/vid_thumb_cost.png"/>						
+						</a>
 					</div>
 				</div>
 			</div>

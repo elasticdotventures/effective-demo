@@ -223,7 +223,7 @@
 		}
 		
 		var tq = [];
-		function showTrivia(tFlag, $container){
+		function showTrivia(tFlag, $container, $callingBtn){
 			var tqSize = tq.length;
 			//console.log(tqSize);
 			
@@ -236,6 +236,8 @@
 			} else {
 				processTQ();
 			}
+			
+			$callingBtn.fadeOut(600);
 		}
 		
 		function processTQ(){
@@ -724,15 +726,15 @@ AnyCommerce is built on GIT the largest open source distributed authoring system
 						Strip steak chuck t-bone corned beef, short loin brisket hamburger boudin pork flank tongue fatback sirloin tail.
 					</p>
 					<div>
-						<span onClick="showTrivia('how',  $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnWideHow" ></span>
-						<span onClick="showTrivia('more', $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-						<span onClick="showTrivia('demo', $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnWideDemo"></span>
-						<span onClick="showTrivia('dev',  $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnWideDev" ></span>
+						<span onClick="showTrivia('how',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideHow" ></span>
+						<span onClick="showTrivia('more', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+						<span onClick="showTrivia('demo', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDemo"></span>
+						<span onClick="showTrivia('dev',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDev" ></span>
 						
-						<span onClick="showTrivia('how',  $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnHow" ></span>
-						<span onClick="showTrivia('more', $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnMore"></span>
-						<span onClick="showTrivia('demo', $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnDemo"></span>
-						<span onClick="showTrivia('dev',  $(this).parent().parent());" class="inlineBlock showTrivia showTriviaBtnDev" ></span>
+						<span onClick="showTrivia('how',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnHow" ></span>
+						<span onClick="showTrivia('more', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnMore"></span>
+						<span onClick="showTrivia('demo', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnDemo"></span>
+						<span onClick="showTrivia('dev',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnDev" ></span>
 					</div>
 					<div class="clear"></div>
 				</div>

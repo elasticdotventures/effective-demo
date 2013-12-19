@@ -87,13 +87,20 @@
 				currentIntervals : [],
 				trivia : {
 					animations : {
+						dwiw : function($tag,params){
+							if($tag.is('span') && $tag.children().length == 0){
+								return app.trivia.animations.typing($tag,params);
+							} else {
+								return app.trivia.animations.show($tag,params);
+							}
+						},
 						show : function($tag, params){
 							$tag.show();
 							return params.duration;
 						},
 						typing : function($tag, params){
 							var text = $tag.text().trim();
-							console.log(text);
+							//console.log(text);
 							$tag.empty().show();
 							addType($tag, text, params.duration);
 							return params.duration;
@@ -136,8 +143,8 @@
 									//This format requires pairs of arguments- the attribute followed by the value to animate to.
 									//It will take as many pairs as are specified.
 									cmdObj.attributes = {};
-									console.dir(args);
-									console.log(args[0]);
+									//console.dir(args);
+									//console.log(args[0]);
 									while(args[0] && args[0].indexOf("-" != 0) && args[1] && args[1].indexOf("-" != 0)){
 										var tuple = args.splice(0,2);
 										cmdObj.attributes[tuple[0]] = tuple[1];
@@ -158,6 +165,7 @@
 							if(args[0] && args[0].indexOf("-" != 0)){
 								var dur = parseInt(args.splice(0,1)[0]);
 								if(dur != "NaN"){
+									console.log(cmdObj.duration);
 									cmdObj.duration = dur;
 									r = true;
 								} 
@@ -334,7 +342,7 @@
 					var keyFound = false;
 					var keyValid = false;
 					for(var key in app.trivia.argHandlers){
-						if($.inArray(arg, key.split[" "])){
+						if($.inArray(arg, key.split(" ")) >= 0){
 							keyFound = true;
 							if(app.trivia.argHandlers[key](args, cmdObj)){
 								keyValid = true;
@@ -358,9 +366,9 @@
 				
 				//Add in the flag.  Set any required defaults that may be missing.
 				cmdObj.flag = flag;
-				cmdObj.animation = cmdObj.animation || "show";
-				cmdObj.duration = cmdObj.duration || 600;
-				console.dir(cmdObj);
+				cmdObj.animation = cmdObj.animation || "dwiw";
+				cmdObj.duration = typeof cmdObj.duration !== "undefined" ? cmdObj.duration : 600;
+				//console.dir(cmdObj);
 				return cmdObj;
 			}
 			
@@ -821,12 +829,12 @@
 								</span>
 							</li>
 							<li> Loss of Control: Subscriber is 100% dependent on SAAS provider for updates to platform.</li>
-							<li data-trivia="more">Not Configurable: Any configuration that is not offered explicitly by a SAAS provider is not possible.</li>
-							<li data-trivia="more">Shared Infrastructures: Most SAAS architectures operate on multi-tenant architectures meaning the actions of one tenant can be disruptive to other clients by consuming excessive resources.</li>
-							<li data-trivia="more">Forced Resource Limits: In order to provide a stable system most SAAS operators will limit the functionality rather than upgrading resources.  In some cases features won't even be added because
-							they could consume too many resources.</li>
-							<li data-trivia="more">Faith Required: SAAS companies may document their procedures, but there are no audit or third party certifications to verify these.
-							Companies based on SAAS don't really know about backup procedures, they must take declarations from a provider on nothing more than faith and reputation.
+							<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Not Configurable: Any configuration that is not offered explicitly by a SAAS provider is not possible.</span></li>
+							<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Shared Infrastructures: Most SAAS architectures operate on multi-tenant architectures meaning the actions of one tenant can be disruptive to other clients by consuming excessive resources.</span></li>
+							<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Forced Resource Limits: In order to provide a stable system most SAAS operators will limit the functionality rather than upgrading resources.  In some cases features won't even be added because
+							they could consume too many resources.</span></li>
+							<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Faith Required: SAAS companies may document their procedures, but there are no audit or third party certifications to verify these.
+							Companies based on SAAS don't really know about backup procedures, they must take declarations from a provider on nothing more than faith and reputation.</span>
 							</li>
 						</ul>
 						

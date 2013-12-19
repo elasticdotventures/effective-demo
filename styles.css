@@ -160,6 +160,10 @@ button.showTrivia{padding:0px;border:0px; vertical-align:middle;}
 [data-trivia^="demo"]{ background: rgba(178,167,178,1);transition:background-color 5s;}
 [data-trivia^="dev"]{ background: rgba(182,209,215,1);transition:background-color 5s;}
 
+[data-trivia^="how"].noBG,
+[data-trivia^="more"].noBG,
+[data-trivia^="demo"].noBG,
+[data-trivia^="dev"].noBG { background: transparent;}
 /*
 makes them transparent instead upon show
 [data-trivia="how"].shown{ background: transparent;}
@@ -172,6 +176,10 @@ makes them transparent instead upon show
 [data-trivia^="more"].shown{ background: rgba(172,198,125,.3);}
 [data-trivia^="demo"].shown{ background: rgba(178,167,178,.3);}
 [data-trivia^="dev"].shown{ background:  rgba(182,209,215,.3);}
+[data-trivia^="how"].shown.noBG,
+[data-trivia^="more"].shown.noBG,
+[data-trivia^="demo"].shown.noBG,
+[data-trivia^="dev"].shown.noBG { background: transparent;}
 
 aside[data-trivia] { padding-bottom:12px; border-radius:5px; }
 

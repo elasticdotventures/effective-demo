@@ -301,7 +301,7 @@
 					processTQ();
 				}
 				
-				$callingBtn.fadeOut(600);
+				if ($callingBtn) { $callingBtn.fadeOut(600); }
 			}
 			
 			function processTQ(){
@@ -477,11 +477,11 @@
 					<div>
 						<a class="menu1" href="#!/howitworks.html">
 							<div class="menuHighlight"></div>
-							<div class="menuItem">HOW IT WORKS</div>
+							<div class="menuItem">WHAT WE DO</div>
 						</a>
 						<a class="menu2" href="#!/features.html">
 							<div class="menuHighlight"></div>
-							<div class="menuItem">FEATURES &amp; CAPABILITIES</div>
+							<div class="menuItem">FEATURES LIST</div>
 						</a>
 						<a class="menu3" href="#!/install.html">
 							<div class="menuHighlight"></div>
@@ -559,142 +559,175 @@
 				</div>
 			</div>
 			
-			<!-- HOW IT WORKS -->
+			<!-- WHAT WE DO: LEFT BAR -->
 			<div id="highlightHowItWorks" class="heavyBG1">
 				<div class="lightBG1 contentContainer">
-					<h1>How it works</h1>
+					<h1>What does CommerceRack do?</h1>
 					<p>
 						Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
 					</p>
 					
 					<div class="highlightLinks">
 						<div>
-							<a href="#executiveSummary" data-onclick="scrollto">Executive Summary</a>
+							<a href="#wowSummary" data-onclick="scrollto">Executive Summary</a>
 						</div>
 						<div>
-							<a href="#gettingHelp" data-onclick="scrollto">The App Framework</a>
+							<a href="#wowApps" data-onclick="scrollto">Shopping with Apps</a>
 						</div>
 						<div>
-							<a href="#whyAwesome" data-onclick="scrollto">Why This is Awesome</a>
+							<a href="#wowMarketplaces" data-onclick="scrollto">Using Marketplaces</a>
+						</div>
+						<div>
+							<a href="#wowAwesome" data-onclick="scrollto">Why you should use this</a>
+						</div>
+						<div>
+							<a href="#wowMuchMoney" data-onclick="scrollto">Services we offer</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			
-			
-			
-			
+					
+
+			<!-- WHAT WE DO -->
 			<div id="largeHowItWorks" class="indentedContent scrollable">
-				<div class="contentContainer" id="triviaTrainer">
-					<h2 id="executiveSummary">Getting Started</h2>
-					If you want to learn more about a topic simply click the 
-					<span onClick="showTrivia('more', $('#triviaTrainer'), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span> button and additional detail will appear.  Try it now!
-					<div data-trivia="more">
-					See how this extra content appeared? it will stay highlighted, so don't worry about needing to read it fast.
-					Here is a complete list of buttons you might find:
-					<ul>
-						<li>
-							<span onClick="showTrivia('how',  $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideHow"></span> 
-							provides theory and background.
-							<div data-triva="how">
-							Sometimes the easiest way to learn something is to break it into smaller pieces, and then expose those pieces over time. 
-							This lets us use one app to service both C-level executives who want brevity and a complete absence of insider jargon that nobody understands, 
-							AND Developers who want detailed explanations and copious examples, and will frequently become frustrated by overly simplified examples. 
-							</div>
-						</li>
-						<li>
-							<span onClick="showTrivia('more', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-							provides additional examples, or less common use cases (sometimes we might even nest these). 
-							<div data-triva="more">
-							App Shibe (Doge): nice clik &nbsp; wow &nbsp;  caution mayb trap &nbsp; such more &nbsp; look hear &nbsp; so lern &nbsp; omg &nbsp; must red evrything &nbsp; lern levl=100 &nbsp; 2more plz
-							</div>
-							</li>
-						<li>
-							<span onClick="showTrivia('demo', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDemo"></span>
-							when only a real world example will make it clear.
-							<div data-trivia="demo">							
-							Let's say you're reading and encounter a feature that absolutely makes no-sense and leaves you wondering "WHY ON EARTH WOULD ANYBODY WANT TO DO THAT?"
-							For example the feature "scheduled pricing for robots" by itself isn't clear -- but an example
-							which illustrates how to prevent competitors from automatically price matching you,
-							by identifying non-friendly (competitor) robots, and putting them on alternate price lists.
-							(Yes, this is a real feature). 
-							</div>
-						</li>
-						<li>
-							<span onClick="showTrivia('dev',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDev"></span>
-							means we've got technical detail intended for developers, including API calls, links to documentation, etc. 
-							<div data-trival="dev">
-							Checkout anyCommerce on Git https://github.com/zoovy/AnyCommerce-Development
-							</div>
-						</li>
-					</ul>
-					</div>
-				</div>
-				<div class="contentContainer">
-					<h2 id="executiveSummary">CommerceRack: Executive Summary</h2>
-					<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-					
-					<span
-					
-					<p class="indented">
-	CommerceRack enables retailers to move their business into the Cloud.
-	Cloud computing offers businesses on-demand, and elastic scalability, while leveraging economies of scale to reduce costs.
-	CommerceRack offers it is a cloud service that can facilitate both mobile and browser experiences both customers in store and at home, while also sending inventory to marketplaces like eBay, and Amazon.
-	</p>
+			
+			<!-- HOW IT WORKS: GETTING STARTED -->
+	<div class="contentContainer">
+	<h2 id="wowStart">Getting Started</h2>
+	If you want to learn more about a topic simply click the 
+	<button onClick="showTrivia('more', $(this).parent(), $(this));" class="showTrivia showTriviaBtnWideMore"></button> button and additional detail will appear.  Try it now!
+	<div data-trivia="more">
+		See how this extra content appeared? it will stay highlighted, so don't worry about needing to read it fast.
+		Here is a complete list of buttons you might find:
+		<ul>
+			<li>
+			<button onClick="showTrivia('how',  $(this).parent());" class="showTrivia showTriviaBtnWideHow"></button>
+			provides theory and background.
+			<aside data-trivia="how">
+			Sometimes the easiest way to learn something is to break it into smaller pieces, and then expose those pieces over time.  
+			Busy CEO's want brevity, and developers want detailed examples -- it's content on-demand!
+			</aside>
+			</li>
+			<li>
+			<button onClick="showTrivia('demo', $(this).parent().parent());" class="showTrivia showTriviaBtnWideDemo"></button>
+			when only a real world example will make it clear.
+			<aside data-trivia="demo">							
+			Imagine you're reading about a feature that absolutely makes no-sense and leaves you wondering "WHY ON EARTH WOULD ANYBODY WANT TO DO THAT?"
+			For example the feature "scheduled pricing for robots" by itself isn't clear -- but an example
+			which illustrates how to prevent competitors from automatically price matching you,
+			by identifying non-friendly (competitor) robots, and putting them on alternate price lists.
+			(Yes, this is a real feature). 
+			</aside>
+			</li>
+			<li>
+			<button onClick="showTrivia('dev',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideDev"></button>
+			means we've got technical detail intended for developers, including API calls, links to documentation, etc. 
+			<aside data-trivia="dev">
+			Checkout anyCommerce on Git https://github.com/zoovy/AnyCommerce-Development
+			</aside>
+			</li>
+			<li>
+			<button onClick="showTrivia('moreDoge', $(this).parent().parent());" class="showTrivia showTriviaBtnWideMore"></button>
+			provides additional examples, or less common use cases (we just did this, you don't need to click this)
+			<aside data-trivia="moreDoge">
+			App Shibe (Doge): nice clik &nbsp; wow &nbsp;  caution mayb trap &nbsp; such more &nbsp; look hear &nbsp; so lern &nbsp; omg &nbsp; must red evrything &nbsp; lern levl=100 &nbsp; 2more plz<br>
+			<a href="http://knowyourmeme.com/memes/doge"><i>Know your meme: doge</i></a>
+			</aside>
+			</li>
+		</ul>
+	</div>
+	</div>		
 
+<!-- HOW IT WORKS: EXECUTIVE SUMMARY -->
+	<div class="contentContainer">
+		<h2 id="wowSummary">CommerceRack: Executive Summary</h2>
+		<p class="indented">CommerceRack is a cloud service that can facilitate both mobile and browser experiences for both customers in store and at home, while also sending inventory to marketplaces like eBay, and Amazon.</p>
+	
+		<div class="alignCenter"><img src="img/howitworks.jpg" /></div>
+	
+		<p class="indented">High level functionality:
+		<ul>
+		<li> deliver /app based/ websites, with a shopping cart, and accept orders</li>
+		<li> automatically connect with marketplaces like with amazon, ebay, rakutan, newegg, sears and others.</li>
+		<li> host product catalog, inventory, and supply chain in the cloud </li>
+		<li> access order management, shipping, tracking, crm/wholesale, and warehouse data from any device.</li>
+		</ul>
+		</p>
+
+		<p class="indented">
+		Why CommerceRack:
+		<ul>
+		<li> 
+		Apps can offer more functionality than traditional websites.
+		<span data-trivia="more">
+		With mobile and social customers are connected all the time. Mobile devices have new capabilities such as the ability
+		to access voice processing, location (gps), and push messaging.  Social is an untapped frontier of clients who just need
+		the right reasons to share.
+		</li>
+		<li> 
+		Marketplace Integration with Amazon, eBay and others.
+		<span data-trivia="more">
+		Customers are buying more online every day, but the majority of growth in online sales is using marketplaces like Amazon or eBay where fees are high and margins for retailers are razor thin. 
+		CommerceRack reduces operational costs.
+		</span>
+		</li>
+		<li> 
+		Built for the cloud.
+		<span data-trivia="more"> The Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. Cloud software has all the advantages of <acronym title="software as a service">SAAS</acronym>
+		but also gives a higher degree of flexibility and operator independence.</span>
+		</li> 
+		</ul>
+		</p>
+	
+		<p>The CommerceRack service is necessary for transactional commerce on a cloud infrastructure. </p>
+		<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	
+		<div class="clear"></div>
+		
+		<!-- HOW IT WORKS: SHOPPING WITH APPS -->
+	<div class="contentContainer">
+	<h2 id="wowApps">The App Framework</h2>
 	<p class="indented">
-	High level functionality:
-	<ul>
-	<li> deliver /app based/ websites, with a shopping cart, and accept orders</li>
-	<li> automatically connect with marketplaces like with amazon, ebay, rakutan, newegg, sears and others.</li>
-	<li> host product catalog, inventory, and supply chain in the cloud </li>
-	<li> access order management, shipping, tracking, crm/wholesale, and warehouse data from any device.</li>
-	</ul>
+	<span class="apps">
+	<h4>Apps Are The Future</h4>
+	<p>With anyCommerce's app-based commerce framework, shopping experiences can be custom tailored to fit business needs. 
+	As businesses grows and needs change, the store can change right along with it.
+	And the best part is, you don't have to start over from scratch everytime! 
+	Your store is designed to accommodate iterative updates, allowing you more flexibility as a business grows.
 	</p>
-
-	<p class="intended">
-	Business is changing:
+	</span>
+	<span class="apps_provide">
+	<h4>Apps provide:</h4>
 	<ul>
-	<li> with mobile and social customers are connected all the time. </li>
-	<li> customers are buying more online every day, but are using marketplaces like amazon or ebay where fees are high and margins for retailers are razor thin. </li>
-	<li> the Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. </li> 
+	<li>an enhanced user experience for your customers.</li>
+	<li>lower operating costs.</li>
+	<li>customization and flexibility (websites have severe limitations).</li>
+	<li>quicker time to market - apps take weeks, websites take months.</li>
+	<li>deployment options and flexibility.</li>
 	</ul>
+	</span>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	
+	<span class="everything">
+	<h4>Everything is Here</h4>
+	<p>anyCommerce incorporates all of the technologies and processes needed to grow successfully, and makes them available through one, easy-to-manage account. anyCommerce's long standing partnerships with proven e-commerce industry names ensures the tightest integration and streamlined functionality for your business process. With over 13 years of field-tested input from thousands of successful online merchants, anyCommerce is poised to lead the next e-commerce revolution.</p>
+	</span>
 	</p>
+	<div class="clear"></div>
+	</div>
 
-					<div class="alignCenter">
-						<img src="img/howitworks.jpg" />
-					</div>
-					CommerceRack software is necessary for transactional commerce on a cloud.
+	<!-- HOW IT WORKS: MARKETPLACE INTEGRATION -->
+	<div class="contentContainer">
+	<h2 id="wowMarketplaces">Marketplace Integration</h2>
+	<div class="clear"></div>
 
+	
 
+	</div>
 
-
-					<h2 id="gettingHelp">The App Framework</h2>
-					<p class="indented">
-
-						<span class="apps">
-							<h4>Apps Are Where It's At</h4>
-							<p>With anyCommerce's app-based commerce framework, your stores are now custom tailored to your business needs. As your business grows and your needs change, through app updates, your store can change right along with it. And the best part is, you don't have to start over from scratch everytime! Your store is designed to accomodate iterative updates, allowing you more flexibility as your business grows.</p>
-						</span>
-						<span class="apps_provide">
-							<h4>Apps provide:</h4>
-							<ul>
-							<li>an enhanced user experience for your customers</li>
-							<li>lower opperating costs.</li>
-							<li>customization and flexibility (websites have severe limitations).</li>
-							<li>quicker time to market - apps take weeks, websites take months.</li>
-							<li>deployment options and flexibility.</li>
-							</ul>
-						</span>
-						<span class="everything">
-							<h4>Everything is Here</h4>
-							<p>anyCommerce incorporates all of the technologies and processes needed to grow successfully, and makes them available through one, easy-to-manage account. anyCommerce's long standing partnerships with proven e-commerce industry names ensures the tightest integration and streamlined functionality for your business process. With over 13 years of field-tested input from thousands of successful online merchants, anyCommerce is poised to lead the next e-commerce revolution.</p>
-						</span>
-
-					</p>
-					<h2 id="whyAwesome">Why This is Awesome</h2>
-					
+	<!-- HOW IT WORKS: WHY YOU SHOULD USE THIS -->
+	<div class="contentContainer">
+	<h2 id="wowAwesome">Why you should use This</h2>			
 	<ul>
 	<li> Improve Android and IOS Apps, streamline application process</li>
 	<li> Google AppStore    (already prototyped, not announced/tested)</li>
@@ -708,12 +741,47 @@
 	<li> OpenStack integration -- ignored to date due to rapid evolution of platform.</li>
 	<li> Email to App gateway for ESP providers (need to sign up an ESP first)</li>
 	<li> Works with asterisk -- can be used as a voip phone system for call routing, text to speech. </li>
+	</ul>
+	<div class="clear"></div>
+	</div>
 
-					
-				</div>
+	<!-- HOW IT WORKS: SERVICES WE OFFER -->
+	<div>
+	<h2 id="wowMuchMoney">Services We Offer</h2>			
+	
+	<h3>Software Licenses</h3>
+	<ul>
+	<li></li>
+	</ul>
+	
+	<h3>Infrastructure Support</h3>
+	<ul>
+	<li></li>
+	</ul>
+	
+	<h3>Commerce Support</h3>
+	<ul>
+	<li></li>
+	</ul>
+		
+	<h3>Development Services</h3>
+	<ul>
+	<li></li>
+	</ul>
+		
+	<div class="clear"></div>
+	</div>
+	
+		
+	</div>	
+	
+
+
+	
 			</div>
-			
-			<div id="largeDev" class="indentedContent scrollable">
+					
+			<!-- DEVELOPER BACON -->
+			<div id="largeDev" class="indentedContent scrollable">		
 				<div class="contentContainer">
 					<div class="section left">
 						<div class="icon globe"></div>
@@ -755,7 +823,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- FEATURES -->
+			
+			<!-- FEATURES: LEFT BAR -->
 			<div id="highlightFeatures" class="heavyBG2">
 				<div class="lightBG2 contentContainer">
 					<h1>Features &amp; capabilities at a glance</h1>
@@ -777,7 +846,7 @@
 				</div>
 			</div>
 
-			
+			<!-- FEATURES: BODY -->
 			<div id="largeFeatures" class="indentedContent scrollable">
 				<div class="contentContainer">
 				
@@ -1121,9 +1190,8 @@ also features cost savings, AND has none of the same pain points.
 				
 				</div>
 			</div>
-
-			
-			<!-- INSTALL: MAIN -->
+		
+			<!-- INSTALL: LEFT BAR -->
 			<div id="highlightInstall" class="heavyBG3">
 				<div class="lightBG3 contentContainer">
 					<h1>Install Now!</h1>
@@ -1153,6 +1221,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 			</div>
 
+			<!-- INSTALL: MAIN -->
 			<div id="largeInstall" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<div class="imageContainer">
@@ -1169,7 +1238,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 			</div>
 			
-			<!-- DEMO -->
+			<!-- DEMO: MENU -->
 			<div id="highlightDemo" class="heavyBG4">
 				<div class="lightBG4 contentContainer">
 					<h1 class="alignCenter">See It In Action</h1>
@@ -1220,6 +1289,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 			</div>
 
+			<!-- DEMO: LARGE -->
 			<div id="largeDemo" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<div class="slideContainer">
@@ -1253,7 +1323,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 			</div>
 			
-			<!-- WHO WE ARE -->
+			<!-- WHO WE ARE: MENU -->
 			<div id="highlightWhoWeAre" class="heavyBG5">
 				<div class="lightBG5 contentContainer">
 					<h1>Who We are</h1>
@@ -1296,6 +1366,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 			</div>
 
+			<!-- WHO WE ARE: ABOUT US -->
 			<div id="largeAboutUs" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<h2>About Us</h2>
@@ -1419,6 +1490,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>		
 			</div>
 			
+			<!-- WHO WE ARE: FRIENDS -->
 			<div id="largeOurFriends" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<h2>Our Friends</h2>
@@ -1556,7 +1628,7 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 				<div class="contentContainer">
 					<h2>Infrastructures</h2>
-					<p id="infrastructure" class="indented">
+					<p id="infrastructures" class="indented">
 					<!-- Bacon -->
 					</p>
 				</div>
@@ -1568,20 +1640,24 @@ also features cost savings, AND has none of the same pain points.
 				</div>
 			</div>
 			
+			<!-- WHO WE ARE: LEGAL -->
 			<div id="largeLegalStuff" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<h2>Legal Stuff</h2>
 					<p id="pciCompliance" class="indented">
+					<h2>PCI Compliance</h2>
 					CommerceRack is developed to meet all PCI compliance standards.
 					Our support staff can assist with a variety of compliance paperwork issues.
 					</p>
 				</div>
 				<div class="contentContainer">
+
+				
+				
 					<h2>Terms of Service</h2>
 					<p id="termsOfService" class="indented">
 						<h3>CommerceRack Terms of Service</h3>
 						<span class="legalInfo">
-							<h4>Last Updated: Jun 28<span style=" font-variant:small-caps;">th</span>, 2008</h4>
 							<h4>1. ACCEPTANCE OF TERMS</h4>
 								<p>Welcome to CommerceRack. CommerceRack provides its service to you, subject to the following Terms of Service ("TOS"), which may be updated by us from time to time without notice to you. </p>
 								<p>In addition, when using particular CommerceRack services, you and CommerceRack shall be subject to any posted guidelines or rules applicable to such services, which may be posted from time to time. All such guidelines or rules are hereby incorporated by reference into the TOS.</p>
@@ -1616,7 +1692,8 @@ also features cost savings, AND has none of the same pain points.
 									<li>Collect or store personal data about other users of this service</li>
 								</ol>
 								<p>You acknowledge that CommerceRack does not pre-screen Content, but that CommerceRack and its designees shall have the right (but not the obligation) in their sole discretion to refuse or move any Content that is available via the Service. Without limiting the foregoing, CommerceRack and its designees shall have the right to remove any Content that violates the TOS or is otherwise objectionable. You agree that you must evaluate, and bear all risks associated with, the use of any Content, including any reliance on the accuracy, completeness, or usefulness of such Content. In this regard, you acknowledge that you may not rely on any Content created by CommerceRack or submitted to CommerceRack, including without limitation information in CommerceRack and in all parts of the Service.</p>
-								<p>You acknowledge and agree that CommerceRack may preserve Content and may also disclose Content if required to do so by law or in the good faith belief that such preservation or disclosure is reasonably necessary to:<ul>
+								<p>You acknowledge and agree that CommerceRack may preserve Content and may also disclose Content if required to do so by law or in the good faith belief that such preservation or disclosure is reasonably necessary to:
+									<ul>
 									(a) comply with legal process;<br>
 									(b) enforce the TOS;<br>
 									(c) respond to claims that any Content violates the rights of third-parties;<br>
@@ -1868,6 +1945,7 @@ also features cost savings, AND has none of the same pain points.
 
 						</span>
 					</p>
+								
 				</div>
 				
 			</div>
@@ -1929,8 +2007,7 @@ also features cost savings, AND has none of the same pain points.
 					</p>
 				</div>
 			</div>
-			
-			
+		
 			<div id="installModal" onClick="$(this).remove();">
 				<div class="contentContainer">
 					<h1>We're Sorry</h1>

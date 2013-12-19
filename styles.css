@@ -173,7 +173,7 @@ makes them transparent instead upon show
 [data-trivia^="demo"].shown{ background: rgba(178,167,178,.3);}
 [data-trivia^="dev"].shown{ background:  rgba(182,209,215,.3);}
 
-aside[data-trivia] {padding-bottom:12px;}
+aside[data-trivia] { padding-bottom:12px; border-radius:5px; }
 
 .slideImg{width:0px; height:0px; overflow: hidden;}
 /*********************************

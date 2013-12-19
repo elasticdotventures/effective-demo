@@ -334,7 +334,7 @@
 				} else {
 					var params = parseCmd($tag.attr('data-trivia'));
 					delay = app.trivia.animations[params.animation]($tag, params);
-					setTimeout(function(){$tag.addClass('shown');},params.duration);
+					setTimeout(function(){$tag.addClass('shown');},params.duration + 20);
 					$tag.data('trivia-shown',true);			
 				}
 				

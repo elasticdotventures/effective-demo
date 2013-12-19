@@ -27,6 +27,12 @@
 			var $highlightContent;
 			var app = {
 				pages: {
+					"#!/dev.html" :function(){
+						console.log("DEV");
+						insertHighlightContent(app.templates.highlightWhoWeAre);
+						hideLargeContent(getShowLargeContentCallback(app.templates.largeDev));
+						selectMenu(0);
+					},
 					"#!/" : function(){
 						console.log("homepage");
 						hideHighlightContent();
@@ -79,30 +85,87 @@
 				},
 				templates : {},
 				currentIntervals : [],
-				triviaAnimations : {
-					typing : function($tag, duration){
-						var text = $tag.text().trim();
-						console.log(text);
-						$tag.empty().show();
-						addType($tag, text, duration);
-						return duration;
+				trivia : {
+					animations : {
+						show : function($tag, params){
+							$tag.show();
+							return params.duration;
+						},
+						typing : function($tag, params){
+							var text = $tag.text().trim();
+							console.log(text);
+							$tag.empty().show();
+							addType($tag, text, params.duration);
+							return params.duration;
+						},
+						addClass : function($tag, params){
+							$tag.show();
+							for(var c in params.classes){
+								$tag.addClass(c);
+							}
+							return params.duration;
+						},
+						removeClass : function($tag, params){
+							$tag.show();
+							for(var c in params.classes){
+								$tag.removeClass(c);
+							}
+							return params.duration;
+						},
+						animateAttr : function($tag, params){
+							$tag.show();
+							$tag.animate(params.attributes, params.duration);
+							return params.duration;
+						}
 					},
-					addClass : function($tag, duration){
-						$tag.show();
-						$tag.addClass($tag.data('data-class'));
-						return duration;
-					},
-					removeClass : function($tag, duration){
-						$tag.show();
-						$tag.removeClass($tag.data('data-class'));
-						return duration;
-					},
-					animateAttr : function($tag, duration){
-						$tag.show();
-						var animateObj={};
-						animateObj[$tag.attr('data-attr')] = $tag.attr('data-value');
-						$tag.animate(animateObj, $tag.attr('data-duration'));
-						return duration;
+					argHandlers : {
+						"--animation -a" : function(args, cmdObj){
+							var r = false;
+							cmdObj.animation = args.splice(0,1)[0];
+							switch(cmdObj.animation){
+								case "addClass":
+								case "removeClass":
+									//For these, anything goes.  It'll take as many classes as you give it.
+									cmdObj.classes = [];
+									while(args[0] && args[0].indexOf("-") != 0){
+										cmdObj.classes.push(args.splice(0,1)[0]);
+									}
+									r = true;
+									break;
+								case "animateAttr":
+									//This format requires pairs of arguments- the attribute followed by the value to animate to.
+									//It will take as many pairs as are specified.
+									cmdObj.attributes = {};
+									console.dir(args);
+									console.log(args[0]);
+									while(args[0] && args[0].indexOf("-" != 0) && args[1] && args[1].indexOf("-" != 0)){
+										var tuple = args.splice(0,2);
+										cmdObj.attributes[tuple[0]] = tuple[1];
+									}
+									r = true;
+									break;
+								case "typing":
+								case "show":
+									//These animations don't require any further arguments
+									r = true;
+								default:
+									break;
+							}
+							return r;
+						},
+						"--duration -d" : function(args, cmdObj){
+							var r = false;
+							if(args[0] && args[0].indexOf("-" != 0)){
+								var dur = parseInt(args.splice(0,1)[0]);
+								if(dur != "NaN"){
+									cmdObj.duration = dur;
+									r = true;
+								} 
+							} else {
+								console.log("DURATION COMMAND NOT PASSED AN APPROPRIATE ARGUMENT")
+							}
+							return r;
+						},
 					}
 				}
 			};
@@ -228,13 +291,13 @@
 				var tqSize = tq.length;
 				//console.log(tqSize);
 				
-				$('[data-trivia="'+tFlag+'"]', $container).each(function(){
+				$('[data-trivia~="'+tFlag+'"]', $container).each(function(){
 					tq.push($(this));
 				});
 				
 				if(tqSize){
 					//Do nothing, queue is already processing.
-				} else {
+				} else if(tq.length){
 					processTQ();
 				}
 				
@@ -249,21 +312,56 @@
 					//Trivia already shown.
 					delay = 0;
 				} else {
-					var duration = $tag.attr('data-duration');
-					duration = duration || 600;
-		
-					var animation = $tag.attr('data-animation');
-					animation = animation || "typing";
-		
-					delay = app.triviaAnimations[animation]($tag, duration);
-					setTimeout(function(){$tag.addClass('shown');},duration);
+					var params = parseCmd($tag.attr('data-trivia'));
+					delay = app.trivia.animations[params.animation]($tag, params);
+					setTimeout(function(){$tag.addClass('shown');},params.duration);
 					$tag.data('trivia-shown',true);			
-					}
+				}
 				
 				if(tq.length){
 					setTimeout(processTQ, delay);
 				}
 				//console.dir(tq);
+			}
+			
+			function parseCmd(cmd){
+				var cmdObj = {};
+				var args = cmd.split(" ");
+				var flag = args.splice(0,1)[0];
+				
+				while(args.length > 0){
+					var arg = args.splice(0,1)[0];
+					var keyFound = false;
+					var keyValid = false;
+					for(var key in app.trivia.argHandlers){
+						if($.inArray(arg, key.split[" "])){
+							keyFound = true;
+							if(app.trivia.argHandlers[key](args, cmdObj)){
+								keyValid = true;
+							} else {
+								cmdObj = {};
+								console.log("COMMAND ["+cmd+"] FAILED IN ARGUMENT ["+arg+"], FAILING TO DEFAULTS");
+							}
+							break;
+						}
+					}
+					
+					if(!keyFound && !keyValid){
+						cmdObj = {};
+						console.log("UNRECOGNIZED ARGUMENT ["+arg+"] IN COMMAND ["+cmd+"], FAILING TO DEFAULTS");
+						break;
+					} else {
+						//A key was found and processed appropriately.  Continue on our merry way.
+						continue;
+					}
+				}
+				
+				//Add in the flag.  Set any required defaults that may be missing.
+				cmdObj.flag = flag;
+				cmdObj.animation = cmdObj.animation || "show";
+				cmdObj.duration = cmdObj.duration || 600;
+				console.dir(cmdObj);
+				return cmdObj;
 			}
 			
 			var path = document.URL;
@@ -492,7 +590,7 @@
 					<h2 id="executiveSummary">Getting Started</h2>
 					If you want to learn more about a topic simply click the 
 					<span onClick="showTrivia('more', $('#triviaTrainer'), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span> button and additional detail will appear.  Try it now!
-					<div data-trivia="more" data-animation="addClass">
+					<div data-trivia="more">
 					See how this extra content appeared? it will stay highlighted, so don't worry about needing to read it fast.
 					Here is a complete list of buttons you might find:
 					<ul>
@@ -615,6 +713,48 @@
 				</div>
 			</div>
 			
+			<div id="largeDev" class="indentedContent scrollable">
+				<div class="contentContainer">
+					<div class="section left">
+						<div class="icon globe"></div>
+						<h2 id="bacon">Bacon</h2>
+						<p>
+							<!-- The animation for this image is handled by CSS3 transitions after adding the class -->
+							<div class="floatRight slideImg" data-trivia="how -a animateAttr width 50 height 50 -d 2000" data-attr="width" data-value="50">
+								<img class="" src="img/amazon_web_services.png" width="50" height="50"/>
+							</div>
+							Bacon ipsum dolor sit amet ham turducken short ribs fatback. 
+							Short ribs capicola ball tip pork. 
+							<span data-trivia="how -a typing">
+								Pancetta short ribs brisket ribeye spare ribs fatback tail salami pork loin, turkey flank bacon pork chop. 
+							</span>
+							<span data-trivia="demo -a typing">
+								Pancetta short ribs brisket ribeye spare ribs fatback tail salami pork loin, turkey flank bacon pork chop. 
+							</span>
+							Shoulder sausage ribeye, pancetta short loin cow beef ribs strip steak biltong hamburger capicola frankfurter pork loin turkey salami.
+						</p>
+						<p>
+							Sirloin venison spare ribs, pork shank ball tip andouille doner swine jowl fatback kielbasa pork chop meatball rump. 
+							<span data-trivia="dev -a typing">
+								Biltong short loin ham tail shank kevin sausage beef swine filet mignon ball tip venison pork chop beef ribs. 
+							</span>
+							Andouille pork loin bresaola tail short loin short ribs biltong flank ham hock shank tenderloin pork leberkas. 
+							<span data-trivia="how -a typing">
+								Beef ribs turducken pork loin spare ribs. 
+							</span>
+							Strip steak chuck t-bone corned beef, short loin brisket hamburger boudin pork flank tongue fatback sirloin tail.
+						</p>
+						<div>
+							
+							<span onClick="showTrivia('how',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnHow" ></span>
+							<span onClick="showTrivia('more', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnMore"></span>
+							<span onClick="showTrivia('demo', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnDemo"></span>
+							<span onClick="showTrivia('dev',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnDev" ></span>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
 			<!-- FEATURES -->
 			<div id="highlightFeatures" class="heavyBG2">
 				<div class="lightBG2 contentContainer">
@@ -637,48 +777,6 @@
 				</div>
 			</div>
 
-			<div id="bacon">
-				<!-- this should be used for testing -->
-					<div class="section left">
-						<div class="icon globe"></div>
-						<h2 id="overview">Bacon</h2>
-						<p>
-							<!-- The animation for this image is handled by CSS3 transitions after adding the class -->
-							<div class="floatRight slideImg" data-trivia="how" data-duration="600" data-animation="animateAttr" data-attr="width" data-value="50">
-								<img class="" src="img/amazon_web_services.png" width="50" height="50"/>
-							</div>
-							Bacon ipsum dolor sit amet ham turducken short ribs fatback. 
-							Short ribs capicola ball tip pork. 
-							<span data-trivia="how" data-animation="typing">
-								Pancetta short ribs brisket ribeye spare ribs fatback tail salami pork loin, turkey flank bacon pork chop. 
-							</span>
-							<span data-trivia="demo" data-animation="typing">
-								Pancetta short ribs brisket ribeye spare ribs fatback tail salami pork loin, turkey flank bacon pork chop. 
-							</span>
-							Shoulder sausage ribeye, pancetta short loin cow beef ribs strip steak biltong hamburger capicola frankfurter pork loin turkey salami.
-						</p>
-						<p>
-							Sirloin venison spare ribs, pork shank ball tip andouille doner swine jowl fatback kielbasa pork chop meatball rump. 
-							<span data-trivia="dev" data-animation="typing">
-								Biltong short loin ham tail shank kevin sausage beef swine filet mignon ball tip venison pork chop beef ribs. 
-							</span>
-							Andouille pork loin bresaola tail short loin short ribs biltong flank ham hock shank tenderloin pork leberkas. 
-							<span data-trivia="how" data-animation="typing">
-								Beef ribs turducken pork loin spare ribs. 
-							</span>
-							Strip steak chuck t-bone corned beef, short loin brisket hamburger boudin pork flank tongue fatback sirloin tail.
-						</p>
-						<div>
-							
-							<span onClick="showTrivia('how',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnHow" ></span>
-							<span onClick="showTrivia('more', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnMore"></span>
-							<span onClick="showTrivia('demo', $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnDemo"></span>
-							<span onClick="showTrivia('dev',  $(this).parent().parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnDev" ></span>
-						</div>
-						<div class="clear"></div>
-					</div>
-				
-			</div>
 			
 			<div id="largeFeatures" class="indentedContent scrollable">
 				<div class="contentContainer">

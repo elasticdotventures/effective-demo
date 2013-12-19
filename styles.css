@@ -150,15 +150,15 @@ html, body, #content{
 .showTriviaBtnDemo{width:20px; height:20px; background-position:-60px -26px;}
 .showTriviaBtnDev{width:20px; height:20px; background-position:-90px -26px;}
 
-.hideHow [data-trivia="how"]{display:none;}
-.hideMore [data-trivia="more"]{display:none;}
-.hideDemo [data-trivia="demo"]{display:none;}
-.hideDev [data-trivia="dev"]{display:none;}
+.hideHow [data-trivia^="how"]{display:none;}
+.hideMore [data-trivia^="more"]{display:none;}
+.hideDemo [data-trivia^="demo"]{display:none;}
+.hideDev [data-trivia^="dev"]{display:none;}
 
-[data-trivia="how"]{ background: #edb8a0; transition:background-color 5s;}
-[data-trivia="more"]{ background: #acc67d;transition:background-color 5s;}
-[data-trivia="demo"]{ background: #b2a7b2;transition:background-color 5s;}
-[data-trivia="dev"]{ background: #b6d1d7;transition:background-color 5s;}
+[data-trivia^="how"]{ background: #edb8a0; transition:background-color 5s;}
+[data-trivia^="more"]{ background: #acc67d;transition:background-color 5s;}
+[data-trivia^="demo"]{ background: #b2a7b2;transition:background-color 5s;}
+[data-trivia^="dev"]{ background: #b6d1d7;transition:background-color 5s;}
 
 /*
 makes them transparent instead upon show
@@ -168,12 +168,12 @@ makes them transparent instead upon show
 [data-trivia="dev"].shown{ background: transparent;}
 */
 
-[data-trivia="how"].shown{ background: #FFEBD3;}
-[data-trivia="more"].shown{ background: #DFF9B0;}
-[data-trivia="demo"].shown{ background: #D5CFD5;}
-[data-trivia="dev"].shown{ background: #E9FFFF;}
+[data-trivia^="how"].shown{ background: #FFEBD3;}
+[data-trivia^="more"].shown{ background: #DFF9B0;}
+[data-trivia^="demo"].shown{ background: #D5CFD5;}
+[data-trivia^="dev"].shown{ background: #E9FFFF;}
 
-.slideImg{width:0px; overflow: hidden;}
+.slideImg{width:0px; height:0px; overflow: hidden;}
 /*********************************
 HOMEPAGE
 *********************************/

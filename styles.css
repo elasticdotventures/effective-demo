@@ -138,7 +138,7 @@ html, body, #content{
 #templates {
 	display:none;
 }
-
+button.showTrivia{padding:0px;border:0px; vertical-align:middle;}
 .showTrivia{background:url(img/trivia_buttons.png); cursor:pointer;}
 .showTriviaBtnWideHow{width:41px; height:16px; background-position:0px 0px;}
 .showTriviaBtnWideMore{width:41px; height:16px; background-position:-51px 0px;}

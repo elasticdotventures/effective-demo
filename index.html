@@ -483,6 +483,67 @@
 
 
 		</script>
+		
+	<!-- FeedEk -->
+	<style>
+	.feedEkList{width:450px; list-style:none outside none;background-color:#FFFFFF; border:1px solid #D3CAD7; padding:4px 6px; color:#3E3E3E;}
+	.feedEkList li{border-bottom:1px solid #D3CAD7; padding:5px;}
+	.feedEkList li:last-child{border-bottom:none;}
+	.itemTitle a{font-weight:bold; color:#4EBAFF !important; text-decoration:none }
+	.itemTitle a:hover{ text-decoration:underline }
+	.itemDate{font-size:11px;color:#AAAAAA;} 
+	</style>
+	
+	<!-- /FeedEk -->
+	<script type="text/javascript">
+	/* FeedEk jQuery RSS/ATOM Feed Plugin v1.1.2
+	* http://jquery-plugins.net/FeedEk/FeedEk.html
+	* Author : Engin KIZIL http://www.enginkizil.com
+	* http://opensource.org/licenses/mit-license.php
+	*/
+
+(function ($) {
+    $.fn.FeedEk = function (opt) {
+        var def = $.extend({
+            FeedUrl: "http://rss.cnn.com/rss/edition.rss",
+            MaxCount: 5,
+            ShowDesc: true,
+            ShowPubDate: true,
+            CharacterLimit: 0,
+            TitleLinkTarget: "_blank"
+        }, opt);
+
+        var id = $(this).attr("id");
+        var i;
+        $("#" + id).empty().append('<img src="loader.gif" />');
+        $.ajax({
+            url: "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=" + def.MaxCount + "&output=json&q=" + encodeURIComponent(def.FeedUrl) + "&hl=en&callback=?",
+            dataType: "json",
+            success: function (data) {
+                $("#" + id).empty();
+                var s = "";
+                $.each(data.responseData.feed.entries, function (e, item) {
+                    s += '<li><div class="itemTitle"><a href="' + item.link + '" target="' + def.TitleLinkTarget + '" >' + item.title + "</a></div>";
+                    if (def.ShowPubDate) {
+                        i = new Date(item.publishedDate);
+                        s += '<div class="itemDate">' + i.toLocaleDateString() + "</div>";
+                    }
+                    if (def.ShowDesc) {
+                        if (def.DescCharacterLimit > 0 && item.content.length > def.DescCharacterLimit) {
+                            s += '<div class="itemContent">' + item.content.substr(0, def.DescCharacterLimit) + "...</div>";
+                        }
+                        else {
+                            s += '<div class="itemContent">' + item.content + "</div>";
+                        }
+                    }
+                });
+                $("#" + id).append('<ul class="feedEkList">' + s + "</ul>");
+            }
+        });
+    };
+	})(jQuery);
+	</script>
+		
 	</head>
 	<body>
 		<div id="content">
@@ -706,7 +767,7 @@
 		</ul>
 		<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
 		</div>
-				
+		
 		<div class="clear"></div>
 		
 		<!-- HOW IT WORKS: SHOPPING WITH APPS -->
@@ -734,7 +795,7 @@
 	<h4>Apps: The Future Of Online Shopping</h4>
 	<ul>
 	<li>
-		apps delivers enhanced user experience for customers.
+		Apps delivers enhanced user experience for customers.
 		<span data-trivia="more">
 		Browser based apps are faster and can easily utilize animations, timers, and videos while content is being loaded.
 		Native apps can do all that and access push messaging, cameras, gps, on device wallets, and device identity management.
@@ -748,12 +809,12 @@
 		</aside>
 	</li>
 	<li>
-		apps have lower operating costs. 
+		Apps have lower operating costs. 
 		<span data-trivia="more">
 		A normal app will have anywhere from 50% to 90% savings per page in infrastructure costs over a server generated website.
 		</span>
 		<aside data-trivia="dev">
-		apps are generally static which are better in every measurable aspect than traditional sites (faster, cheaper, easier, and more scalable to serve than any dynamic page).
+		Apps are generally static which are better in every measurable aspect than traditional sites (faster, cheaper, easier, and more scalable to serve than any dynamic page).
 		commercerack instances are configured for hot-object caching using memcache, and redis, and make effective use of fast ephemeral
 		disks rather than writing to network block storage.
 		internal communication between modules is done using uwsgi over named pipes, and signals taking full advantage of shared memory. 
@@ -761,11 +822,13 @@
 		takes a machete to both processor utilization and latency due to compression.
 		Additionally in many private cloud configurations SSL accelerators can be added to further offload core processors (note: many
 		CDN's do this as well)
-		Content is only transferred once, and cached locally, even on a very optimized webpage the same headers, footers, etc. are must be re-transmitted each time. 
+		With apps content is only transferred once, and cached locally, compared to even a very optimized webpage the same headers, footers, etc. must be re-transmitted each time. 
+		This is also more efficient than AJAX because multiple requests are automatically pipelined into a single HTTP/HTTPS connection, or 
+		sent over an already established messaging channel between app and instance via a websocket.
 		</aside>
 	</li>
 	<li>
-		apps let developers work faster. <span data-trivia="more">apps take weeks, equivalent websites take months.</span>
+		Apps let developers work faster. <span data-trivia="more">apps take weeks, equivalent websites take months.</span>
 		<aside data-trivia="dev">
 		App developer IS faster because apps can be developed and tested locally, and will typically use git code manage to track revisions and changes.
 		websites have more moving parts (ex: server plugins, etc.) and testing and debugging those can add a significantly amount of 
@@ -774,17 +837,21 @@
 		</aside>
 	</li>
 	<li>
-		apps are more secure. <span data-trivia="more">
-			apps run locally so many of the normal exploits that would come from installing a poorly written module are non-existant.
-			a single api has reduced attack vectors, and a clean parameter handling using json encoding.
-			the commerceRack intent based api can track calls by sessions and types of calls, and/or ip address, and/or netblock in an effort to detect bots.  Once a bot is detected it can be treated specially (for example never be allowed to login,
-			and given false pricing ex: a competitor's intelligence bot)
-			Normal DDOS attacks will generally target a domain, which can be a CDN or other reasonably hardened target.
-			Effective use of hot-object cache means cloud infrastructures can be quickly and easily scaled out to handle even well equipped attackers.
+		Apps are more secure. <span data-trivia="more">
+		Apps run locally so many of the normal exploits that would come from installing a poorly written module are non-existent.
+		The most common types of attacks against webservers will actually target the attackers own computer where the app is running.
 		</span>
 		<aside data-trivia="dev">
+		Apps run locally so probes, xss attacks, etc. all happen to the attackers own computer.
+		
 		Apps are static and can be physically hosted in virtually any environment, they can also
 		pull content from other applications or webapi's using mashups (cloud api calls that return json prettified content)
+
+		A single api has reduced attack vectors, and a clean parameter handling using json encoding.
+		The commerceRack intent based api can track calls by sessions and types of calls, and/or ip address, and/or netblock in an effort to detect bots.  Once a bot is detected it can be treated specially (for example never be allowed to login,
+		and given false pricing ex: a competitor's intelligence bot)
+		Normal DDOS attacks will generally target a domain, which can be a CDN or other reasonably hardened target.
+		Effective use of hot-object cache means cloud infrastructures can be quickly and easily scaled out to handle even well equipped attackers.
 		</aside>
 	</li>
 	</ul>
@@ -792,10 +859,6 @@
 	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
 	<span onClick="showTrivia('dev', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDev"></span>
 	
-	<span class="everything">
-	<h4>Everything is Here</h4>
-	<p>anyCommerce incorporates all of the technologies and processes needed to grow successfully, and makes them available through one, easy-to-manage account. anyCommerce's long standing partnerships with proven e-commerce industry names ensures the tightest integration and streamlined functionality for your business process. With over 13 years of field-tested input from thousands of successful online merchants, anyCommerce is poised to lead the next e-commerce revolution.</p>
-	</span>
 	</p>
 	<div class="clear"></div>
 	</div>
@@ -812,20 +875,41 @@
 	<!-- HOW IT WORKS: WHY YOU SHOULD USE THIS -->
 	<div class="contentContainer">
 	<h2 id="wowAwesome">Why you should use This</h2>			
-	<ul>
-	<li> Improve Android and IOS Apps, streamline application process</li>
-	<li> Google AppStore    (already prototyped, not announced/tested)</li>
-	<li> Windows 8/xBox shell        (already prototyped, not announced/tested)</li>
-	<li> SEOng layer (already prototyped, held on CR interface)</li>
-	<li> Create data-share plugins for Magento, Drupal, etc.</li>
-	<li> WIFI App access point</li>
-	<li> Finish point of sale interface and admin to customer link</li>
-	<li> Improve call center operator interface before release</li>
-	<li> Apply to AWS Marketplace, Heroku for selling be sold/licensed</li>
-	<li> OpenStack integration -- ignored to date due to rapid evolution of platform.</li>
-	<li> Email to App gateway for ESP providers (need to sign up an ESP first)</li>
-	<li> Works with asterisk -- can be used as a voip phone system for call routing, text to speech. </li>
-	</ul>
+	
+	<div>
+	<h4>Everything you Need</h4>
+	<p>
+	CommerceRack incorporates all of the functionality needed to grow successfully, and makes them available through one, easy-to-manage interface. 
+	New releases are constantly looking ahead towards the future. 
+	</p>
+	<p>
+	Recently Practical eCommerce listed the top e-commerce challenges for 2014 (<a href="http://www.practicalecommerce.com/articles/62217-5-Ecommerce-Challenges-for-2014">Link</a>) here is the list, click [more] at the bottom to see 
+	how CommerceRack helps businesses address each one of these challenges:
+	</p>
+	<ol>
+		<li> Offer Free 2-Day Shipping
+		<span data-trivia="more">
+		Shipping across the country two day is extremely cost prohibitive for virtually all items.  It is much less expensive to stage popular items at geographically warehouses.
+		Out of the box CommerceRack supports multiple supplier and intelligent item routing. 
+		</span>		
+		</li>
+		<li> Put Mobile Design and Marketing first
+		<span data-trivia="more">Apps deliver a better experience on mobile devices than traditional websites.  CommerceRack also includes the first CRM system to incorporate email AND device Push notifications for customers, as well as the ability to link to facebook, google and others. </span>
+		</li>
+		<li> More Personalization and Customization.
+		<span data-trivia="more">Apps are stateful - they can persistently store and evaluate recent search history to create personalized campaigns.</span>
+		</li>
+		<li> Use Big data for Big Information
+		<span data-trivia="more">The easiest way to use big data is to store that information in the cloud. CommerceRack is the only Commerce Platform build for the cloud.</span>
+		</li>
+		<li> Sell Seamlessly Across Channels and Devices
+		<span data-trivia="more">
+		This is sort of our bread and butter.  In the article they especially outline how important a unified experience is especially in todays complicated mixed-device ecosystems.  CommerceRack uses HTML5 for layout inside native device shells make it easy to unify customer experiences. 
+		</span>
+	</ol>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	</div>
+
 	<div class="clear"></div>
 	</div>
 
@@ -861,9 +945,74 @@
 	<li></li>
 	</ul>
 	
+				<div class="contentContainer">
+					<h2>Services Provided</h2>
+					<p id="servicesProvided" class="indented">
+
+					<div class="services_app">
+						<h3>From Apps, to Premiere Services to Support,<br/>We have you covered</h3>
+						<p>Here at anyCommerce, we have worked diligently to provide our customers with the most all-encompassing and exstensible e-commerce solution out there. Other companies focus on specific areas of e-commerce, leaving you to figure out for yourself how to integrate new features or update current features when your business grows. We have integrated all of the mission-critical components so you can focus on your business and not your e-commerce technology.</p>
+					</div>
+					<div class="develop_apps">
+						<h3>Develop Your Apps</h3>
+						<span class="description">
+							<p>With our emerging app framework, your custom apps will give you unparalleled control over your apps' behavior and business information. You'll need to create your apps and our team is standing by to help. </p>
+						</span>
+						<span class="des_icons">
+							<a href="#!/building-apps.html"><img src="images/service_path.png"/></a>
+						</span>
+						<span class="learn_here">
+							<img src="images/orange_right_arrow.png"/><a href="#!/building-apps.html">Learn how the process works here</a>
+						</span>
+					</div>
+					<div class="develop_apps">
+						<h3>Live Training & Support</h3>
+						<div class="consultation">
+							<span class="descrptn" style="width:80%;">
+								<p>Need help with creating or updating your Data Fair? No problem. Our team invented the DataFair! We are standing by to help you get your vital business information ported and situated properly.</p>
+							</span>
+							<span class="des_icons">
+								<img src="images/data_fair_circle.png" style="width:68px;margin:0 10px 0 0;"/>
+							</span>
+						</div>
+						<div class="consultation" style="padding:0;">
+							<span class="descrptn" style="width:80%;">
+								<p>We have also worked very hard to provide custom development for add-on apps like Special Offers and Checkout Intercept, just to name a few. If there's a business idea or initiative that you think an app would be perfect for, our team would love to join forces with you to come up with a solution.</p>
+							</span>
+							<span class="des_icons">
+								<img src="images/sup_circle.png" style="width:68px;margin:0 10px 0 0;"/>
+							</span>
+						</div>
+						<span class="learn_here">
+							<a href="#!/live-training-support.html"><img src="images/orange_right_arrow.png"/><p class="learnsss">Learn more about our support structure here</p></a>
+						</span>
+					</div>
+					<div class="develop_apps" style="padding:0  0 60px 0;">
+						<h3>Strategies & Solutions</h3>
+						<p>The landscape of e-commerce is changing rapidly. WIth more and more sellers using Marketplaces like Amazon, Ebay, Buy.com, etc., the rules of engagement are in flux. No longer will SEO win the day. Winning the BuyBox will make all the difference.<br/><br/></p>
+						<span class="descrptn" style="width:80%;">
+							<p>Here at anyCommerce, we have identified the next critical strategy in e-commerce as it pertains to selling through marketplaces. Winning the BuyBox, or as we call it, Marketplace Optimization&trade; (MpO), gets your products in the best possible position to be sold. Our MpO Experts will help you identify the areas of your business to improve in order to increase your frequency in the BuyBox.</p>
+						</span>
+						<span class="des_icons">
+							<img src="images/mpo_circle.png" style="width:68px;margin:0 10px 0 0;"/>
+						</span>
+						<span class="learn_here">
+							<a href="#!/marketplace-optimization.html"><img src="images/orange_right_arrow.png"/><p class="learnsss">Learn more about Marketplace Optimization here</p></a>
+						</span>
+					</div>
+
+
+
+					</p>
+				</div>
+
+				
+				
+	
+	
 	<div class="clear"></div>
 	</div>
-	
+
 		
 	</div>	
 	
@@ -2394,6 +2543,9 @@ can easily communicate to specific demographics.
 						<a href="#companyHistory" data-onclick="loadAndScroll" data-load="largeAboutUs">Company History</a>
 					</div>
 					<div>
+						<a href="#blog" data-onclick="loadAndScroll" data-load="largeAboutUs">Blog</a>
+					</div>
+					<div>
 						<a href="#servicesProvided" data-onclick="loadAndScroll" data-load="largeAboutUs">Services We Provide</a>
 					</div>
 					<div>
@@ -2431,9 +2583,9 @@ can easily communicate to specific demographics.
 			<!-- WHO WE ARE: ABOUT US -->
 			<div id="largeAboutUs" class="indentedContent scrollable">
 				<div class="contentContainer">
-					<h2>About Us</h2>
 					
-	<p id="companyHistory" class="indented">
+	<h2 id="companyHistory">Company History</h2>				
+	<p class="indented">
 	CommerceRack and anyCommerce started out as concepts in 2009 by the developers of CommerceRack, a privately held small business e-commerce website hosting and marketplace management company with 13 years of expertise in e-commerce.  CommerceRack is a cloud service infrastructure that enables transactional commerce. CommerceRack utilizes anyCommerce's open-source framework to create unified experiences for e-commerce, m-commerce, social commerce and retail/brick and mortar businesses. 
 	</p>
 	
@@ -2445,66 +2597,32 @@ can easily communicate to specific demographics.
 	</p>
 	
 				</div>
+
 				<div class="contentContainer">
-					<h2>Services Provided</h2>
-					<p id="servicesProvided" class="indented">
+					<h2 id="blog">Corporate Blog</h2>
+					<a href="http://blog.commercerack.com">http://Blog.commercerack.com</a>
+					<p class="indented">
 
-					<div class="services_app">
-						<h3>From Apps, to Premiere Services to Support,<br/>We have you covered</h3>
-						<p>Here at anyCommerce, we have worked diligently to provide our customers with the most all-encompassing and exstensible e-commerce solution out there. Other companies focus on specific areas of e-commerce, leaving you to figure out for yourself how to integrate new features or update current features when your business grows. We have integrated all of the mission-critical components so you can focus on your business and not your e-commerce technology.</p>
-					</div>
-					<div class="develop_apps">
-						<h3>Develop Your Apps</h3>
-						<span class="description">
-							<p>With our emerging app framework, your custom apps will give you unparalleled control over your apps' behavior and business information. You'll need to create your apps and our team is standing by to help. </p>
-						</span>
-						<span class="des_icons">
-							<a href="#!/building-apps.html"><img src="images/service_path.png"/></a>
-						</span>
-						<span class="learn_here">
-							<img src="images/orange_right_arrow.png"/><a href="#!/building-apps.html">Learn how the process works here</a>
-						</span>
-					</div>
-					<div class="develop_apps">
-						<h3>Live Training & Support</h3>
-						<div class="consultation">
-							<span class="descrptn" style="width:80%;">
-								<p>Need help with creating or updating your Data Fair? No problem. Our team invented the DataFair! We are standing by to help you get your vital business information ported and situated properly.</p>
-							</span>
-							<span class="des_icons">
-								<img src="images/data_fair_circle.png" style="width:68px;margin:0 10px 0 0;"/>
-							</span>
-						</div>
-						<div class="consultation" style="padding:0;">
-							<span class="descrptn" style="width:80%;">
-								<p>We have also worked very hard to provide custom development for add-on apps like Special Offers and Checkout Intercept, just to name a few. If there's a business idea or initiative that you think an app would be perfect for, our team would love to join forces with you to come up with a solution.</p>
-							</span>
-							<span class="des_icons">
-								<img src="images/sup_circle.png" style="width:68px;margin:0 10px 0 0;"/>
-							</span>
-						</div>
-						<span class="learn_here">
-							<a href="#!/live-training-support.html"><img src="images/orange_right_arrow.png"/><p class="learnsss">Learn more about our support structure here</p></a>
-						</span>
-					</div>
-					<div class="develop_apps" style="padding:0  0 60px 0;">
-						<h3>Strategies & Solutions</h3>
-						<p>The landscape of e-commerce is changing rapidly. WIth more and more sellers using Marketplaces like Amazon, Ebay, Buy.com, etc., the rules of engagement are in flux. No longer will SEO win the day. Winning the BuyBox will make all the difference.<br/><br/></p>
-						<span class="descrptn" style="width:80%;">
-							<p>Here at anyCommerce, we have identified the next critical strategy in e-commerce as it pertains to selling through marketplaces. Winning the BuyBox, or as we call it, Marketplace Optimization&trade; (MpO), gets your products in the best possible position to be sold. Our MpO Experts will help you identify the areas of your business to improve in order to increase your frequency in the BuyBox.</p>
-						</span>
-						<span class="des_icons">
-							<img src="images/mpo_circle.png" style="width:68px;margin:0 10px 0 0;"/>
-						</span>
-						<span class="learn_here">
-							<a href="#!/marketplace-optimization.html"><img src="images/orange_right_arrow.png"/><p class="learnsss">Learn more about Marketplace Optimization here</p></a>
-						</span>
-					</div>
+		<div id="divRss"></div>
+		<!--
+		Note: we can access tagged posted by using something like this:
+		FeedUrl : 'http://blog.commercerack.com/feeds/posts/default/-/Press?alt=rss',
+		-->
+		<script type="text/javascript">
+		$('#divRss').FeedEk({
+            FeedUrl : 'http://blog.commercerack.com/feeds/posts/default/?alt=rss',
+            MaxCount : 5,
+            ShowDesc : false,
+			DescCharacterLimit:256,
+            ShowPubDate: true,
+			TitleLinkTarget:'_blank'
+           });
+		</script>
 
-
-
+		
 					</p>
 				</div>
+				
 				<div class="contentContainer">
 					<h2>Follow Us</h2>
 					<p id="followUs" class="indented">
@@ -3042,9 +3160,127 @@ can easily communicate to specific demographics.
 			
 			<div id="largeGettingStarted" class="indentedContent scrollable">
 				<div class="contentContainer">
-					<h2>Getting Started</h2>
+					<h2>Getting Started with CommerceRack</h2>
 					<p class="indented">
-						Bacon ipsum dolor sit amet shoulder chicken tenderloin shank, ground round sirloin frankfurter boudin hamburger chuck meatball strip steak.  Tongue shoulder meatball tail turkey pork loin, bresaola tenderloin jowl frankfurter flank ham.  Meatball meatloaf ham, prosciutto bresaola chicken fatback sausage.  Pork loin bacon shank pork belly.  Corned beef flank prosciutto andouille tongue spare ribs.  Meatball pastrami biltong strip steak turkey.
+
+The Cloud includes a lot of choices, in most cases if the right choice isn't immediately obvious, 
+then it's probably safe to assume all the choices are approximately the same. 
+
+					<ol>
+					<li> 
+					<b>Select Instance/License Type</b>: Public Cloud, Private Cloud, or SAAS. 
+					<aside data-trivia="more">
+				
+When comparing offerings across providers it is important to understand the differences between DEDICATED, VIRTUALIZED, or MULTI-TENANT/SAAS instances.
+<ul>
+<li> DEDICATED instances have a committed input/output committed rate that will never be exceeded, or reduced, but resources are billed even when they are not in-use.
+</li>
+<li> 
+VIRTUALIZED instances will have a committed input/output rate which will be lower, but also allow bursting when available and will be more affordable than dedicated resources, although bursting may not be available when it is necessary.
+</li>
+<li> MULTI-TENANT/SAAS (Software as a Service) is least expensive form because all resources are shared between tenants. SAAS is managed by one company, 
+effectively acting as a 'property management' company for all the tenants.  
+SAAS is a great way to save money for small companies, but configuration options are typically limited.
+</li>
+</ul>
+
+Other considerations:
+<ul>
+<li> Dedicated, Virtualized, or SAAS can be deployed within public or private cloud. (In the case of SAAS the provider chooses the infrastructure)</li>
+<li> Public Clouds offer a limited number of fixed configurations with varying memory, disk and performance configurations.</li>
+<li> Public clouds are available from Amazon, Google, and other companies using OpenStack and can be either dedicated or virtualized.</li>
+<li> Public clouds will always require companies to have their own independent primary care.</li>
+<li> Private clouds allow companies to tweak the configurations of their own dedicated cloud instances, and frequently include some level of primary care with the service.</li>
+<li> SAAS installations are deployed by Primary Care providers who will utilize either a public and private cloud infrastructure.  SAAS configurations are always bundled with support and infrastructure, because the infrastructure is the responsibility of the SAAS provider.  SAAS pricing is often transaction based, and is best suited for startup or companies who need an easy way to get started.</li>
+<li> SAAS installations may also include specialized templates, or additional industry-specific capabilities or plugins that are not part of the general CommerceRack service and only available from that vendor.</li>
+<li> WITH EITHER virtualized or dedicated instances the business has complete control about when and if upgrades to the software are performed.</li>
+<li> As you might have expected choosing multi-tenant SAAS, virtualized or dedicated has an impact on support options for commerceRack.
+SAAS provider will always provide their own CommerceRack Support.
+</li>
+<li>VIRTUALIZED or DEDICATED providers may provide their own support, or resell commercerack support.</li>
+</ul>
+					</aside>
+					<aside data-trivia="dev">
+					</aside>
+					</li>
+					<li> 
+					<b>Select Instance+License</b>: The License Type will determine which infrastructure providers will be appropriate, and the costs.
+					<aside data-trivia="more">
+					
+When purchased separately the licensing costs for commerceRack range are based on the size/cost of the instance.  
+Developers who plan to offer SAAS deployments can obtain free licenses.
+Software licensing does not include support, although some private/SAAS companies will offer their own support, 
+which we recommend whenever it is available.
+				
+					</aside>
+					<aside data-trivia="dev">
+Required Services:
+<ul>
+<li> Instances, also called computing units which roughly translates to server capacity.</li>
+<li> Network Disk Storage - which usually measured by performance and gigabytes</li>
+<li> Bandwidth - which is usually measured by gigabytes transferred, and License Fees - which grant permission to run software on an instance, and will often vary based on instance size.</li>
+</ul>
+
+In addition there are optional services including:
+<ul>
+<li> Managed Database Hosting, Hot Object Cache, Dedicated IO Channels, and Content Distribution Networks.
+optional services perform specific tasks much more efficiently and can further boost performance and usually reduce operating expenses.
+<li> Now optional services don’t necessarily equate to higher costs or additional fees, quite to the contrary.
+For example specialized cache services such as memcache or redis can dramatically boost performance on instances and can in some cases do the same work for less than (0.01%) point zero one percent of the price of doing the same work on a general instance.
+</ul>
+
+Identifying when these specialized services can be used, then deploying, tuning and monitoring these is the role of a service provider for the infrastructure.  
+					</aside>
+					</li>
+					
+					<li> 
+					<b>Select a Service Provider</b>: Companies which lack in-house skills will want to retain one or more companies with technical expertise to assist in deployment, and ongoing maintenance. 
+					<aside data-trivia="more">
+For companies who select a cloud provider which does not offer support with infrastructure it must be purchased separately on either pre-paid or monthly basis. Technical support is not required, but is recommended for businesses who want to ensure their system is operating at peak efficiency. 					
+					
+Regardless of company size - the biggest expense of any cloud infrastructure will be the primary care provider who will act as a general contractor to BE ACCOUNTABLE for the overall health.
+Primary care providers can be in-house technical staff, BUT ARE MORE commonly outside companies with personnel which are available to answer questions handle emergencies at all times.
+A company's primary care provider will be responsible for a variety of tasks such as setup, monitoring, tear-down, backups, upgrades, and other general maintenance.  
+
+CommerceRack support packages are available at a variety of price points ranging from free forum support, to several thousand dollars a month for committed service levels.  Self sign-up  options for non-SAAS configurations are available online or over the phone.
+
+CommerceRack Support includes specialized know-how including:
+backend diagnostics, configuration, and performance monitoring
+application development/debugging assistance
+marketplace specialists for eBay, Amazon, Rakutan, Newegg and others
+and certifications to access the API’s for companies like eBay, Amazon, UPS, FedEx and others.
+
+Primary care providers will frequently offer additional services such as graphic design, search engine marketing, or development, or provide referrals to other companies.
+As with any type of project both fixed rate and hourly prices vary based on the types of service, length of service, and level of expertise involved.
+For those on a budget services like elance, and odesk can provide competent offshore resources for as little as a few dollars per hour.  
+But some companies may find managing those resources, along with difficulties communicating requirements and related delays may be more expensive and frustrating than hiring an experienced onshore firm.
+
+					</aside>
+					</li>
+					
+					<li> 
+					<b>Deploy</b>: Install and configure the commerceRack software, run through the setup tutorial.					
+					<aside data-trivia="more">
+To keep operating costs low Public clouds do not have a sales force, and instead opt to provide a low cost or free tier for trying out their services. 
+
+Because CommerceRack uses apps which will usually result in 1/10th the utilization of resources that a normal web application does -- a free tier is routinely sufficient for many small companies doing less than $1m in sales per year.  Now professional services costs are unfortunately not available at a ‘free tier’.  Very small companies doing under $1m in sales per year should will want to use a SAAS style commerceRack provider who will offer a managed multi-tenant configuration bundled with a variety of services, and pre-built application templates.   This is the best way to get the capabilities of CommerceRack at a price comparable to SAAS style offerings.
+
+					</aside>
+					</li>
+					</ol>
+
+<p>				
+Here are CommerceRack we understand commerce. In addition to normal marketplace, and transactional support. Our friendly staff offers billable assistance with cloud provider selection, installation & evaluation, employee training, and some custom development and integration services.  We’d love to discuss your project with you. 
+</p>
+
+<p>
+email: info@commercerack.com<br>
+phone: 877-236-0799<br>
+</p>
+<!-- 
+
+-->
+					
 					</p>
 				</div>
 			</div>

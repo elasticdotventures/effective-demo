@@ -6,6 +6,26 @@
 
 	-->
 
+	
+<!--	
+	<h4>Features For Tomorrow</h4>
+	<p>
+	Below is a list of things we're working on. 
+	</p>
+	<ul>
+	<li> Improve Android and IOS Apps, streamline application process</li>
+	<li> Google AppStore    (already prototyped, not announced/tested)</li>
+	<li> Windows 8/xBox shell        (already prototyped, not announced/tested)</li>
+	<li> SEOng layer (already prototyped, held on CR interface)</li>
+	<li> Create data-share plugins for Magento, Drupal, etc.</li>
+	<li> WIFI App access point</li>
+	<li> Finish point of sale interface and admin to customer link</li>
+	<li> Improve call center operator interface before release</li>
+	<li> Email to App gateway for ESP providers (need to sign up an ESP first)</li>
+	<li> Works with asterisk -- can be used as a voip phone system for call routing, text to speech. </li>
+	</ul>
+-->	
+	
 
 <div class="floatRight slideImg" data-trivia="how" data-duration="600" data-animation="animateAttr" data-attr="width" data-value="50">
 <img class="" src="img/amazon_web_services.png" width="50" height="50"/>

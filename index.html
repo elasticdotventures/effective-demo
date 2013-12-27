@@ -295,9 +295,19 @@
 				},600);
 			}
 			
-			function loadHomepageVideo(src){
+			function loadExplainerVideo(baseurl,videos){
 				$('#homepage').addClass('videoSelected');
-				$('#homepage .videoPlayer').empty().append('<video controls="controls"><source src="'+src+'" /></video>').append('<div class="hideVideo alignCenter" onClick="closeHomepageVideo();">X</div>');
+				
+				var html = '';
+				html = html + '<video controls="controls">';
+				for (mime in videos) {
+					var videofile = videos[mime];
+					html = html + '<source type="'+mime+'" src="'+baseurl+videofile+'" />';
+					}
+				html = html + '</video>';
+				alert(html);
+				
+				$('#homepage .videoPlayer').empty().append(html).append('<div class="hideVideo alignCenter" onClick="closeHomepageVideo();">X</div>');
 				$('#homepage .videoPlayer video').get(0).play();
 			}
 			
@@ -622,17 +632,24 @@
 					<div>
 						<div class="alignCenter">
 							
-							<a href="#" onClick="loadHomepageVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/cloud-commerce-basic2_v02.mp4');">
+							<a href="#" onClick="loadExplainerVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/',
+								{ 'video/ogg':'cloud-commerce-basic2_v02.mp4', 'video/mp4':'cloud-commerce-basic2_v02.ogg' }
+								);">
 								<img width="259" height="151" src="images/vid_thumb_cloud_basics.png"/>
 							</a>
 						</div>
 						<div class="alignCenter">
-							<a href="#" onClick="loadHomepageVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/why_awesome_02.mp4');">
+							<a href="#" onClick="loadExplainerVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/',
+								{ 'video/mp4':'why_awesome_02.mp4' }
+								);">
 								<img width="259" height="151"	src="images/vid_thumb_why_awesome.png"/>						
 							</a>
 						</div>
 						<div class="alignCenter">
-							<a href="#" onClick="loadHomepageVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/what_it_costs_02.mp4');">
+							<a href="#" onClick="loadExplainerVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/',
+								{ 'video/mp4':'how_much_does_it_cost3.mp4', 'video/ogg':'how_much_does_it_cost3.ogg' }
+								);">
+						
 								<img width="259" height="151" src="images/vid_thumb_cost.png"/>						
 							</a>
 						</div>
@@ -743,14 +760,14 @@
 		<li> 
 		Browser/Native Apps create additional conversion opportunities compare to traditional websites. 
 		<span data-trivia="more">
-		With mobile and social customers are connected all the time. Mobile devices have new capabilities such as the ability
-		to access voice processing, location (gps), and push messaging.  Social is an untapped frontier of clients who just need
-		the right reasons to share.
+		Mobile devices have new capabilities such as the ability to access voice processing, location (gps), and push messaging. 
+		Social is an untapped frontier of clients who just need the right reasons to share.
+		Browser apps are better suited for the complex client side logic of todays multi-display, multi-device, multi-operating system world. 
 		</li>
 		<li> 
 		MarketPlace Optimization (MpO) improves sales velocity on Amazon, eBay, and others.  
 		<span data-trivia="more">
-		In the past 3-5 years the majority of growth in online sales is using marketplaces.
+		A majority of growth in online sales has been on marketplaces such as Amazon.
 		Online Marketplaces choose which sellers will be recommended in the "Buy Box" using ranking algorithms.
 		Both <acronym title="MarketPlace Optimization">MpO</acronym>
 		and <acronym title="Search Engine Optimization">SEO</acronym> are very similar because both deal with the study of ranking
@@ -761,8 +778,9 @@
 		</li>
 		<li> 
 		Built for the cloud.
-		<span data-trivia="more"> The Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. Cloud software has all the advantages of <acronym title="software as a service">SAAS</acronym>
-		but also gives a higher degree of flexibility and operator independence.</span>
+		<span data-trivia="more"> The Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. Cloud software has all the advantages of <acronym title="software as a service">SAAS</acronym> but also gives a higher degree of flexibility and operator independence.
+		In fact a majority of the estimated $80 billion dollars that will be spent on cloud services by the year 2016 will come from SMB's between 25 and 200 employees. 
+		</span>
 		</li> 
 		</ul>
 		<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
@@ -877,7 +895,7 @@
 	<h2 id="wowAwesome">Why you should use This</h2>			
 	
 	<div>
-	<h4>Everything you Need</h4>
+	<h4>Everything you Need for 2014</h4>
 	<p>
 	CommerceRack incorporates all of the functionality needed to grow successfully, and makes them available through one, easy-to-manage interface. 
 	New releases are constantly looking ahead towards the future. 
@@ -915,99 +933,155 @@
 
 	<!-- HOW IT WORKS: SERVICES WE OFFER -->
 	<div>
-	<h2 id="wowMuchMoney">Services We Offer</h2>			
+	<h2 id="wowMuchMoney">What we charge for</h2>			
+
+	<div class="services_app">
+		<h3>From Apps, to Premiere Services to Support,<br/>We have you covered</h3>
+		<p>Here at anyCommerce, we have worked diligently to provide our customers with the most all-encompassing and exstensible e-commerce solution out there. Other companies focus on specific areas of e-commerce, leaving you to figure out for yourself how to integrate new features or update current features when your business grows. We have integrated all of the mission-critical components so you can focus on your business and not your e-commerce technology.</p>
+	</div>
 	
-	<h3>Software Licensing</h3>
+
+	<div>
+	<h3>Software Licenses</h3>
 	<p>
 	CommerceRack licenses are required for all commercial uses, except during development. 
-	This is a license only, and does not include any type of technical support.
-	For some infrastructure providers (ex: Amazon Web Services) this is already included in the price of the instance. 
+	A license does not include any type of technical support.
+	With some infrastructure providers (ex: Amazon Web Services) the license is already included in the price of the instance. 
 	</p>
+
+	<div data-trivia="more">
+	<p>
+	<h4>Why is this necessary?</h4>
+	To perform many of the software functions CommerceRack must pass a variety of provider certifications in order to be allowed
+	to access their <acronym title="Application Programming Interface"> API's</acronym>.  A CommerceRack license allows us to 
+	sub-license that certification to an individual business. 
+	</p>	
+	<p>
+	<h4>License Includes</h4>
 	<ul>
-	<li>Access to updates and new releases </li>
+	<li>Access to updates, and security patches (required for PCI)</li>
 	<li>UPS Online Tools License </li>
-	<li>FedEx License </li>
+	<li>FedEx Shipping Solution</li>
+	<li>eBay Developer Program</li>
+	<li>Amazon Marketplace Provider</li>
+	<li>Kount Reseller</li>
+	<li>Paypal Integration</li>
 	</ul>
-		
+	</p>
+	</div>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	</div>
+	
+	<!-- -->
+
+	<div>
 	<h3>Commerce Support</h3>
 	<p>
-	Access technicians over the phone or built-in ticketing system. Specialists are available to assist with a variety of needs.
+	Have a quick question about the operation of the CommerceRack platform? Our friendly and knowledgeable staff are ready to assist you.
 	</p>
+
+	<div data-trivia="more">
+	<p>
+	<h4>Why is this necessary?</h4>
+	Never wait for answers in public forums that may never come, or may come from questionable sources. 
+	Contact experienced technicians over the phone or using the built-in ticketing system. 
+	Specialists are available to assist with a variety of software related needs.  
+	<p>
+	<h4>What this includes</h4>
 	<ul>
-	<li>Infrastructure Support</li>
+	<li> Amazon Marketplace Configuration</li>
+	<li> eBay Marketplace Configuration</li>
+	<li> Coupon/Promotion support</li>
+	<li> Shipping Configuration (w/Shipping Rules)</li>
+	<li> Order Processing Assistance</li>
+	<li> Inventory/Warehouse Configuration/Usage</li>
+	<li> Email+App Push campaign assistance</li>
+	<li> Basic Marketplace Optimization</li>
+	</ul>
+	</div>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	</div>
+
+	<!-- -->
+
+	<div>
+	<h3>Infrastructure Support</h3>
+	<p>
+	Businesses can charge forward knowing they are running on optimized configurations that are backed by the best technical staff in the business.
+	</p>
+	<div data-trivia="more">
+	<h4>Why is this necessary?</h4>
+	<p>
+	Most public clouds such as Amazon and Google will offer support only for their own cloud services. 
+	At this time there is a small and growing ecosystem of providers which specialize in supporting software.
+	CommerceRack provides infrastructure support to both individual companies and also to companies who provide many cloud services
+	to businesses.  Our staff is able to diagnose many common performance and optimization issues, as well as offer live (non-forum)
+	based advice on deployment and operational issues. 
+	</p>
+
+	<h4>Infrastructure Support Includes:</h4>
 	<ul>
+	<li>Infrastructure consulting/provisioning</li>
+	<li>24/7 monitoring and emergency assistance</li>
+	<li>Backup &amp; Recovery Services</li>
+	<li>Application tuning/specialized configurations</li>
 	</ul>
-		
-	<h3>Development Services</h3>
-	<li></li>
-	</ul>
-	<ul>
-	<li></li>
-	</ul>
+	</div>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	</div>
 	
-				<div class="contentContainer">
-					<h2>Services Provided</h2>
-					<p id="servicesProvided" class="indented">
+	<div>
+	<h3>App Development</h3>
+	<p>
+	Our experienced anyCommerce Developers want to build or assist with your project.  Nobody knows the framework better. 
+	We are in a position to best match the needs of the business with the skills of a developer, designer, or project manager.
+	</p>
+	<div data-trivia="more">
+	<p>
+	<h4>Why is this necessary?</h4>
+	<p>
+	Having experts working on, or ready to jump into a project can help avoid costly delays and missed deadlines. 
+	We have both our own project managers, and in-house staff as well as subcontract through with leading designers, graphic developers, quality assurance others.  We have developed a strict set of guidelines which ensure that projects hit their
+	intended goals. 
+	</p>
+	<h4>App Development Includes:</h4>
+	<ul>
+	<li> Project Management</li>
+	<li> Integration Consulting</li>
+	<li> Responsive or Fluid Graphic Concept/Layout</li>
+	<li> HTML5/CSS/JS Layout</li>
+	<li> Native Shell Embedding</li>
+	<li> Quality Compliance Review</li>
+	<li> Quality Assurance and Testing</li>
+	</ul>
+	</p>
+	</div>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	</div>
 
-					<div class="services_app">
-						<h3>From Apps, to Premiere Services to Support,<br/>We have you covered</h3>
-						<p>Here at anyCommerce, we have worked diligently to provide our customers with the most all-encompassing and exstensible e-commerce solution out there. Other companies focus on specific areas of e-commerce, leaving you to figure out for yourself how to integrate new features or update current features when your business grows. We have integrated all of the mission-critical components so you can focus on your business and not your e-commerce technology.</p>
-					</div>
-					<div class="develop_apps">
-						<h3>Develop Your Apps</h3>
-						<span class="description">
-							<p>With our emerging app framework, your custom apps will give you unparalleled control over your apps' behavior and business information. You'll need to create your apps and our team is standing by to help. </p>
-						</span>
-						<span class="des_icons">
-							<a href="#!/building-apps.html"><img src="images/service_path.png"/></a>
-						</span>
-						<span class="learn_here">
-							<img src="images/orange_right_arrow.png"/><a href="#!/building-apps.html">Learn how the process works here</a>
-						</span>
-					</div>
-					<div class="develop_apps">
-						<h3>Live Training & Support</h3>
-						<div class="consultation">
-							<span class="descrptn" style="width:80%;">
-								<p>Need help with creating or updating your Data Fair? No problem. Our team invented the DataFair! We are standing by to help you get your vital business information ported and situated properly.</p>
-							</span>
-							<span class="des_icons">
-								<img src="images/data_fair_circle.png" style="width:68px;margin:0 10px 0 0;"/>
-							</span>
-						</div>
-						<div class="consultation" style="padding:0;">
-							<span class="descrptn" style="width:80%;">
-								<p>We have also worked very hard to provide custom development for add-on apps like Special Offers and Checkout Intercept, just to name a few. If there's a business idea or initiative that you think an app would be perfect for, our team would love to join forces with you to come up with a solution.</p>
-							</span>
-							<span class="des_icons">
-								<img src="images/sup_circle.png" style="width:68px;margin:0 10px 0 0;"/>
-							</span>
-						</div>
-						<span class="learn_here">
-							<a href="#!/live-training-support.html"><img src="images/orange_right_arrow.png"/><p class="learnsss">Learn more about our support structure here</p></a>
-						</span>
-					</div>
-					<div class="develop_apps" style="padding:0  0 60px 0;">
-						<h3>Strategies & Solutions</h3>
-						<p>The landscape of e-commerce is changing rapidly. WIth more and more sellers using Marketplaces like Amazon, Ebay, Buy.com, etc., the rules of engagement are in flux. No longer will SEO win the day. Winning the BuyBox will make all the difference.<br/><br/></p>
-						<span class="descrptn" style="width:80%;">
-							<p>Here at anyCommerce, we have identified the next critical strategy in e-commerce as it pertains to selling through marketplaces. Winning the BuyBox, or as we call it, Marketplace Optimization&trade; (MpO), gets your products in the best possible position to be sold. Our MpO Experts will help you identify the areas of your business to improve in order to increase your frequency in the BuyBox.</p>
-						</span>
-						<span class="des_icons">
-							<img src="images/mpo_circle.png" style="width:68px;margin:0 10px 0 0;"/>
-						</span>
-						<span class="learn_here">
-							<a href="#!/marketplace-optimization.html"><img src="images/orange_right_arrow.png"/><p class="learnsss">Learn more about Marketplace Optimization here</p></a>
-						</span>
-					</div>
-
-
-
-					</p>
-				</div>
-
-				
-				
+	<div>
+	<h3>Marketplace Optimization (MpO)</h3>
+	<p><acronym title="MarketPlace Optimization">MpO</acronym> is the science behind winning the coveted "Buy Box" on marketplaces like Amazon. Businesses can increase their order velocity by apply a knowledge of the science behind the ranking signals.
+	This also includes assistance in creating and implementing repricing strategies, along with multi warehouse/logistics such as FBA.
+	<div data-trivia="more">
+	<p>
+	<h4>Why is this necessary?</h4>
+	<p>
+	Here at CommerceRack, we have identified the next critical strategy in e-commerce as it pertains to selling through marketplaces. Winning the BuyBox, or as we call it, Marketplace Optimization&trade; (MpO), gets your products in the best possible position to be sold. Our MpO Experts will help you identify the areas of your business to improve in order to increase your frequency in the BuyBox.
+	</p>
+	<h4>MpO Includes:</h4>
+	<ul>
+	<li> Marketplace Analysis/Recommendation</li>
+	<li> Marketplace Product Management</li>
+	<li> Inventory Logistics Strategy</li>
+	<li> Repricing Agent Automation</li>
+	<li> Google Analytics Assistance</li>
+	<li> CPC/Amazon Product Ads</li>
+	</ul>
+	</p>
+	</div>
+	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+	</div>
 	
 	
 	<div class="clear"></div>
@@ -3275,7 +3349,7 @@ Here are CommerceRack we understand commerce. In addition to normal marketplace,
 
 <p>
 email: info@commercerack.com<br>
-phone: 877-236-0799<br>
+phone: 877-236-0799<
 </p>
 <!-- 
 

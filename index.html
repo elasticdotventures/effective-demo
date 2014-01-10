@@ -104,15 +104,19 @@
 									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=query&list=search&srwhat=text&srsearch="+params.search+"&callback=?";
 									$.getJSON(wikiPath, function(json){
 										//console.dir(json);
-										var $ul = $('<ul></ul>');
-										for(var i in json.query.search){
-											var result = json.query.search[i];
-											var $li = $('<li></li>');
-											$li.append('<h3><a href="#!/wiki/index.php?title='+encodeURI(result.title)+'">'+result.title+'</a></h3>');
-											$li.append(result.snippet);
-											$ul.append($li);
+										if(json.query.search.length){
+											var $ul = $('<ul></ul>');
+											for(var i in json.query.search){
+												var result = json.query.search[i];
+												var $li = $('<li></li>');
+												$li.append('<h3><a href="#!/wiki/index.php?title='+encodeURI(result.title)+'">'+result.title+'</a></h3>');
+												$li.append(result.snippet);
+												$ul.append($li);
+											}
+											$(".wikiContent", $context).append($ul);
+										} else {
+											$(".wikiContent", $context).append(app.templates.noResults.clone());
 										}
-										$(".wikiContent", $context).append($ul);
 										//$(".wikiContent", $context).append(json.parse.text["*"]);
 									}).fail(function(a,b,c){
 										console.log("COULD NOT LOAD "+wikiPath);
@@ -3568,6 +3572,13 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 			
 			<div id="largeWiki" class="indentedContent">
 				<div class="wikiContent contentContainer"></div>
+			</div>
+			
+			<div id="noResults">
+				<h3>No Results Could Be Found</h3>
+				<p>
+					Please try a different search!
+				</p>
 			</div>
 			
 			<div id="largeGettingStarted" class="indentedContent scrollable">

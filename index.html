@@ -93,19 +93,33 @@
 							console.dir(params);
 							insertHighlightContent(app.templates.highlightDocumentation);
 							hideLargeContent(getShowLargeContentCallback(app.templates.largeWiki, function($context){
-								console.log("fetching json");
-								var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+params.title+"&callback=?";
-								console.log(wikiPath);
-								$.getJSON(wikiPath, function(json){
-									console.dir(json);
-									console.log(json.parse.text["*"]);
-									$(".wikiContent", $context).append(json.parse.text["*"]);
-								}).fail(function(a,b,c){
-									console.dir(a);
-									console.log(b);
-									console.log(c);
-									console.log("COULD NOT LOAD "+wikiPath);
-								});
+								if(params.title != "Special%3ASearch"){
+									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+params.title+"&callback=?";
+									$.getJSON(wikiPath, function(json){
+										$(".wikiContent", $context).append(json.parse.text["*"]);
+									}).fail(function(a,b,c){
+										console.log("COULD NOT LOAD "+wikiPath);
+									});
+								} else if (params.search){
+									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=query&list=search&srwhat=text&srsearch="+params.search+"&callback=?";
+									$.getJSON(wikiPath, function(json){
+										//console.dir(json);
+										var $ul = $('<ul></ul>');
+										for(var i in json.query.search){
+											var result = json.query.search[i];
+											var $li = $('<li></li>');
+											$li.append('<h3><a href="#!/wiki/index.php?title='+encodeURI(result.title)+'">'+result.title+'</a></h3>');
+											$li.append(result.snippet);
+											$ul.append($li);
+										}
+										$(".wikiContent", $context).append($ul);
+										//$(".wikiContent", $context).append(json.parse.text["*"]);
+									}).fail(function(a,b,c){
+										console.log("COULD NOT LOAD "+wikiPath);
+									});
+								} else {
+									show('#!/pagenotfound.html');
+								}
 								
 							}));
 							selectMenu(6);
@@ -213,6 +227,12 @@
 							return r;
 						},
 					}
+				},
+				searchWiki : function($form){
+					var srsearch = $('input[name=query]', $form).val();
+					if(srsearch){
+						show("#!/wiki/index.php?title=Special%3ASearch&search="+srsearch);
+					}
 				}
 			};
 			
@@ -259,13 +279,15 @@
 			function insertHighlightContent($template){
 				$highlightContent.show();
 				$oldcontent = $highlightContent.children();
-				$newContent = $template.clone();
-				$highlightContent.append($newContent);
-				//$newContent.animate({'left':0}, 300);
-				setTimeout(function(){ 
-					$newContent.animate({'left':0}, 300);
-					setTimeout(function(){ $oldcontent.remove(); },300);
-				}, 300);
+				if($oldcontent.attr('id') != $template.attr('id')){
+					$newContent = $template.clone();
+					$highlightContent.append($newContent);
+					//$newContent.animate({'left':0}, 300);
+					setTimeout(function(){ 
+						$newContent.animate({'left':0}, 300);
+						setTimeout(function(){ $oldcontent.remove(); },300);
+					}, 300);
+				}
 			}
 			function selectMenu(index){
 				$('#menu .selected').removeClass('selected');
@@ -3532,6 +3554,10 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 			<div id="highlightDocumentation" class="heavyBG6">
 				<div class="lightBG6 contentContainer">
 					<h1>Documentation</h1>
+					<form onSubmit="app.searchWiki($(this)); return false;">
+						<input type="text" name="query" required="required" placeholder="Search our Docs..."/>
+						<input type="submit" value="Search"/>
+					</form>
 					<a href="#" data-onclick="load" data-load="largeGettingStarted">Getting Started</a>
 					<a href="#" data-onclick="load" data-load="largeGettingHelp">Getting Help</a>
 					<a href="#" data-onclick="load" data-load="largeVideoLibrary">Video Library</a>

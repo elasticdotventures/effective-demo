@@ -39,59 +39,85 @@
 			var $highlightContent;
 			var app = {
 				pages: {
-					"#!/dev.html" :function(){
+					"#!/dev.html" :function(params){
 						console.log("DEV");
 						insertHighlightContent(app.templates.highlightWhoWeAre);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeDev));
 						selectMenu(0);
 					},
-					"#!/" : function(){
+					"#!/" : function(params){
 						console.log("homepage");
 						hideHighlightContent();
 						hideLargeContent(getShowLargeContentCallback(app.templates.homepage));
 						selectMenu(0);
 					},
-					"#!/howitworks.html" : function(){ 
+					"#!/howitworks.html" : function(params){ 
 						console.log("how it works");
 						insertHighlightContent(app.templates.highlightHowItWorks);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
 						selectMenu(1);
 					},
-					"#!/features.html" : function(){ 
+					"#!/features.html" : function(params){ 
 						console.log("features and capabilities");
 						insertHighlightContent(app.templates.highlightFeatures);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeFeatures));
 						selectMenu(2);
 					},
-					"#!/install.html" : function(){ 
+					"#!/install.html" : function(params){ 
 						console.log("install");
 						insertHighlightContent(app.templates.highlightInstall);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeInstall));
 						selectMenu(3);
 					},
-					"#!/demo.html" : function(){ 
+					"#!/demo.html" : function(params){ 
 						console.log("demo");
 						insertHighlightContent(app.templates.highlightDemo);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeDemo));
 						setTimeout(function(){showDemo(0);},600);
 						selectMenu(4);
 					},
-					"#!/whoweare.html" : function(){ 
+					"#!/whoweare.html" : function(params){ 
 						console.log("who we are");
 						insertHighlightContent(app.templates.highlightWhoWeAre);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeAboutUs));
 						selectMenu(5);
 					},
-					"#!/documentation.html" : function(){ 
+					"#!/documentation.html" : function(params){ 
 						console.log("docs");
 						insertHighlightContent(app.templates.highlightDocumentation);
-						hideLargeContent(getShowLargeContentCallback(app.templates.largeGettingStarted));
+						hideLargeContent(getShowLargeContentCallback(app.templates.largeGettingStarted));		
 						selectMenu(6);
 					},
-					"#!/pagenotfound.html" : function(){ 
+					"#!/wiki/index.php" : function(params){
+						if(params.title){
+							console.dir(params);
+							insertHighlightContent(app.templates.highlightDocumentation);
+							hideLargeContent(getShowLargeContentCallback(app.templates.largeWiki, function($context){
+								console.log("fetching json");
+								var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+params.title+"&callback=?";
+								console.log(wikiPath);
+								$.getJSON(wikiPath, function(json){
+									console.dir(json);
+									console.log(json.parse.text["*"]);
+									$(".wikiContent", $context).append(json.parse.text["*"]);
+								}).fail(function(a,b,c){
+									console.dir(a);
+									console.log(b);
+									console.log(c);
+									console.log("COULD NOT LOAD "+wikiPath);
+								});
+								
+							}));
+							selectMenu(6);
+						} else {
+							show('#!/pagenotfound.html');
+						}
+					},
+					"#!/pagenotfound.html" : function(params){ 
 						console.log("404");
 						hideHighlightContent();
 						hideLargeContent(getShowLargeContentCallback(app.templates.missing));
+						
 						selectMenu(0);
 					}
 				},
@@ -227,7 +253,7 @@
 					$largeContent.append($content);
 					$content.show();
 					$content.animate({'left':0},300);
-					setTimeout(function(){ callback(); }, 300)
+					setTimeout(function(){ callback($content); }, 300)
 				}
 			}
 			function insertHighlightContent($template){
@@ -395,18 +421,27 @@
 			
 			var path = document.URL;
 			
-			function show(path){
+			function show(fullpath){
 				//console.log(path);
-				
+				var patharray = fullpath.split('?');
+				var path = patharray[0];
+				var params = {};
+				if(patharray.length > 1){
+					var paramarray = patharray[1].split('&');
+					for(var i in paramarray){
+						var p = paramarray[i].split('=');
+						params[p[0]] = p[1];
+					}
+				}
 				try{
-					window.history.pushState(path, path, path);
+					window.history.pushState(fullpath, fullpath, fullpath);
 				} catch(err)	{
 					console.dir(err);
 					console.warn("Pushstate attempt failed!");
 				}
 				
 				if(app.pages[path]){
-					app.pages[path]();
+					app.pages[path](params);
 				} else {
 					app.pages["#!/pagenotfound.html"]();
 				}
@@ -474,6 +509,8 @@
 				
 				//set current template (page handler)
 				if(document.URL.indexOf("#!") !== -1){
+					console.log(document.URL);
+					console.log("#!" + document.URL.split("#!")[1]);
 					show("#!" + document.URL.split("#!")[1]);
 				} else {
 					show("#!/");
@@ -807,7 +844,7 @@
 	<h4>Apps Are The Future</h4>
 	<p>
 	With anyCommerce's app-based commerce framework, shopping experiences can be custom tailored to fit business needs. 
-	As businesses grows and needs change, the store can easily change right along with it.
+	As businesses grow and need change, the store can easily change right along with it.
 	Apps use github to support iterative updates, allowing you more flexibility as a business grows.
 	</p>
 	<aside data-trivia="demo">
@@ -824,7 +861,7 @@
 	<h4>Apps: The Future Of Online Shopping</h4>
 	<ul>
 	<li>
-		Apps delivers enhanced user experience for customers.
+		Apps deliver enhanced user experience for customers.
 		<span data-trivia="more">
 		Browser based apps are faster and can easily utilize animations, timers, and videos while content is being loaded.
 		Native apps can do all that and access push messaging, cameras, gps, on device wallets, and device identity management.
@@ -2794,7 +2831,7 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 								"Our customers are thrilled with our app-based shopping site."
 							</blockquote>
 							<div class="alignRight quotesrc">
-								<div class="name">-Brad Rosen</div>
+								<div class="name">-Stephen Winston</div>
 								<div class="role">Owner</div>
 							</div>
 						</div>
@@ -3501,6 +3538,10 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 					<a href="#" data-onclick="load" data-load="largeDocumentation">Documentation</a>
 					<a href="#" data-onclick="load" data-load="largeDeveloperAPI">Developer API</a>
 				</div>
+			</div>
+			
+			<div id="largeWiki" class="indentedContent">
+				<div class="wikiContent contentContainer"></div>
 			</div>
 			
 			<div id="largeGettingStarted" class="indentedContent scrollable">

@@ -97,9 +97,13 @@
 									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+encodeURI(params.title)+"&callback=?";
 									var blurbPath = "http://wiki.commercerack.com/wiki/index.php?title="+encodeURI(params.title);
 									$.getJSON(wikiPath, function(json){
-										var $blurb = app.templates.wikiBlurb.clone();
-										$blurb.removeAttr('id');
-										$('a',$blurb).attr('href',blurbPath).attr('target','_blank');
+										console.dir(json);
+										var $blurb = $('<div></div>');
+										$blurb.append('<hr/>');
+										$blurb.append('<div>Content generated from: <a href="'+blurbPath+'" target="_blank">'+blurbPath+'</a></div>');
+										$blurb.append('<div>Generated on: '+new Date().toUTCString()+'</div>');
+										$blurb.append('<hr/>');
+										
 										$(".wikiContent", $context).append(json.parse.text["*"]).append($blurb);
 										
 									}).fail(function(a,b,c){
@@ -3550,9 +3554,7 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 					Please try a different search!
 				</p>
 			</div>
-			<div id="wikiBlurb">
-				<a href="">View or Edit this page on our Wiki!</a>
-			</div>
+			
 			<div id="largeGettingStarted" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<h2>Getting Started with CommerceRack</h2>

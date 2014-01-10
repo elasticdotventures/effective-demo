@@ -327,3 +327,6 @@ WHO WE ARE
 DOCUMENTATION
 *********************************/
 #highlightDocumentation a {text-decoration:none;color: #4D4D4D; font-size: 1.3em; display: block;}
+.mw-editsection{display:none;}
+.wikiBlurb{font-size:.7em; color: #666666;}
+.wikiBlurb hr{color: #eeeeee;}

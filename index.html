@@ -96,10 +96,14 @@
 								if(params.title != "Special%3ASearch"){
 									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+encodeURI(params.title)+"&callback=?";
 									var blurbPath = "http://wiki.commercerack.com/wiki/index.php?title="+encodeURI(params.title);
-									$.getJSON(wikiPath, function(json){
-										var $blurb = app.templates.wikiBlurb.clone();
-										$blurb.removeAttr('id');
-										$('a',$blurb).attr('href',blurbPath).attr('target','_blank');
+									$.getJSON(wikiPath, function(json, textStatus, jqXHR){
+										console.dir(jqXHR);
+										var $blurb = $('<div class="wikiBlurb"></div>');
+										$blurb.append('<hr/>');
+										$blurb.append('<div>Source: <a href="'+blurbPath+'" target="_blank">'+blurbPath+'</a></div>');
+										$blurb.append('<div>'+new Date().toUTCString()+'</div>');
+										$blurb.append('<hr/>');
+										
 										$(".wikiContent", $context).append(json.parse.text["*"]).append($blurb);
 										
 									}).fail(function(a,b,c){
@@ -3043,7 +3047,11 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 
 					This website is a single page application. It uses many of the same techniques from anyCommerce.
 					We use MediaWiki, Google Blogger, Youtube RSS Feeds as content sources. 
+					</p>
 					
+					<p id="thisApp" class="indented">
+					Fork this app here:
+					<a href="https://github.com/CommerceRack/try.commercerack.com">https://github.com/CommerceRack/try.commercerack.com</a>
 				</div>		
 			</div>
 			
@@ -3530,17 +3538,18 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 						<input type="text" name="query" required="required" placeholder="Search our Docs..."/>
 						<input type="submit" value="Search"/>
 					</form>
+					<!--
 					<a href="#" data-onclick="load" data-load="largeGettingStarted">Getting Started</a>
-					<a href="#!/wiki/index.php?title=Getting_Started">Getting Started (WIKI)</a>
+					-->
+					<a href="#!/wiki/index.php?title=Getting_Started">Getting Started</a>
 					<a href="#" data-onclick="load" data-load="largeGettingHelp">Getting Help</a>
-
 					<a href="#" data-onclick="load" data-load="largeVideoLibrary">Video Library</a>
-					<a href="#!/wiki/index.php?title=Main_Page">Documentation (Wiki)</a>
+					<a href="#!/wiki/index.php?title=Main_Page">Wiki</a>
 					<a href="#!/wiki/index.php?title=Developers">Developers</a>
 				</div>
 			</div>
 			
-			<div id="largeWiki" class="indentedContent">
+			<div id="largeWiki" class="indentedContent scrollable">
 				<div class="wikiContent contentContainer"></div>
 			</div>
 			
@@ -3550,9 +3559,7 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 					Please try a different search!
 				</p>
 			</div>
-			<div id="wikiBlurb">
-				<a href="">View or Edit this page on our Wiki!</a>
-			</div>
+			
 			<div id="largeGettingStarted" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<h2>Getting Started with CommerceRack</h2>

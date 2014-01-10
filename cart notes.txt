@@ -1,0 +1,68 @@
+
+
+cartOrderCreate
+	accepts: 
+		_cartid
+		_uuid
+	
+	returns	
+		orderid
+		orderkey
+	
+	
+cartOrderStatus 
+	accepts
+		orderid and orderkey
+	
+	returns
+		orderid
+		status	FAILED|CREATING|pool (ex: RECENT)
+		payment_status	xxx
+		
+browser =>
+nginx => 
+uwsgi =>
+
+%order.processing = (
+	'
+	);
+
+REDIS_QUEUE
+START|+
+
+	
+	
+	cartOrderCreate => 10 minutes - 
+		a duplicate request will return the same data
+			looks for the recovery file -- 
+				but if it exists -- write another one. 
+			look in redis queue
+				== if the queue exists
+				== discover the progress
+				
+		it could re-fire the signal redis queue, 
+			but it doesn't know if it got written to the redis queue in the first place
+		
+			
+	STEP1.
+	creates a recovery file	
+		FILE-CREATED
+	STEP2.
+	writes to redis queue
+		
+	STEP3.
+	set the initial status
+	STEP4.
+	fires a signal to mule
+	STEP5.
+	returns the key
+
+mule --
+reads the queue
+processes the order(s)
+	- sets the status
+final set status
+	- removes the recovery file
+	- 
+	
+	

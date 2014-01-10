@@ -94,14 +94,14 @@
 							insertHighlightContent(app.templates.highlightDocumentation);
 							hideLargeContent(getShowLargeContentCallback(app.templates.largeWiki, function($context){
 								if(params.title != "Special%3ASearch"){
-									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+params.title+"&callback=?";
+									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+encodeURI(params.title)+"&callback=?";
 									$.getJSON(wikiPath, function(json){
 										$(".wikiContent", $context).append(json.parse.text["*"]);
 									}).fail(function(a,b,c){
 										console.log("COULD NOT LOAD "+wikiPath);
 									});
 								} else if (params.search){
-									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=query&list=search&srwhat=text&srsearch="+params.search+"&callback=?";
+									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=query&list=search&srwhat=text&srsearch="+encodeURI(params.search)+"&callback=?";
 									$.getJSON(wikiPath, function(json){
 										//console.dir(json);
 										if(json.query.search.length){

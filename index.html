@@ -96,12 +96,12 @@
 								if(params.title != "Special%3ASearch"){
 									var wikiPath = "http://wiki.commercerack.com/wiki/api.php?format=json&action=parse&page="+encodeURI(params.title)+"&callback=?";
 									var blurbPath = "http://wiki.commercerack.com/wiki/index.php?title="+encodeURI(params.title);
-									$.getJSON(wikiPath, function(json){
-										console.dir(json);
-										var $blurb = $('<div></div>');
+									$.getJSON(wikiPath, function(json, textStatus, jqXHR){
+										console.dir(jqXHR);
+										var $blurb = $('<div class="wikiBlurb"></div>');
 										$blurb.append('<hr/>');
-										$blurb.append('<div>Content generated from: <a href="'+blurbPath+'" target="_blank">'+blurbPath+'</a></div>');
-										$blurb.append('<div>Generated on: '+new Date().toUTCString()+'</div>');
+										$blurb.append('<div>Source: <a href="'+blurbPath+'" target="_blank">'+blurbPath+'</a></div>');
+										$blurb.append('<div>'+new Date().toUTCString()+'</div>');
 										$blurb.append('<hr/>');
 										
 										$(".wikiContent", $context).append(json.parse.text["*"]).append($blurb);

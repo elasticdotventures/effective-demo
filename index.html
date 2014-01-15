@@ -64,6 +64,10 @@
 			var defaultInitFunction = function($page){
 				//Default Init does nothing, but here for structural symmetry
 			}
+
+	function whoosh() {
+		document.getElementById('whoosh').play();
+		}
 			
 			var $largeContent;
 			var $highlightContent;
@@ -71,36 +75,43 @@
 				pages: {
 					"#!/dev.html" :function(params){
 						console.log("DEV");
+						whoosh();
 						insertHighlightContent(app.templates.highlightWhoWeAre);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeDev));
 						selectMenu(0);
 					},
 					"#!/" : function(params){
 						console.log("homepage");
+						whoosh();
 						hideHighlightContent();
 						hideLargeContent(getShowLargeContentCallback(app.templates.homepage));
 						selectMenu(0);
 					},
 					"#!/howitworks.html" : function(params){ 
 						console.log("how it works");
+						whoosh();
 						insertHighlightContent(app.templates.highlightHowItWorks);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeHowItWorks));
 						selectMenu(1);
 					},
 					"#!/features.html" : function(params){ 
 						console.log("features and capabilities");
+						whoosh();
 						insertHighlightContent(app.templates.highlightFeatures);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeFeatures));
+						whoosh();
 						selectMenu(2);
 					},
 					"#!/install.html" : function(params){ 
 						console.log("install");
+						whoosh();
 						insertHighlightContent(app.templates.highlightInstall);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeInstall));
 						selectMenu(3);
 					},
 					"#!/demo.html" : function(params){ 
 						console.log("demo");
+						whoosh();
 						insertHighlightContent(app.templates.highlightDemo);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeDemo));
 						setTimeout(function(){showDemo(0);},600);
@@ -108,12 +119,14 @@
 					},
 					"#!/whoweare.html" : function(params){ 
 						console.log("who we are");
+						whoosh();
 						insertHighlightContent(app.templates.highlightWhoWeAre);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeAboutUs));
 						selectMenu(5);
 					},
 					"#!/documentation.html" : function(params){ 
 						console.log("docs");
+						whoosh();
 						insertHighlightContent(app.templates.highlightDocumentation);
 						hideLargeContent(getShowLargeContentCallback(app.templates.largeGettingStarted));		
 						selectMenu(6);
@@ -653,10 +666,17 @@
         });
     };
 	})(jQuery);
+	
+
 	</script>
+
 		
 	</head>
 	<body>
+		<audio id="whoosh">
+			<source type="audio/mp3" preload="auto" src="audio/whoosh.mp3">
+		</audio>
+		
 		<div id="content">
 			<a id="logo" href="#!/">
 				<img src="img/logo.png" />
@@ -2931,6 +2951,7 @@ on the number of items purchased, amount spent, etc. These wholesale websites ca
 			<div id="largeDemo" class="indentedContent scrollable">
 				<div class="contentContainer">
 					<div class="slideContainer">
+							<h2>Featured Clients</h2>
 						<div class="slideGroup">
 							<div class="slide" data-index="0" >
 								<span>
@@ -3726,9 +3747,6 @@ Here are CommerceRack we understand commerce. In addition to normal marketplace,
 email: info@commercerack.com<br>
 phone: 877-236-0799<br>
 </p>
-<!-- 
-
--->
 					
 					</p>
 				</div>
@@ -3762,7 +3780,7 @@ schedule an appointment with the Implementation Assistance team. Implementation 
 through the support website. Confirmed next-day appointments, and unconfirmed same-day appointments are both available on a first
 come first serve basis.
 Phone Based Support
-During our normal business hours you may directly access our support staff by dialing 877-966-8948. Support hours change seasonally
+During our normal business hours you may directly access our support staff by dialing 877-236-0799. Support hours change seasonally
 and are always posted at the online customer support website. All questions which are under 15 minutes are free, and beyond that your
 pre-paid time will be allocated.
 
@@ -3917,9 +3935,12 @@ All requests for changes to accounts must either be in writing, or originate fro
 	
 			<div id="installModal" onClick="$(this).remove();">
 				<div class="contentContainer">
-					<h1>We're Sorry</h1>
+					<h1>Contact Us</h1>
 					<p>
-						We are currently in limited enrollment :(
+					Online Signup is not currently available.
+					<br>
+					<Br>
+					Please contact us at 877-236-0799 or email info@commercerack.com
 					</p>
 				</div>
 			</div>

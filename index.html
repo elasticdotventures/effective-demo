@@ -1,5 +1,5 @@
-	<!DOCTYPE html>
-	<html>
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="google-site-verification" content="q3td5eZJUHs-0NNH__I8VW5282TVOQ24QbZwoBIwXGc" />
@@ -12,7 +12,14 @@
 		<link href="styles_medium.css" rel="stylesheet" type="text/css" media="(min-width:780px) and (max-width:1099px)"/>
 		<link href="styles_medium-small.css" rel="stylesheet" type="text/css" media="(min-width:640px) and (max-width:779px)"/>
 		<link href="styles_small.css" rel="stylesheet" type="text/css" media="(max-width:639px)"/>
-		
+
+
+<link href="./video-js/video-js.css" rel="stylesheet">
+<script src="./video-js/video.js"></script>
+<script>
+videojs.options.flash.swf = "./video-js/video-js.swf"
+</script>
+  		
 		<!-- https://plus.google.com/communities/105889856244104383407/members
 		-->
 
@@ -399,34 +406,28 @@
 				},600);
 			}
 			
-			function loadExplainerVideo(baseurl,videos){
+			function loadExplainerVideo(elementId,videos){
 				$('#homepage').addClass('videoSelected');
 				
 				var html = '';
-				html = html + '<video controls="controls">';
-				var mp4url = '';
+				html = html + '<video controls class="video-js vjs-default-skin" preload="auto" autoplay="true" id="'+elementId+'" poster="http://www.commercerack.com/images/vid_thumb_cloud_basics.png" controls="controls">';
+				var posterImage = '';
 				for (mime in videos) {
-					var videofile = videos[mime];
-					html = html + '<source type="'+mime+'" src="'+baseurl+videofile+'" />';
-					if (mime == "video/mp4") { 
-						mp4url = baseurl+videofile;
+					var videourl = videos[mime];
+					html = html + '<source type="'+mime+'" src="'+videourl+'" />';
+					if (mime == "image/png") {
+						posterImage = videourl;
 						}
-					}
-					
-				html = html + '<object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="259" height="151">';
-				html = html + '<param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">';
-				html = html + '<param name="allowFullScreen" value="true">';
-				html = html + '<param name="wmode" value="transparent">';
-				html = html + '<param name="flashVars" value="config={\'playlist\':[\'\',{\'url\':\''+mp4url+'\',\'autoPlay\':true}]}">';
-				html = html + '</object>';
-				alert(html);
-					
-					
+					}					
 				html = html + '</video>';
 				
+				// $('#homepage .videoPlayer').empty().append(html);
 				$('#homepage .videoPlayer').empty().append(html).append('<div class="hideVideo alignCenter" onClick="closeHomepageVideo();">X</div>');
-				$('#homepage .videoPlayer video').get(0).play();
-			}
+				videojs(explainerId,{},function(){
+					// player(this) is initialized and ready.
+					});
+				// $('#homepage .videoPlayer video').get(0).play();
+				}
 			
 			function closeHomepageVideo(){
 				$('#homepage').removeClass('videoSelected');
@@ -780,66 +781,56 @@
 				<div class="videoContainer">
 					<div>
 						<div class="alignCenter">
-							
-							<a href="#" onClick="loadExplainerVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/',
+							<a href="#" onClick="loadExplainerVideo('explainerCloudCommerceBasics',
 								{ 
-								'video/mp4':'cloud-commerce-basic2_v02.mp4',
-								'video/webm':'cloud-commerce-basic2_v02.webm',
-								'video/ogg':'cloud-commerce-basic2_v02.ogg'
+								'image/png':'http://www.commercerack.com/images/vid_thumb_cloud_basics.png',
+								'video/mp4':'https://s3.amazonaws.com/www.commercerack.com/explainers/cloud-commerce-basic2_v02.mp4',
+								'video/webm':'https://s3.amazonaws.com/www.commercerack.com/explainers/cloud-commerce-basic2_v02.webm',
+								'video/ogg':'https://s3.amazonaws.com/www.commercerack.com/explainers/cloud-commerce-basic2_v02.ogg'
 								}
 								);">
 								<!--
 								<img width="259" height="151" src="images/vid_thumb_cloud_basics.png"/>
 								-->
-<video autoplay poster="http://www.commercerack.com/images/vid_thumb_cloud_basics.png" width="259" height="151">
-	<source src="http://s3.amazonaws.com/www.commercerack.com/explainers/thumb_cloud_comp_basics.mp4" type="video/mp4">
-	<source src="http://s3.amazonaws.com/www.commercerack.com/explainers/thumb_cloud_comp_basics.webm" type="video/webm">
-	<source src="http://s3.amazonaws.com/www.commercerack.com/explainers/thumb_cloud_comp_basics.ogv" type="video/ogg">
-	<object type="application/x-shockwave-flash" data="flowplayer-3.2.1.swf" width="259" height="151">
-		<param name="movie" value="flowplayer-3.2.1.swf">
-		<param name="allowFullScreen" value="true">
-		<param name="wmode" value="transparent">
-		<param name="flashVars" value="config={'playlist':['http%3A%2F%2Fwww.commercerack.com%2Fimages%2Fvid_thumb_cloud_basics.png',{'url':'http%3A%2F%2Fs3.amazonaws.com%2Fwww.commercerack.com%2Fexplainers%2Fthumb_cloud_comp_basics.mp4','autoPlay':true}]}">
-		<img alt="Cloud Commerce Basics" src="http://www.commercerack.com/images/vid_thumb_cloud_basics.png" width="259" height="151" title="No video playback capabilities, please download the video below">
-	</object>
+<video preload="auto" autoplay loop poster="http://www.commercerack.com/images/vid_thumb_cloud_basics.png" width="259" height="151">
+	<source src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_cloud_comp_basics.mp4" type="video/mp4">
+	<source src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_cloud_comp_basics.ogv" type="video/ogg">
+	<source src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_cloud_comp_basics.webm" type="video/webm">
 </video>
 							</a>
 						</div>
 						<div class="alignCenter">
-							<a href="#" onClick="loadExplainerVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/',
+							<a href="#" onClick="loadExplainerVideo('explainerWhyThisIsAwesome',
 								{ 
-								'video/ogg':'why_this_is_awesome.ogg', 
-								'video/webm':'why_this_is_awesome.webm',
-								'video/mp4':'why_this_is_awesome.mp4'
+								'image/png':'http://www.commercerack.com/images/vid_thumb_why_awesome.png',
+								'video/ogg':'https://s3.amazonaws.com/www.commercerack.com/explainers/why_this_is_awesome.ogg', 
+								'video/webm':'https://s3.amazonaws.com/www.commercerack.com/explainers/why_this_is_awesome.webm',
+								'video/mp4':'https://s3.amazonaws.com/www.commercerack.com/explainers/why_this_is_awesome.mp4'
 								}
 								);">
 								<!--
 								<img width="259" height="151"	src="images/vid_thumb_why_awesome.png"/>						
 								-->
-								<video height="151" width="259" autoplay loop poster="images/vid_thumb_why_awesome.png">
-									<source type="video/mp4" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_wtia.mp4" />
-									<source type="video/ogg" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_wtia.ogv" />
-									<source type="video/webm" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_wtia.webm" />
-								</video>
+<video preload="auto" height="151" width="259" autoplay loop poster="images/vid_thumb_why_awesome.png">
+	<source type="video/mp4" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_wtia.mp4" />
+	<source type="video/ogg" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_wtia.ogv" />
+	<source type="video/webm" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_wtia.webm" />
+</video>
 							</a>
 						</div>
 						<div class="alignCenter">
-							<a href="#" onClick="loadExplainerVideo('https://s3.amazonaws.com/www.commercerack.com/explainers/',
-								{ 
-								'video/ogg':'how_much_does_it_cost3.ogg',
-								'video/webm':'how_much_does_it_cost3.webm',
-								'video/mp4':'how_much_does_it_cost3.mp4'
-								}
-								);">
+							<a href="#"	onClick="loadExplainerVideo('explainerHowMuchDoesItCost',{
+								'image/png':'http://www.commercerack.com/images/vid_thumb_cost.png',
+								'video/ogg':'https://s3.amazonaws.com/www.commercerack.com/explainers/how_much_does_it_cost3.ogg',
+								'video/webm':'https://s3.amazonaws.com/www.commercerack.com/explainers/how_much_does_it_cost3.webm',
+								'video/mp4':'https://s3.amazonaws.com/www.commercerack.com/explainers/how_much_does_it_cost3.mp4' 
+								});">
 						
-								<!--
-								<img width="259" height="151" src="images/vid_thumb_cost.png"/>						
-								-->
-								<video height="151" width="259" autoplay loop poster="images/vid_thumb_cost.png">
-									<source type="video/mp4" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_hmdic2.mp4" />
-									<source type="video/ogg" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_hmdic2.ogv" />
-									<source type="video/webm" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_hmdic2.webm" />
-								</video>
+<video preload="auto" height="151" width="259" autoplay loop poster="images/vid_thumb_cost.png">
+	<source type="video/mp4" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_hmdic2.mp4" />
+	<source type="video/ogg" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_hmdic2.ogv" />
+	<source type="video/webm" src="http://s3.amazonaws.com/www.commercerack.com/home_video/thumb_videos/thumb_hmdic2.webm" />
+</video>
 								
 							</a>
 						</div>

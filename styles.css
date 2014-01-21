@@ -3,7 +3,7 @@ html, body, #content{
 	width: 100%;
 	padding: 0px;
 	margin: 0px;
-	font-family: 'Exo 2', Abel, sans-serif;
+	font-family: 'Exo 2', 'Exo 2 Light', Abel, sans-serif;
 	font-weight: 300;
 }
 .clear {clear:both;}

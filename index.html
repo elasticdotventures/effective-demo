@@ -94,7 +94,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 </style>
 -->
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="./jquery.min.js"></script>
 		<script type="text/javascript">
 			var defaultInitFunction = function($page){
 				//Default Init does nothing, but here for structural symmetry
@@ -740,16 +740,18 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 						</a>
 						<a class="menu2" href="#!/features.html">
 							<div class="menuHighlight"></div>
-							<div class="menuItem">FEATURES LIST</div>
+							<div class="menuItem">CAPABILITIES</div>
 						</a>
 						<a class="menu3" href="#!/install.html">
 							<div class="menuHighlight"></div>
-							<div class="menuItem">INSTALL NOW</div>
+							<div class="menuItem">DOWNLOAD</div>
 						</a>
+						<!--
 						<a class="menu4" href="#!/demo.html">
 							<div class="menuHighlight"></div>
 							<div class="menuItem">SEE IT IN ACTION</div>
 						</a>
+						-->
 						<a class="menu5" href="#!/whoweare.html">
 							<div class="menuHighlight"></div>
 							<div class="menuItem">WHO WE ARE</div>
@@ -868,9 +870,9 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			<!-- WHAT WE DO: LEFT BAR -->
 			<div id="highlightHowItWorks" class="heavyBG1">
 				<div class="lightBG1 contentContainer">
-					<h1>What does CommerceRack do?</h1>
+					<h1>Overview</h1>
 					<p>
-						Combining the world's most robust app framework with the most flexible, cost-effective and all-inclusive cloud commerce platform is easier than you think.
+						Commercerack helps businesses use cloud infrastructures to efficiently process transactional commerce through mobile apps, marketplaces and websites.
 					</p>
 					
 					<div class="highlightLinks">
@@ -878,17 +880,12 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 							<a href="#wowSummary" data-onclick="scrollto">Executive Summary</a>
 						</div>
 						<div>
-							<a href="#wowApps" data-onclick="scrollto">Shopping with Apps</a>
+							<a href="#wowProducts" data-onclick="scrollto">Our Products</a>
 						</div>
 						<div>
-							<a href="#wowMarketplaces" data-onclick="scrollto">Using Marketplaces</a>
+							<a href="#wowBaaSvSaaS" data-onclick="scrollto">Awesome Sauce</a>
 						</div>
-						<div>
-							<a href="#wowAwesome" data-onclick="scrollto">Why you should use this</a>
-						</div>
-						<div>
-							<a href="#wowMuchMoney" data-onclick="scrollto">Services we offer</a>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -900,8 +897,8 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			<!-- HOW IT WORKS: GETTING STARTED -->
 	<div class="contentContainer">
 	<h2 id="wowStart">Getting Started</h2>
-	If you want to learn more about a topic simply click the 
-	<button onClick="showTrivia('more', $(this).parent(), $(this));" class="showTrivia showTriviaBtnWideMore"></button> button and additional detail will appear.  Try it now!
+	<b>TIP:</b> to learn more about a topic simply click the 
+	<button onClick="showTrivia('more', $(this).parent(), $(this));" class="showTrivia showTriviaBtnWideMore"></button> button and additional detail will appear.  Click the MORE button to try it now!
 	<div data-trivia="more">
 		See how this extra content appeared? it will stay highlighted, so don't worry about needing to read it fast.
 		Here is a complete list of buttons you might find:
@@ -944,456 +941,194 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	</div>
 	</div>		
 
+	
+	
 <!-- HOW IT WORKS: EXECUTIVE SUMMARY -->
 	<div class="contentContainer">
 		<h2 id="wowSummary">CommerceRack: Executive Summary</h2>
-		<p class="indented">CommerceRack is a cloud service that can facilitate both mobile and browser experiences for both customers in store and at home, while also sending inventory to marketplaces like eBay, and Amazon.
-		CommerceRack service facilitates all types of transactional commerce on a cloud infrastructure.
+		<p class="indented">		
+		CommerceRack facilitates both mobile and browser experiences for both customers in store and at home, while also sending inventory to marketplaces like eBay, and Amazon.
+		B2B &amp; B2C companies can use CommerceRack to provide product catalogs & amp; inventory, receive orders, tracking, customers, pricing and more in a cloud infrastructure.
+		Once data is stored in a cloud running CommerceRack software it can be easily accessed by mobile-apps, websites, marketplaces, and other software packages via API's.
 		</p>
-	
 		<div class="alignCenter"><img src="img/howitworks.jpg" /></div>
 	
-		<h4>High level functionality:</h4>
-		<ul>
-		<li> use /app based/ websites, with a shopping cart, and accept orders</li>
-		<li> automatically connect with marketplaces like with amazon, ebay, rakutan, newegg, sears and others.</li>
-		<li> host product catalog, inventory, and supply chain in the cloud </li>
-		<li> access order management, shipping, tracking, crm/wholesale, and warehouse data from any device.</li>
-		<li> compatible with existing infrastructure, including existing websites.</li>
-		</ul>
+	
+		<h2 id="wowProducts">Our Products</h2>
+		<p class="indented">
 
+		<h4>AnyCommerce</h4>
 		<div>
-		<h4>Key Differentiators:</h4>
-		<ul>
-		<li> 
-		Browser/Native Apps create additional conversion opportunities compare to traditional websites. 
-		<span data-trivia="more">
-		Mobile devices have new capabilities such as the ability to access voice processing, location (gps), and push messaging. 
-		Social is an untapped frontier of clients who just need the right reasons to share.
-		Browser apps are better suited for the complex client side logic of todays multi-display, multi-device, multi-operating system world. 
-		</span>
-		</li>
-		<li> 
-		MarketPlace Optimization (MpO) improves sales velocity on Amazon, eBay, and others.  
-		<span data-trivia="more">
-		A majority of growth in online sales has been on marketplaces such as Amazon.
-		Online Marketplaces choose which sellers will be recommended in the "Buy Box" using ranking algorithms.
-		Both <acronym title="MarketPlace Optimization">MpO</acronym>
-		and <acronym title="Search Engine Optimization">SEO</acronym> are very similar because both deal with the study of ranking
-		algorithms based on signals.  Search engines use signals like page content, meta tags and links as signals to determine
-		which page to recommend.  Marketplaces use signals like price, inventory level, geographic local, order cancellation rate and others to determine which seller to recommend for the Buy Box.  
-		It's serious business - the seller who receives the buy box for an item will receive approximately 97% of the total sales velocity for that item! CommerceRack is the platform for people who are serious about MpO. 
-		</span>
-		</li>
-		<li> 
-		Built for the cloud.
-		<span data-trivia="more"> The Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. Cloud software has all the advantages of <acronym title="software as a service">SAAS</acronym> but also gives a higher degree of flexibility and operator independence.
-		In fact a majority of the estimated $80 billion dollars that will be spent on cloud services by the year 2016 will come from SMB's between 25 and 200 employees. 
-		</span>
-		</li> 
-		</ul>
-		<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
+			AnyCommerce (for web-developers) is free/open-source tool for web-designers to create shopping experiences for both native-apps and web-browsers. 
+			
+			<span data-trivia="more">AnyCommerce lets anybody who understands HTML5, CSS3, and Javascript create transactional applications for desktop web-browsers, mobile-browsers, and native ios, android, and windows store.</span><br>
+			<div>
+			<button onClick="showTrivia('more',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideMore"></button>
+			<button onClick="showTrivia('how',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideHow"></button>
+			<button onClick="showTrivia('dev',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideDev"></button>
+			</div>
+			<aside data-trivia="how">
+			<p>
+			Web-designers/Developers can use AnyCommerce to create "Single Page Apps" using only HTML5, CSS3, Javascript (jquery).
+			These languages are already well known to every web-designer, web-developer, and creative agency so companies can use vendors they already have relationships with.   
+			The application runs on the local computer (instead of on a webserver) providing the following benefits:
+			</p>
+			<ul>
+			<li> Enhanced user experience (e.g. swipe, push)</li>
+			<li> No additional technology like PHP, Java, ASP.Net is needed.</li>
+			<li> Better security / reduced threat profile</li>
+			<li> Reduced server / IT costs</li>
+			<li> Reduced bandwidth and battery life on mobile devices.</li>
+			</ul>
+			</aside>
+			
+			<aside data-trivia="dev">
+			AnyCommerce is a pure HTML5, CSS, JS (jquery) based templating engine for creating transactional applications.
+			Designed to be familiar to designer/web-developers who are often not as strong at programming and prefer template customization.
+			It includes numerous innovative features and is much more reliant on HTML5 and CSS than it is on Javascript, it was specifically designed so that an individual who is only fluent in html and basic css could manage an app.
+			AnyCommerce is designed to work with the popular GIT source control system to keep track of changes and also perform local testing. 
+			AnyCommerce is 75% transactional application functionality and 25% display/render code - which is obviously much different than general purpose JS MVC/MVVM frameworks.
+			AnyCommerce is not a requirement, developers can can use any framework or language they like, however anyCommerce can save companies thousands of dollars by having
+			built in templates/mechanisms for handling checkout/payment processing, catalog display, catalog search, and customer service which are commonly needed.
+			Native compilation can be done using Apache Cordova (PhoneGap).	
+			For developer information about anyCommerce please visit <a href="http://www.github.com/commercerack/anycommerce">http://www.github.com/commercerack/anycommerce</a>
+			</aside>
 		</div>
+		
+		<h4>Backend</h4>
+		<div>		
+			Backend (for cloud infrastructures) is free+open-source software used to host/store mobile commerce data in a cloud. 
+			<span data-trivia="more">Specifically information like product catalog, inventory, pricing, orders, tracking, and returns are where Backend excels.</span>
+			<span data-trivia="more">Backend also offers built-in synchronization with marketplaces like Amazon, and eBay, and integration with a variety of popular order processing systems.</span>
+			<div>
+			<button onClick="showTrivia('more',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideMore"></button>
+			<button onClick="showTrivia('how',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideHow"></button>
+			<button onClick="showTrivia('dev',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideDev"></button>
+			</div>
+			<aside data-trivia="how">
+			CommerceRack Backend is usually deployed by a vendor or internal IT department as a BaaS (Backend-As-A-Service) on a cloud infrastructure. 
+			A BaaS is necessary for transactional mobile applications to download product information and store orders.
+			CommerceRack can also synchronize data with multiple data-silos using an easy, fast, and robust event-driven messaging bus. 			
+			<ul>
+			<li>Extremely friendly Developer-API with complete source to administrative application. (There is no web interface, only an app).</li>
+			<li>Marketplace synchronization of product catalog, inventory, orders, tracking with Amazon, eBay, Rakutan, NewEgg, and several others.</li>
+			<li>Can track multiple geographically diverse inventory records per SKU</li>
+			<li>Includes CRM, Supply Chain, Wholesale/B2B pricing, and Newsletter/Campaign modules</li>
+			</ul>
+			</aside>
+			<aside data-trivia="dev">
+			Backend is a free open source (MIT-licensed) software stack built on CentOS w/ZFS, Nginx, Uwsgi+Plack (Perl's version of Rack), MySQL, Redis, and ElasticSearch.  
+			Vendors who want to operate their own BaaS will need to obtain developer-api licenses for FedEx, UPS, eBay, Amazon, Paypal, etc.
+			CommerceRack offers a turn-key deployment on a variety of cloud infrastructures. 
+			For developer information about anyCommerce please visit <a href="http://www.github.com/commercerack/backend">http://www.github.com/commercerack/backend</a>.
+			</aside>
+		</div>
+		
+		<h4>Complete</h4>
+		<div>
+			Complete (for businesses) is a DIFM (Do It For Me) service from an ecosystem of leading vendors who collaboratively work together to support businesses.
+			<span data-trivia="more">
+			Complete is an ecosystem of service providers, consultants, and cloud-infrastructure companies who work together to provide B2B and B2C clients with delivered solutions.
+			</span>
+			<span data-trivia="more">
+			The complete eco-system is managed by CommerceRack and offers businesses with peace of mind knowing that issues such as design, development, marketing, 
+			seo, analytics, order management, supply chain integration,	delivery, call center, warehousing/fulfilment, business intelligence, data-security, proactive monitoring, and other services are ready to go. 
+			</span>
+			<div>
+			<button onClick="showTrivia('more',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideMore"></button>
+			<button onClick="showTrivia('how',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideHow"></button>
+			<button onClick="showTrivia('dev',  $(this).parent().parent());" class="showTrivia showTriviaBtnWideDev"></button>
+			</div>
+			<aside data-trivia="how">
+			CommerceRack Complete helps vendors to focus on their core competencies and leverage new advancements in technology like
+			cloud, and agile distributed development for the highest possible efficiency.  Having all the data in the cloud, with multiple
+			import/export formats and an open-api means virtually anybody can access.  
+			Service providers who participate in CommerceRack Complete share a portion of their CommerceRack revenue (or time) towards the improvement of the anyCommerce and Backend software.
+			</aside>
+			<aside data-trivia="dev">
+			We are always seeking new service providers and developers who are passionate about cloud technology and provide either B2B or B2C services.			
+			The only requirement to participate is you must have at least one referencable client actively using the CommerceRack technology.			
+
+			</aside>
+			</p>
+		</div>
+		</p>	
+	
+		<br>
+		<br>
 		
 		<div class="clear"></div>
 		
 		<!-- HOW IT WORKS: SHOPPING WITH APPS -->
 	<div class="contentContainer">
-	<h2 id="wowApps">The App Framework</h2>
-	<p class="indented">
-	<span class="apps">
-	<h4>Apps Are The Future</h4>
-	<p>
-	With anyCommerce's app-based commerce framework, shopping experiences can be custom tailored to fit business needs. 
-	As businesses grow and need change, the store can easily change right along with it.
-	Apps use github to support iterative updates, allowing you more flexibility as a business grows.
-	</p>
-	<aside data-trivia="demo">
-	Here are some app based sites:
-	<ul>
-	<li> <a target="_blank" href="http://app.sportsworldchicago.com">http://app.sportsworldchicago.com</a></li>
-	</ul>
-	<i>Look at the "see it in action" section for more</i>
-	</aside>
-	<span onClick="showTrivia('demo', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDemo"></span>
+		<h2 id="wowBaaSvSaaS">Our Awesome Sauce Recipe</h2>
+		<p class="indented">
+		<div class="apps">
+			<div>
+			<h4>BaaS + Cloud = Higher ROI, Lower TCO</h4>
+			When a Backend-as-a-Service (BaaS) is deployed on a cloud architecture it offers more flexibility than traditional
+			web-based saas services.  
+			<button onClick="showTrivia('more',  $(this).parent());" class="showTrivia showTriviaBtnWideMore"></button>
+			<div data-trivia="more">
+			<ul>
+			<li> Eliminates vendor forced software upgrades. </li>
+			<li> Provides auditable practices and role based security.</li>
+			<li> Best/easiest way to store data for mobile/app development.</li>
+			<li> Easily connects to any type of system.</li>
+			</ul>
+			</div>
+			<span data-trivia="more"> The Cloud uses massive economies of scale to deliver business friendly services including dramatic cost savings and unparalleled functionality. Cloud software has all the advantages of <acronym title="software as a service">SAAS</acronym> but also gives a higher degree of flexibility and operator independence.
+			In fact a majority of the estimated $80 billion dollars that will be spent on cloud services by the year 2016 will come from SMB's between 25 and 200 employees. 
+			</span>
+			</div>
+			
+			<div>
+			<h4>Advanced e+m Commerce Functionality</h4>
+			The backend offers all the functionality an online B2B/B2C retailer would want from a platform out of the box. 
+			<button onClick="showTrivia('more',  $(this).parent());" class="showTrivia showTriviaBtnWideMore"></button>
+			<div data-trivia="more">
+			<ul>
+			<li> automatically connect with marketplaces like with amazon, ebay, rakutan, newegg, sears and others.</li>
+			<li> host product catalog, inventory, and supply chain in the cloud.</li>
+			<li> access order management, shipping, tracking, crm/wholesale, and warehouse data from any device.</li>
+			<li> compatible with existing infrastructure, including existing websites.</li>
+			</ul>
+			</div>
+			</div>
 
-	</span>
-	<span class="apps_provide">
-	<h4>Apps: The Future Of Online Shopping</h4>
-	<ul>
-	<li>
-		Apps deliver enhanced user experience for customers.
-		<span data-trivia="more">
-		Browser based apps are faster and can easily utilize animations, timers, and videos while content is being loaded.
-		Native apps can do all that and access push messaging, cameras, gps, on device wallets, and device identity management.
-		</span>
-		<aside data-trivia="dev">
-		websites are limited by both the web-server and browser, whereas apps are restricted only to what is possible in HTML5, CSS3, and Javascript.  
-	
-		Additionally apps are stateful, they never need to reload (except during an http/https transition).
-		Normally during a page reload the browser experiences a small loss of communication with the server, this also
-		causes any animation loops, event timers, videos, etc. to be reset, or at least serialized/deserialized and reinstantiated which causes both unnecessary complexity and delay.
-		</aside>
-	</li>
-	<li>
-		Apps have lower operating costs. 
-		<span data-trivia="more">
-		A normal app will have anywhere from 50% to 90% savings per page in infrastructure costs over a server generated website.
-		</span>
-		<aside data-trivia="dev">
-		Apps are generally static which are better in every measurable aspect than traditional sites (faster, cheaper, easier, and more scalable to serve than any dynamic page).
-		commercerack instances are configured for hot-object caching using memcache, and redis, and make effective use of fast ephemeral
-		disks rather than writing to network block storage.
-		internal communication between modules is done using uwsgi over named pipes, and signals taking full advantage of shared memory. 
-		techniques like auto-image rescaling reduce bandwidth, and pre-compressing and minimizing files and storing them in memory
-		takes a machete to both processor utilization and latency due to compression.
-		Additionally in many private cloud configurations SSL accelerators can be added to further offload core processors (note: many
-		CDN's do this as well)
-		With apps content is only transferred once, and cached locally, compared to even a very optimized webpage the same headers, footers, etc. must be re-transmitted each time. 
-		This is also more efficient than AJAX because multiple requests are automatically pipelined into a single HTTP/HTTPS connection, or 
-		sent over an already established messaging channel between app and instance via a websocket.
-		</aside>
-	</li>
-	<li>
-		Apps let developers work faster. <span data-trivia="more">apps take weeks, equivalent websites take months.</span>
-		<aside data-trivia="dev">
-		App developer IS faster because apps can be developed and tested locally, and will typically use git code manage to track revisions and changes.
-		websites have more moving parts (ex: server plugins, etc.) and testing and debugging those can add a significantly amount of 
-		unknown time to projects. 
-		features like branching and forking in git make it easy to do iterative development and test locally. 
-		</aside>
-	</li>
-	<li>
-		Apps are more secure. <span data-trivia="more">
-		Apps run locally so many of the normal exploits that would come from installing a poorly written module are non-existent.
-		The most common types of attacks against webservers will actually target the attackers own computer where the app is running.
-		</span>
-		<aside data-trivia="dev">
-		Apps run locally so probes, xss attacks, etc. all happen to the attackers own computer.
-		
-		Apps are static and can be physically hosted in virtually any environment, they can also
-		pull content from other applications or webapi's using mashups (cloud api calls that return json prettified content)
-
-		A single api has reduced attack vectors, and a clean parameter handling using json encoding.
-		The commerceRack intent based api can track calls by sessions and types of calls, and/or ip address, and/or netblock in an effort to detect bots.  Once a bot is detected it can be treated specially (for example never be allowed to login,
-		and given false pricing ex: a competitor's intelligence bot)
-		Normal DDOS attacks will generally target a domain, which can be a CDN or other reasonably hardened target.
-		Effective use of hot-object cache means cloud infrastructures can be quickly and easily scaled out to handle even well equipped attackers.
-		</aside>
-	</li>
-	</ul>
-	</span>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	<span onClick="showTrivia('dev', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideDev"></span>
-	
+			<div>
+			<h4>B2B &amp; B2C Mobile Advantages</h4>
+			Apps on mobile and tablets represent the evolution of the user interface with technologies like touch, swipe, and pinch to zoom.
+			<button onClick="showTrivia('more',  $(this).parent();" class="showTrivia showTriviaBtnWideMore"></button>
+			<div data-trivia="more">
+			Many businesses do not realize these technologies are not available/compatible with browser based mobile websites.
+			anyCommerce offers businesses the best of both worlds by letting existing creative agencies/web-designers create
+			a single unified experience across all platforms that uses native device capabilities when available, and defaults to
+			old browser interfaces when they are not.
+			</div>
+			<div data-trivia="more">
+			CommerceRack Backend is compatible with any mobile application development framework. However anyCommerce includes
+			numerous enhancements.
+			<ul>
+			<li> Avoid spam filters and send rich content and interactive forms via App-push messages to communicate with customers instead of email.</li>
+			<li> Persistent session with cart sharing allows administrative users to modify cart contents, pricing, override shipping and add hidden coupons.</li>
+			<li> B2B companies can use techniques like local storage, location, and video conferencing (webrtc) to enhance customer relationships.</li>
+			<li> Pure HTML5, CSS3, JS Eliminates costly "tower of babel" issue with incompatible server side languages like PHP, ASP.Net, Java.</li>
+			<li> GIT distributed development records each developer/designers contributions with easy rollback/version control</li>
+			<li> Apps run on the local system making each developers machine their own testing environment.</li>
+			</ul>
+			</div>
+			</div>
+			
+		</div>
+		</p>				
 	</p>
-	<div class="clear"></div>
 	</div>
 
-	<!-- HOW IT WORKS: MARKETPLACE INTEGRATION -->
-	<div class="contentContainer">
-	<h2 id="wowMarketplaces">Marketplace Integration</h2>
-	<div class="clear"></div>
 
-	<p>Today many consumers who shop online will only do so at websites like Amazon.com. 
-	In order to reach those clients businesses have two choices: 1. Buy a storefront from Amazon, 
-	2. find a third party solution for processing Amazon sales.  
-	CommerceRack is better than Amazon's webstores because we include numerous Marketplace Optimization features, in addition to support for marketplace logistics services like Fulfillment by Amazon. 
-	</p>
-	
-	<article data-trivia="more">
-	<h3>Amazon Webstores vs. CommerceRack</h3>
-	Amazon offers it's own limited store fronts, they are significantly more expensive and also lack features 
-	which would allow a company to differentiate itself from peers.  
-	In addition Amazon's fees are substantially higher than CommerceRack, and they lack many features that CommerceRack has 
-	(such as non-Amazon warehouse capabilities).
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</article>
-	
-	<article data-trivia="more">
-	<h3>Why is MpO important?</h3>
-	<p>It's no secret customers are shopping less on search engines and more on marketplaces. 
-	<acronym title="MarketPlace Optimization">MpO</acronym> is the science behind winning the coveted "Buy Box" on marketplaces like Amazon. With Search Engine Optimization (<acronym title="Search Engine Optimization">SEO</acronym>) a company would 
-	focus on providing good signals like meta tags, links, and content that would be used to determine rank.
-	MpO uses signals like inventory level, price, and order cancellation rate.
 
-	<h3>Example Ranking Signals</h3>
-	<p>Below is a sample of the signals a marketplace could use to rank sellers: </p>
-	<ul>
-		<li>Total Cost to Buyer (including shipping)</li>
-		<li>Overall Order Cancellation Rate of the Seller</li>
-		<li>Shipping Latency</li>
-		<li>History and Experience of the Seller on the Marketplace</li>
-		<li>Overall Customer Feedback</li>
-		<li>Available Inventory for Purchase</li>
-		<li>Order Defect Rate as a % of Gross Sales</li>
-		<li>Late Shipments as a % of Total Shipments</li>
-		<li>Gross Sales</li>
-		<li>Total # of Sales on Marketplace</li>
-	</ul>					
-
-	</article>
-
-	
-	</div>
-
-	<!-- HOW IT WORKS: WHY YOU SHOULD USE THIS -->
-	<div class="contentContainer">
-	<h2 id="wowAwesome">Why you should use CommerceRack</h2>			
-
-	<div>
-	<h3>Cloud &gt; SAAS</h2>
-	<p> Many people confuse Cloud and SAAS, but they are not the same.
-	<span data-trivia="more">
-	SAAS offers limited infrastructure/deployment options, whereas in Cloud the infrastructure and software 
-	are independent. 
-	</span>
-	Our App and Cloud deployment model avoids <acronym
-	title="technical debt (also called design debt or code debt) is a term used to refer to technology decisions which short near term costs, and expensive long term costs">technical debt</acronym> that plagues other e-Commerce offerings, 
-	especially those operated as SAAS.
-	<span onClick="showTrivia('more',  $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore" ></span>
-										
-	<article data-trivia="more">
-	In 1998 when Software as a service (SAAS) arrived it challenged conventional "purchased" software model and took the software 
-	industry by storm. 
-	Since then SAAS has historically provided an inexpensive use-as-necessary approach for deploying software, but SAAS also has pain points including:
-	<ul>
-		<li> Lock-in/Data-silos: can be difficult to get data in/out of systems.</li>
-		<li> Forced upgrades: new versions may disrupt business. 
-		<span data-trivia="more"> 
-		Upgrades may introduce bugs, or change the behavior of required features at less than ideal times.
-		</span>
-		</li>
-		<li> Loss of Control: Subscriber is 100% dependent on SAAS provider for updates to platform.</li>
-		<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Not Configurable: Any configuration that is not offered explicitly by a SAAS provider is not possible.</span></li>
-		<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Shared Infrastructures: Most SAAS architectures operate on multi-tenant architectures meaning the actions of one tenant can be disruptive to other clients by consuming excessive resources.</span></li>
-		<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Forced Resource Limits: In order to provide a stable system most SAAS operators will limit the functionality rather than upgrading resources.  In some cases features won't even be added because	they could consume too many resources.</span></li>
-		<li data-trivia="more -d 0"><span data-trivia="more" class="noBG">Faith Required: SAAS companies may document their procedures, but there are no audit or third party certifications to verify these.
-		Companies based on SAAS don't really know about backup procedures, they must take declarations from a provider on nothing more than faith and reputation.</span>
-		</li>
-	</ul>
-	
-	Cloud software has all the same benefits as SAAS (rapid deployment, low entry cost, etc.) but none of the downsides. 
-	SAAS was the best option for software before The Cloud and Apps.  
-Companies that depend on IT for the revenue will discover that The Cloud and Apps has all the same benefits of SAAS but
-will typically offer cost savings, AND has none of the disadvantages. 
-	</article>
-	
-	<article data-trivia="more">
-	CommerceRack uses the cloud to releases businesses from the shackles of proprietary expensive backends, and complicated infrastructures - our approach is open, simple, and secure.  We have only one goal - to make it easy to connect and share data.
-	</article>
-
-	</div>
-
-	<div>
-	<h4 class="alignLeft">Unified Engagement</h4>
-	<p>
-	Delivering the fastest and best customer experience is just part of what we do.
-	CommerceRack and anyCommerce can deliver a unified experience to customers - across every point of consumer engagement including in-store, mobile, social, call-center, and existing websites. 
-	</p>
-	<p data-trivia="more">
-	By providing a consumer with more opportunities to shop and purchase on their terms, customers will buy more frequently, and spend more.  
-	</p>
-	<p data-trivia="more">
-	anyCommerce makes it cost effective to roll out a unified experience by using a common core based on HTML5, CSS3, and Javascript, and then
-	embedding that into a native shell.   This is especially important as the new mobile operating systems such as Windows Phone,
-	ChromeOS, FireFox OS, UnbuntOS, Sailfish and others come online, not to mention new delivery vehicles like X-Box. 
-	</p>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-
-	</div>
-
-	
-	<div>
-	<h4>Ready for Tomorrow</h4>
-	<p>
-	CommerceRack was built for the looming challenges retailers face. 
-	Recently Practical eCommerce listed the top e-commerce challenges for 2014 (<a href="http://www.practicalecommerce.com/articles/62217-5-Ecommerce-Challenges-for-2014">Link</a>) here the list of five items is below.
-	</p>
-	<ol>
-		<li> Offer Free 2-Day Shipping
-		<span data-trivia="more">
-		Shipping across the country two day is extremely cost prohibitive for virtually all items.  It is much less expensive to stage popular items at geographically warehouses.
-		Out of the box CommerceRack supports multiple supplier and intelligent item routing. 
-		</span>		
-		</li>
-		<li> Put Mobile Design and Marketing first
-		<span data-trivia="more">Apps deliver a better experience on mobile devices than traditional websites.  CommerceRack also includes the first CRM system to incorporate email AND device Push notifications for customers, as well as the ability to link to facebook, google and others. </span>
-		</li>
-		<li> More Personalization and Customization.
-		<span data-trivia="more">Apps are stateful - they can persistently store and evaluate recent search history to create personalized campaigns.</span>
-		</li>
-		<li> Use Big data for Big Information
-		<span data-trivia="more">The easiest way to use big data is to store that information in the cloud. CommerceRack is the only Commerce Platform build for the cloud.</span>
-		</li>
-		<li> Sell Seamlessly Across Channels and Devices
-		<span data-trivia="more">
-		This is sort of our bread and butter.  In the article they especially outline how important a unified experience is especially in todays complicated mixed-device ecosystems.  CommerceRack uses HTML5 for layout inside native device shells make it easy to unify customer experiences. 
-		</span>
-	</ol>
-	Now let's see how CommerceRack handles these challenges: <span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</div>
-	
 	
 	<div class="clear"></div>
-	</div>
-
-	<!-- HOW IT WORKS: SERVICES WE OFFER -->
-	<div>
-	<h2 id="wowMuchMoney">How we make money</h2>			
-
-	<div class="services_app">
-		<p>Here at CommerceRack, we have worked diligently to provide businesses with the most all-encompassing and extensible e-commerce solution out there. Other companies focus on specific areas of e-commerce, leaving you to figure out for yourself how to integrate new features or update current features when your business grows. 
-		We have integrated all of the mission-critical components so you can focus on your business and not your e-commerce technology. 
-		We know our clients have a choice, and not required to utilize our services so we go above and beyond to make sure they have the best experience possible!</p>
-	</div>
-	
-
-	<div>
-	<h3>Software Licenses</h3>
-	<p>
-	CommerceRack licenses are required for all commercial uses, except during development. 
-	A license does not include any type of technical support.
-	With some infrastructure providers (ex: Amazon Web Services) the license is already included in the price of the instance. 
-	</p>
-
-	<div data-trivia="more">
-	<p>
-	<h4>Why is this necessary?</h4>
-	To perform many of the software functions CommerceRack must pass a variety of provider certifications in order to be allowed
-	to access their <acronym title="Application Programming Interface"> API's</acronym>.  A CommerceRack license allows us to 
-	sub-license that certification to an individual business. 
-	</p>	
-	<p>
-	<h4>License Includes</h4>
-	<ul>
-	<li>Access to updates, and security patches (*may be required for PCI)</li>
-	<li>UPS Online Tools License </li>
-	<li>FedEx Shipping Solution</li>
-	<li>eBay Developer Program</li>
-	<li>Amazon Marketplace Provider</li>
-	<li>Kount Reseller</li>
-	<li>Paypal Integration</li>
-	</ul>
-	</p>
-	</div>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</div>
-	
-	<!-- -->
-
-	<div>
-	<h3>Commerce Support</h3>
-	<p>
-	Have a quick question about the operation of the CommerceRack platform? Our friendly and knowledgeable staff are ready to assist you.
-	</p>
-
-	<div data-trivia="more">
-	<p>
-	<h4>Why is this necessary?</h4>
-	Never wait for answers in public forums that may never come, or may come from questionable sources. 
-	Contact experienced technicians over the phone or using the built-in ticketing system. 
-	Specialists are available to assist with a variety of software related needs.  
-	<p>
-	<h4>What this includes</h4>
-	<ul>
-	<li> Amazon Marketplace Configuration</li>
-	<li> eBay Marketplace Configuration</li>
-	<li> Coupon/Promotion support</li>
-	<li> Shipping Configuration (w/Shipping Rules)</li>
-	<li> Order Processing Assistance</li>
-	<li> Inventory/Warehouse Configuration/Usage</li>
-	<li> Email+App Push campaign assistance</li>
-	<li> Basic Marketplace Optimization</li>
-	</ul>
-	</div>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</div>
-
-	<!-- -->
-
-	<div>
-	<h3>Infrastructure Support</h3>
-	<p>
-	Businesses can charge forward knowing they are running on optimized configurations that are backed by the best technical staff in the business.
-	</p>
-	<div data-trivia="more">
-	<h4>Why is this necessary?</h4>
-	<p>
-	Most public clouds such as Amazon and Google will offer support only for their own cloud services. 
-	At this time there is a small and growing ecosystem of providers which specialize in supporting software.
-	CommerceRack provides infrastructure support to both individual companies and also to companies who provide many cloud services
-	to businesses.  Our staff is able to diagnose many common performance and optimization issues, as well as offer live (non-forum)
-	based advice on deployment and operational issues. 
-	</p>
-
-	<h4>Infrastructure Support Includes:</h4>
-	<ul>
-	<li>Infrastructure consulting/provisioning</li>
-	<li>24/7 monitoring and emergency assistance</li>
-	<li>Backup &amp; Recovery Services</li>
-	<li>Application tuning/specialized configurations</li>
-	</ul>
-	</div>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</div>
-	
-	<div>
-	<h3>App Development</h3>
-	<p>
-	Our experienced anyCommerce Developers want to build or assist with your project.  Nobody knows the framework better. 
-	We are in a position to best match the needs of the business with the skills of a developer, designer, or project manager.
-	</p>
-	<div data-trivia="more">
-	<p>
-	<h4>Why is this necessary?</h4>
-	<p>
-	Having experts working on, or ready to jump into a project can help avoid costly delays and missed deadlines. 
-	We have both our own project managers, and in-house staff as well as subcontract through with leading designers, graphic developers, quality assurance others.  We have developed a strict set of guidelines which ensure that projects hit their
-	intended goals. 
-	</p>
-	<h4>App Development Includes:</h4>
-	<ul>
-	<li> Project Management</li>
-	<li> Integration Consulting</li>
-	<li> Responsive or Fluid Graphic Concept/Layout</li>
-	<li> HTML5/CSS/JS Layout</li>
-	<li> Native Shell Embedding</li>
-	<li> Quality Compliance Review</li>
-	<li> Quality Assurance and Testing</li>
-	</ul>
-	</p>
-	</div>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</div>
-
-	<div>
-	<h3>Marketplace Optimization (MpO)</h3>
-	<p><acronym title="MarketPlace Optimization">MpO</acronym> is the science behind winning the coveted "Buy Box" on marketplaces like Amazon. Businesses can increase their order velocity by apply a knowledge of the science behind the ranking signals.
-	This also includes assistance in creating and implementing repricing strategies, along with multi warehouse/logistics such as FBA.
-	<div data-trivia="more">
-	<p>
-	<h4>Why is this necessary?</h4>
-	<p>
-	Here at CommerceRack, we have identified the next critical strategy in e-commerce as it pertains to selling through marketplaces. Winning the BuyBox, or as we call it, Marketplace Optimization&trade; (MpO), gets your products in the best possible position to be sold. Our MpO Experts will help you identify the areas of your business to improve in order to increase your frequency in the BuyBox.
-	</p>
-	<h4>MpO Includes:</h4>
-	<ul>
-	<li> Marketplace Analysis/Recommendation</li>
-	<li> Marketplace Product Management</li>
-	<li> Inventory Logistics Strategy</li>
-	<li> Repricing Agent Automation</li>
-	<li> Google Analytics Assistance</li>
-	<li> CPC/Amazon Product Ads</li>
-	</ul>
-	</p>
-	</div>
-	<span onClick="showTrivia('more', $(this).parent(), $(this));" class="inlineBlock showTrivia showTriviaBtnWideMore"></span>
-	</div>
-	
-	
-	<div class="clear"></div>
-	</div>
 		
 	</div>	
 	
